@@ -1,0 +1,9 @@
+*.pdf
+*.log
+*.aux
+*.bbl
+*.blg
+*.sync*
+*.thm
+*.toc
+*.out
