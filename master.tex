@@ -1,0 +1,35 @@
+\input{setup/preamble.tex}
+\input{setup/hyphenations.tex}
+\input{setup/macros.tex}
+
+\makeatletter\@addtoreset{chapter}{part}\makeatother%
+\begin{document}
+%frontmatter
+\pagestyle{empty} %disable headers and footers
+\pagenumbering{roman} %use roman page numbering in the frontmatter
+\input{sections/frontpage.tex}
+\cleardoublepage
+\input{sections/titlepages.tex}
+\cleardoublepage
+\pdfbookmark[0]{Contents}{label:contents}
+%\pagestyle{fancy} %enable headers and footers again
+\setcounter{tocdepth}{2}
+\tableofcontents
+\listoftodos
+\input{sections/preface.tex}
+\cleardoublepage
+% end frontmatter
+
+%mainmatter
+\pagenumbering{arabic} %use arabic page numbering in the mainmatter
+% end mainmatter
+
+%Parts and chapters
+\part{Introduction}
+\input{sections/chapter_introduction.tex}
+\part{Some other part}
+\bibliography{bib/main_bib}
+\newpage
+\appendix
+\input{sections/appendix}
+\end{document}
