@@ -118,3 +118,64 @@
 
 % used to include eps files
 \usepackage{epstopdf}
+
+%Anders COMMAND
+\newcommand{\todoanders}[2][ ]
+{
+  \ifthenelse{\equal{#1}{inline}}
+    {\todo[inline, size=\small, color=blue!40]{\textbf{Anders:} #2}}
+    {{\includegraphics[height=2ex]{setup/Comments/anders}} \todo[size=\small, color=blue!40]{\textbf{Anders:} #2}}
+}
+
+
+%Benjamin COMMAND
+\newcommand{\todobenjamin}[2][ ]
+{
+  \ifthenelse{\equal{#1}{inline}}
+    {\todo[inline, size=\small, color=blue!40]{\textbf{Benjamin:} #2}}
+    {{\includegraphics[height=2ex]{setup/Comments/benjamin}} \todo[size=\small, color=yellow!40]{\textbf{Benjamin:} #2}}
+}
+
+%Daniel COMMAND
+\newcommand{\tododaniel}[2][ ]
+{
+  \ifthenelse{\equal{#1}{inline}}
+    {\todo[inline, size=\small, color=blue!40]{\textbf{Daniel:} #2}}
+    {{\includegraphics[height=2ex]{setup/Comments/daniel}} \todo[size=\small, color=green!40]{\textbf{Daniel:} #2}}
+}
+
+
+%Michael COMMAND
+\newcommand{\todomichael}[2][ ]
+{
+  \ifthenelse{\equal{#1}{inline}}
+    {\todo[inline, size=\small, color=blue!40]{\textbf{Michael:} #2}}
+    {{\includegraphics[height=2ex]{setup/Comments/michael}} \todo[size=\small, color=orange!40]{\textbf{Michael:} #2}}
+}
+
+
+%Dennis COMMAND
+\newcommand{\tododennis}[2][ ]
+{
+  \ifthenelse{\equal{#1}{inline}}
+    {\todo[inline, size=\small, color=blue!40]{\textbf{Dennis:} #2}}
+    {{\includegraphics[height=2ex]{setup/Comments/dennis}} \todo[size=\small, color=purple!40]{\textbf{Dennis:} #2}}
+}
+
+%Kasper COMMAND
+\newcommand{\todokasper}[2][ ]
+{
+  \ifthenelse{\equal{#1}{inline}}
+    {\todo[inline, size=\small, color=blue!40]{\textbf{Kasper:} #2}}
+    {{\includegraphics[height=2ex]{setup/Comments/kasper}} \todo[size=\small, color=pink!40]{\textbf{Kasper:} #2}}
+}
+
+%Brian COMMAND
+\newcommand{\todobrian}[2][ ]
+{
+  \ifthenelse{\equal{#1}{inline}}
+    {\todo[inline, size=\small, color=blue!40]{\textbf{Brian:} #2}}
+    {{\includegraphics[height=2ex]{setup/Comments/brian}} \todo[size=\small, color=red!40]{\textbf{Brian:} #2}}
+}
+
+
