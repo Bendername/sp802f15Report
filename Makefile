@@ -1,20 +1,20 @@
 OTHER = *~ *.aux *.dvi *.toc *.bbl *.blg *.gz *.out *.thm *.ps *.idx *.ilg *.ind *.pdf *.log *.tdo
-MAIN = Main.tex
+MAIN = Main
 
-pdflatex: $(MAIN)
-	pdflatex --synctex=1 Main.tex
-	bibtex Main
-	pdflatex --synctex=1 Main.tex
-	pdflatex --synctex=1 Main.tex
-	pdflatex --synctex=1 Main.tex
+pdflatex: $(MAIN).tex
+	pdflatex --synctex=1 $(MAIN)
+	bibtex $(MAIN)
+	pdflatex --synctex=1 $(MAIN)
+	pdflatex --synctex=1 $(MAIN)
+	pdflatex --synctex=1 $(MAIN)
 
-lite: $(MAIN)
-	pdflatex Main.tex
+lite: $(MAIN).tex
+	pdflatex $(MAIN)
 
-toc: $(MAIN)
-	pdflatex Main.tex
-	pdflatex Main.tex
-	pdflatex Main.tex
+toc: $(MAIN).tex
+	pdflatex $(MAIN)
+	pdflatex $(MAIN)
+	pdflatex $(MAIN)
 
 clean:
 	rm -f $(OTHER)
