@@ -3,9 +3,9 @@ MAIN = Main
 
 pdflatex: $(MAIN).tex
 	pdflatex --synctex=1 $(MAIN)
+	pdflatex --synctex=1 $(MAIN)
+	pdflatex --synctex=1 $(MAIN)
 	bibtex $(MAIN)
-	pdflatex --synctex=1 $(MAIN)
-	pdflatex --synctex=1 $(MAIN)
 	pdflatex --synctex=1 $(MAIN)
 
 lite: $(MAIN).tex
