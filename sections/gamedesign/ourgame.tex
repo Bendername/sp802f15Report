@@ -1,0 +1,65 @@
+\section{Our game: Last Stand}
+Whilst obviously designing a game which is fun, it is important to us that we try to understand the concepts of cognitive flow outlined in \ref{gamedesign:cognitiveflow} such that we have a psychological scientific foundation on which our game design lies upon. 
+So with that in mind, a game idea will be developed and each element will be justified with a cognitive-flow-concept which it empoweres. A list of all major concepts of the game can be found in the following section, \ref{gamedesign:maingameconcepts}. 
+The game idea will then undergo rapid prototyping and testing, and adjustments according to what is \emph{fun} and what is not, will be made.  
+
+\subsection{Main game concepts}\label{gamedesign:maingameconcepts}
+There are a few obstacles which has to be addressed in the game design. First of all, the game has to fulfill the intial goals outlined in the problem statement in \ref{sec:motivation}. These could be formalised as such:
+\begin{itemize}
+\item The game has to be multiplayer
+\item The game has to have advanced gameplay
+\item The game has to have strategical aspects
+\end{itemize}
+
+As the main focus of the game is multiplayer, an aspect which has to be addressed is the difficulty. What one player finds difficult may feel easy for another player. This can be solved somewhat by making it team oriented, and making different roles for different types of people. The tricky part is making sure no team composition is enforced, making people play roles they do not feel they are enjoying. 
+Secondly, having a set of player roles allows for various game strategies, depending on which roles has been selected. As such meta strategies within the game may appear. These are strategies which maximize the possibility for \emph{winning}, wether it is reaching the furthest level or getting the highest highscore. 
+
+The game should also be on mobile devices. In order to utilize these as much as possible, the game is a top-down based game and a shooter, which generally requires more action buttons.
+
+
+\subsection*{Main goal of the game}
+The main goal in the game, is to reach the highest highscore. This requires each level to be somewhat normalized, such that if group x beats the level, they had the same total reachable score as another group. That is, if level one has 10 zombies group x, then level one should contain an obtainable score equaling 10 zombies for group y. The entire score system is explained in \ref{gamedesign:ourgame:scoresystem}. The score is achieved by surviving a wave or getting as far as you can at a wave. You loose either by the entire team dieing, or the monsters killing a special crate of antidotes in the center of your base. Hence the goal is to protect your base, whilst getting as far as you can without dieing.
+
+\subsection*{The player}
+ An individual player consist of a single character. This character can move freely in the game world with no constraints as to what the other players of the game do. When shooting a zombie, the player will receive experience. When a set amount of experience is reached, the player will level. Levelling will allow the player to customize his character according to a set of traits, see the traits section \ref{gamedesign:ourgame:traits}. The player wears set of weapons, which are obtained by crafting them, see \ref{gamedesign:ourgame:crafting}. Both levelling, trait selection and crafting allow for the player to feel he is progression on multiple levels in the game. When progressing, the player receive some form of feedback, basically it should feel \emph{awesome} to level up.
+
+\subsection*{Traits}\label{gamedesign:ourgame:traits}
+The traits of a character is really what allows for deep customization and advanced strategies in the game. There is a shared pool of traits, including:
+\begin{itemize}
+\item Fast learner - Gain double experience points
+\item Boom! Headshot!  - Gain 20% critical hit chance
+\item Just Can’t Get Enough - More zombies will spawn
+\end{itemize} 
+A full list of these can be found in the appendix \tododennis{Remember to add an exhaustive list}. Additionally, a list of class specific traits can be chosen at given level intervals. These traits are only obtainable by the class, and each time a choice has to be made as to which traits the player wish to continue with. This again opens up for depth in game play allowing for strategies depending on amount of a given class and amount of players in a game. The class traits can be seen under the class review for each class \ref{gamedesign:ourgame:classes}.
+
+\subsection*{Crafting and Resources}\label{gamedesign:ourgame:crafting}
+Crafting in the game is a fancy way of wrapping a shop, and not crafting as more commonly understood by games like Minecraft. It is more a set of required items, in order to buy a weapon, rather than a set of items to craft it. Any weapon can cost x amount of three different resources:
+\begin{itemize}
+\item Junk - The most common resource
+\item Electrical Parts - Somewhat rare resource
+\item Alien Tech - Very rare resource \tododennis{the name may have to be changed}
+\end{itemize}
+
+These resources are obtained by a mixture of shooting zombies and completing objectives. Objectives are described in section \ref{gamedesign:ourgame:objectives}. If a player has the given resources required to \emph{craft} a weapon, he will receive it. Weapons are described in more detail in the \ref{gamedesign:ourgame:weapons} section.
+
+\subsection*{Classes}\label{gamedesign:ourgame:classes}
+The classes of \emph{Last Stand} are rather simple, yet have their own destinct role. It is emphasized in the design that the classes are not necesarry in order to beat the game, however, there may be a class composition which makes some tasks easier, or makes reaching the top of the leaderboards easier. 
+Further the goal of the classes are to cater to different players playing-style. Some may feel most at home being up in the zombies faces, shooting everywhere, while others may feel more engaged and entertained by standing back and having a slightly slower pace. This difference allows for different types of players with different types of stress-levels to play together, in a uniformly scaled game difficulty such that no player is left feeling overly stressed, and no player is left feeling bored. The classes in the game include:
+
+\begin{itemize}
+\item Jack 'Happy' Tricker - Appealing to tanky, ''in your face'' kind a player
+\item 'Mending' Medy - Appealing to supportive types, who like to stand a bit back
+\item Hunting Hank - Appealing to high stress players who enjoy low life with large damage and lots of movement
+\item Mad Joe - Appealing to the average player.
+\end{itemize}
+
+Common for all of these are that none should feel booring. The game is a shooter, and everyone should shoot. They may not all do the same damage, but they are all capable of doing damage, and the healer is e.g. not forced to stand around and heal at all times. Instead she will heal the group (as the only one), when shooting monsters. More detailed class definitions can be found in appendix \ref{}\tododennis{Make this appendix with classes}. 
+
+\subsection*{Weapons}\label{gamedesign:ourgame:weapons}
+The weapons are another place of great customization. There are many different weapons, ranging from silly weapons like \emph{The Squirt Gun} to more commong weapon types like the \emph{Assault Rifle}. Each weapon has multiple upgrades, which can be bought in the shop. The multitude of games also support a wide array of strategies, and depending on the team composition some unlockables may be reachable or not. Further a choice has to be made each round; \emph{Do I save up more resources for the next weapon, or do I think we can manage one more wave?} A complete list of weapons can be found in \appendix{}\tododennis{add weapon appendix} 
+
+\subsection*{Objectives}\label{gamedesign:ourgame:objectives}
+The objectives serves multiple purposes in the game. It allows a dynamic stress-factor and a selective skillbased event. That is, the game is scaleable to what the players skill level is, which is great in terms of the player being able to reach his goals \ref{gamedesign:cognitiveflow}. An objective is an event which forces the player to make a risk/reward evaluation. For instance, an objective may start on a wave, where a special monster is trying to flee with some precious cargo. The team can opt in to attempt to kill this monster, reaping the rewards, or stay in base and make sure they are not loosing the main base to zombies, and dieing because the antidote crate is killed. Further the objectives should attempt to make specific roles more favourable compared to others. For instance the monster may be more vulnerable to explosives, making \emph{Mad Joe} the obvious choice. Or the monster may have an aura of poison, making it inherit that at least two players go to fight him, preferebly one of them being \emph{Mendy} the medic. 
+
+\subsection*{General development philosophy}
+This is obviously not an exhaustive list of all features in the game, but only a list of the most impactfull. The general idea with all features and implementations is to ask our selves; \emph{Is this feature fun? Does it make the game more fun or richer in terms of depth/action/strategy than last time? Does it empower the cognitive flow?}. If some of these can be answered with a yes, it is probably fit for the game. 
