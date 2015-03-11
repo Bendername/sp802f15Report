@@ -5,16 +5,25 @@ So with that in mind, a game idea will be developed and each element will be jus
 \subsection{Main game concepts}\label{gamedesign:maingameconcepts}
 There are a few obstacles which has to be addressed in the game design. First of all, the game has to fulfil the initial goals outlined in the problem statement in \ref{sec:motivation}. These could be formalised as such:
 \begin{itemize}
-\item The game has to be multiplayer
 \item The game has to have advanced gameplay
 \item The game has to have strategical aspects
+\item The game has to be multiplayer
 \end{itemize}
+
+\subsubsection{Main goal of the game}
+The main goal in the game, is to reach the highest highscore. This requires each level to be somewhat normalized, such that if group x beats the level, they had the same total reachable score as another group. That is, if level one has 10 zombies group x, then level one should contain an obtainable score equalling 10 zombies for group y. The entire score system is explained in \ref{gamedesign:ourgame:scoresystem}. The score is achieved by surviving a wave of enemies or getting as far as you can at a wave.\todoanders{Dennis would you please specific this further not sure I understand completely.} You lose either by the entire team dying, or the monsters killing a special crate of antidotes in the center of your base. Hence the goal is to protect your base, whilst getting as far as you can without dying.
+
+\subsubsection{Advanced Gameplay}
+\input{sections\gamedesign\advancedgameplay}
+
+\subsubsection{Strategical aspects}
+\input{sections\gamedesign\strategicalaspects}
+
+\subsubsection{Multiplayer}
+\input{sections\gamedesign\multiplayer}
 
 As the main focus of the game is multiplayer, an aspect which has to be addressed is the difficulty. What one player finds difficult may feel easy for another player. This can be solved somewhat by making it team oriented, and making different roles for different types of people. The tricky part is making sure no team composition is enforced, making people play roles they do not feel they are enjoying. 
 Secondly, having a set of player roles allows for various game strategies, depending on which roles has been selected. As such meta strategies within the game may appear. These are strategies which maximize the possibility for \emph{winning}, whether it is reaching the furthest level or getting the highest highscore. 
-
-\subsection*{Main goal of the game}
-The main goal in the game, is to reach the highest highscore. This requires each level to be somewhat normalized, such that if group x beats the level, they had the same total reachable score as another group. That is, if level one has 10 zombies group x, then level one should contain an obtainable score equalling 10 zombies for group y. The entire score system is explained in \ref{gamedesign:ourgame:scoresystem}. The score is achieved by surviving a wave or getting as far as you can at a wave. You loose either by the entire team dying, or the monsters killing a special crate of antidotes in the center of your base. Hence the goal is to protect your base, whilst getting as far as you can without dying.
 
 \subsection*{The player}
  An individual player consist of a single character. This character can move freely in the game world with no constraints as to what the other players of the game do. When shooting a zombie, the player will receive experience. When a set amount of experience is reached, the player will level. Levelling will allow the player to customize his character according to a set of traits, see the traits section \ref{gamedesign:ourgame:traits}. The player wears set of weapons, which are obtained by crafting them, see \ref{gamedesign:ourgame:crafting}. Both levelling, trait selection and crafting allow for the player to feel he is progression on multiple levels in the game. When progressing, the player receive some form of feedback, basically it should feel \emph{awesome} to level up.
@@ -23,7 +32,7 @@ The main goal in the game, is to reach the highest highscore. This requires each
 The traits of a character is really what allows for deep customization and advanced strategies in the game. There is a shared pool of traits, including:
 \begin{itemize}
 \item Fast learner - Gain double experience points
-\item Boom! Headshot!  - Gain 20% critical hit chance
+\item Boom! Headshot!  - Gain 20\% critical hit chance
 \item Just Can’t Get Enough - More zombies will spawn
 \end{itemize} 
 A full list of these can be found in the appendix \tododennis{Remember to add an exhaustive list}. Additionally, a list of class specific traits can be chosen at given level intervals. These traits are only obtainable by the class, and each time a choice has to be made as to which traits the player wish to continue with. This again opens up for depth in game play allowing for strategies depending on amount of a given class and amount of players in a game. The class traits can be seen under the class review for each class \ref{gamedesign:ourgame:classes}.
@@ -56,5 +65,3 @@ The weapons are another place of great customization. There are many different w
 \subsection*{Objectives}\label{gamedesign:ourgame:objectives}
 The objectives serves multiple purposes in the game. It allows a dynamic stress-factor and a selective skill based event. That is, the game is scalable to what the players skill level is, which is great in terms of the player being able to reach his goals \ref{gamedesign:cognitiveflow}. An objective is an event which forces the player to make a risk/reward evaluation. For instance, an objective may start on a wave, where a special monster is trying to flee with some precious cargo. The team can opt in to attempt to kill this monster, reaping the rewards, or stay in base and make sure they are not loosing the main base to zombies, and dying because the antidote crate is killed. Further the objectives should attempt to make specific roles more favourable compared to others. For instance the monster may be more vulnerable to explosives, making \emph{Mad Joe} the obvious choice. Or the monster may have an aura of poison, making it inherit that at least two players go to fight him, preferably one of them being \emph{Mendy} the medic. 
 
-\subsection*{General development philosophy}
-This is obviously not an exhaustive list of all features in the game, but only a list of the most impactful. The general idea with all features and implementations is to ask our selves; \emph{Is this feature fun? Does it make the game more fun or richer in terms of depth/action/strategy than last time? Does it empower the cognitive flow?}. If some of these can be answered with a yes, it is probably fit for the game. 
