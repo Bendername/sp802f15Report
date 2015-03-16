@@ -1,23 +1,30 @@
-\section{Our game: GAME\_NAME}\todobenjamin{This name is not ideal.}
+\section{Overall idea}
+The main setting for the game is in a post apocalyptic world.
+The world has been invaded by an alien race, whoms only goal is to exploit the world for resources to their own end. 
+A few humans remain to fight off the invasion and save the human race. 
 
+The player controls a single character of a class of their choosing, see \ref{gamedesign:ourgame:classes}. 
+This character can move freely in the game world.
+When killing an enemy, the player will receive experience.
+As experience is gained, the player will eventually level up, and allow to player to customize its character by choosing a set of traits, see \ref{gamedesign:ourgame:traits}.
+The character is equipped with a set of weapons, which are obtained through crafting, see \ref{gamedesign:ourgame:crafting}.
+
+The players will progress through multiple levels in one single game, each offering continues waves of aliens / enemies to fight. Only when a level goal has been completed for the level, the players can progress to the next level, which offers new challenges and a faster growing highscore. 
+
+\subsection{Main game concepts}\label{gamedesign:maingameconcepts}\tododennis{This should not be here, it feels out of place}
 Whilst obviously designing a game which is fun, it is important to us that we try to understand the concepts of cognitive flow outlined in \ref{gamedesign:cognitiveflow} such that we have a psychological scientific foundation on which our game design lies. 
 So with that in mind, a game idea will be developed and each element will be justified with a cognitive-flow-concept which it empowers. A list of all major concepts of the game can be found in the following section, \ref{gamedesign:maingameconcepts}. 
 The game idea will then undergo rapid prototyping and testing, and adjustments will be made according to what is \emph{fun} and what is not.  
 
-\subsection{Main game concepts}\label{gamedesign:maingameconcepts}
-There are a few obstacles which has to be addressed in the game design. First of all, the game has to fulfill the initial goals outlined in the problem statement in \ref{sec:motivation}. These could be formalised as such:
-
-\begin{itemize}
-\item The game has to have advanced gameplay
-\item The game has to have strategical aspects
-\item The game has to be multiplayer
-\end{itemize}
 
 \subsubsection{Main goal of the game}
-The main goal in the game, is to reach the highest highscore. This requires each level to be somewhat normalized, such that if group x beats the level, they had the same total reachable score as another group. That is, if level one has 10 zombies group x, then level one should contain an obtainable score equalling 10 zombies for group y. The entire score system is explained in \ref{gamedesign:ourgame:scoresystem}. The score is achieved by surviving a wave of enemies or getting as far as you can at a wave.\todoanders{Dennis would you please specific this further not sure I understand completely.} You lose either by the entire team dying, or the monsters killing a special crate of antidotes in the center of your base. Hence the goal is to protect your base, whilst getting as far as you can without dying.
+The main goal in the game, is to reach the highest score. This requires each game to be somewhat normalized, such that if group x beats the level, they had the same total reachable score as another group. That is, if level one has 10 aliens for group x, then level one should contain an obtainable score equalling 10 aliens for group y. The entire score system is explained in \ref{gamedesign:ourgame:scoresystem}. You lose either by the entire team dying, or the monsters retrieving captured level objective, this is elaborated in \ref{gamedesign:ourgame:levelgoals}. Hence the goal is to get as far as you can without dying. Going to the next level allows for a faster growing highscore, but it is also a risk trying to secure passage to the next level.
 
-\subsubsection{Advanced Gameplay}
+\subsection{Advanced Gameplay}
 \input{sections/gamedesign/advancedgameplay}
 
-\subsubsection{Strategical aspects}
+\subsection{Strategical aspects}
 \input{sections/gamedesign/strategicalaspects}
+
+\section{Game description}
+\input{sections/gamedesign/gamedescription}
