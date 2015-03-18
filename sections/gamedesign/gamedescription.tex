@@ -1,0 +1,88 @@
+\subsection{Waves and objectives}\label{gamedesign:ourgame:objectives}
+Each level consists of a set of \emph{waves}. Each wave contains a set amount of enemies which attempts to overcome the players. It is the players' job to survive each wave by killing all enemies, and progress to the next wave. In between waves it is intended for the player to get a breathing room, talk brief tactics with the team and craft new weapons. See \ref{gamedesign:ourgame:crafting} for crafting details. 
+
+The objectives serves multiple purposes in the game. It allows a dynamic stress-factor and a selective event which caters different skill levels. 
+That is, the game is scalable to what the players skill level is, which is important in terms of the player being able to reach its goals \ref{gamedesign:cognitiveflow}. 
+An objective is an event which forces the player to make a risk/reward evaluation. 
+For instance, an objective may start on a wave, where a special monster is trying to flee with some precious alien cargo. 
+The player can then attempt to kill this monster to reap the rewards, or stay in base and make sure it is not lost to the other aliens still trying to invade the player.
+Further, each object should favor a certain subset of the classes, which enhances the value of the players choice of class.
+
+A special type of event also exists, which is called the \emph{level event}. A level event is an event which allows the player to progress to the next level. This is desirable as it allows for a faster accumulating score as well as caters a sense of progression in the game.\\\tododennis{inset nice pictures from the game here}
+
+\subsection{Player classes and traits}\label{gamedesign:ourgame:classes}
+The classes in the game are rather simple, yet have their own distinct role.
+It is emphasized in the design that all classes are viable for beating the game.
+The goal of the classes are to cater to different players play-style, rather than enforcing a specific team setup to have fun in the game.
+Some may feel most at home being close up and personal with the enemies, while others may feel more engaged and entertained by standing back and having a slightly slower pace.
+The classes in the game include:
+
+\begin{itemize}
+\item Jack 'Happy' Tricker - Appealing to tanky, ''in your face'' kind a player
+\item 'Mending' Medy - Appealing to supportive types, who like to stand a bit back
+\item Hunting Hank - Appealing to high stress players who enjoy low life with large damage and lots of movement
+\item Mad Joe - Appealing to the player who desires an overall decent class. \todomichael{Who's the average player?}
+\end{itemize}
+
+\subsection*{Traits}\label{gamedesign:ourgame:traits}
+The trait system allows for customization of the chosen character, and thus the play-style and strategy the player intends to use.
+There is a shared pool of traits, including:
+\begin{itemize}
+\item Fast learner - Gain double experience points
+\item Boom! Headshot!  - Gain 20\% critical hit chance
+\item Just Can?t Get Enough - More zombies will spawn
+\end{itemize} 
+These traits can be obtained by all classes at when they level up, given the conditions for a trait is met. These conditions include, prior traits being unlocked, a certain level reached and so on.
+A full list of these can be found in the appendix \tododennis{Remember to add an exhaustive list} along with which requirements they have.
+Additionally, a list of class specific traits can be chosen at given level intervals. 
+These traits are only obtainable by the individual classes, and each time a choice has to be made as to which traits the player wish to continue with. Hence, the player will have to make a choice regarding which direction he wish to take his character.\\
+
+Common for all of these are that none should feel boring. 
+The game is a shooter, and everyone should shoot, in what way depends on the players choice of class.\\
+
+\subsection{Resources and crafting}\label{gamedesign:ourgame:crafting}
+Resources are a requirement to gain new weapons.
+If a player has the given resources required to \emph{craft} a weapon, he will receive it.
+Any weapon can cost any given amount of three different resources:
+\begin{itemize}
+\item Junk - The most common resource
+\item Electrical Parts - Somewhat rare resource
+\item Alien Tech - Very rare resource \tododennis{the name may have to be changed}
+\end{itemize}
+These resources are obtained by a mixture of shooting the enemies and completing objectives.\\
+
+\subsubsection*{Weapons crafting}\label{gamedesign:ourgame:weapons}
+The weapons are another place of which allow both player customization and caters progression\tododennis{Do we actually have some source/science to say progression is good? I keep thinking we have, but cannot find anything}. This allows for a variation in play-style and strategies for certain enemies and play-sessions; maybe a different strategy and a different set of traits will gain us a higher score?
+
+There are many different weapons, ranging from silly weapons like \emph{The Squirt Gun} to more common weapon types like the \emph{Assault Rifle}.
+They all have iconic shooting patterns which are good in some situations and bad in others.
+Each weapon has multiple upgrades, which can be crafted.
+Another strategical aspect is the choice a player has to make each round; \emph{Do I save up more resources for the next weapon, or do I think we can manage one more wave?} 
+
+A complete list of weapons can be found in\tododennis{add weapon appendix}
+
+\subsection{Enemies}
+There is a wide array of enemies. They all have different roles in terms of stressing the player. Some enemies go for the player, and some enemies attempts to reach a level-objective. In case the players have captured a general whom unlocks to possibility to go to the next level, some enemies will attempt to rescue him and hence the players will loose. 
+Further some enemies have traits just as players do. Some are fast, some will heal and so on. This creates a dynamic combat situation which cannot always be predicted, keeping the game from becomming boring as well as keeping the players on their toes according to REF\tododennis{insert ref}
+
+\subsection{Scoring system}
+The score system is the heart of the replay-value of the game. The main goal is to better your self, and your team, and try to beat your own or other groups score.
+
+The score is calculated by the following formulae:
+\center{\textit{For all enemy types (EnemyTypeValue * AmountKilled) * WaveFactor * LevelFactor * Time * Difficulty}}
+
+\begin{itemize}
+\item \textit{EnemyTypeValue} is a constant based of off the enemy. Some enemies are more valueable to kill than others.
+\item \textit{AmountKilled} is the amount of enemies killed of that type.
+\item \textit{WaveFactor} is a constant based of off the current wave, higher is better.
+\item \textit{LevelFactor} is a constant based of off which level you are at, higher is better.
+\item \textit{Time} is the time it took to clear a wave. Faster yields a higher score.
+\item \textit{Difficulty} is a constant based on which difficulty the session has been started on.
+\end{itemize}
+
+\emph{WaveFactor} and \emph{Time} is only applied to the formulae if a team beats the wave.
+
+%\textbf{Multiplayer aspect}\label{gamedesign:ourgame:multiplayer}
+%Making the game a team based game will allow for even further strategic depth, as the player will now %have to coordinate defenses and resources with its friends.
+%It creates more depth in the class system, as the players choice of team composition will impact the %strategy he or she employs, as well as the weapons of choice.
+%Taking traits that will benefit the entire team and not just the player itself might be advantageous in %certain scenarios, whilst focusing on the players individual power is advantageous in others.
