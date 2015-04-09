@@ -1,5 +1,4 @@
 \section{Motivation} \label{sec:motivation}
-<<<<<<< HEAD
 Nowadays the most played category of games for mobile devices is casual games.
 According to ESA\cite{ESA}\cite{ESApdf} (\textit{Entertainment Software Association}), 46\% of the mobile gamers play casual games, not including the 31\% that play a combination of puzzle-, board-, game show-, trivia- and card-games.
 
@@ -7,72 +6,88 @@ But what is a casual game exactly?
 Casual games are games that cater to casual gamers.
 In an article from Gamasutra, a proposed way to measure the \textit{casualness} of a player is through a questionaire concerning 15 factors\cite{casual_vs_hardcore}.
 These 15 factors and their weight according to Gamasutra can be seen in Table \ref{tab:gamerdedication}\cite{casual_vs_hardcore}.
-For each factor, a player can answer a number from 1 to 5, where 1 means he/she thinks the factor doesn't fit him/her, and a 5 meaning he/she thinks the factor fits him/her very well.
-Through these numbers, a \emph{Gamer Dedication Score} or \emph{GD} can be calculated using Equation \ref{eq:GD} where $w$ is the weight, $s$ is the score and $n$ is 15.
+For each factor, a player can answer a number from 1 to 5, where 1 means he/she thinks the factor doesn't fit him, and a 5 meaning he thinks the factor fits him/her very well.
+Through these numbers, a \emph{Gamer Dedication Score} or \emph{GD} can be calculated using Equation \ref{eq:GD} where $w$ is the weight, $s$ is the score and $n$ is 15 (because there is 15 factors).
 
 \begin{equation}\label{eq:GD}
 GD = \frac{\sum\limits_{j=1}^n w_j s_j}{\sum\limits_{j=1}^n 5 w_j}
 \end{equation}
 
 The result is a percentage that through Table \ref{tab:gamertype} can be used to determine the type of gamer the player is\cite{casual_vs_hardcore}.
-\todobenjamin{Find en grund til at lave hardcore spil.}
-Not all of these factors can be directly influenced by the game, and since we are developing a hardcore game the irrelevant factors and be filtered out.
+Not all of these factors can be directly influenced by the game, so not all of them are relevant when designing a game.
 
-\emph{Playing games over many long sessions.}
+\begin{enumerate}
+\item \emph{Playing games over many long sessions.}
 The game can encourage the player to play longer through reward or progress, therefore it is relevant.
 
-\emph{Discussing games with friends/bulletin boards.}
+\item \emph{Discussing games with friends/bulletin boards.}
 Bulletin boards happen outside of the game, therefore it is irrelevant. \todo{Eller hvad? Man kan vel have et forum ingame?}
 
-\emph{Having comparative knowledge of the industry.}
+\item \emph{Having comparative knowledge of the industry.}
 Knowledge of the industry happens outside of the game, therefore it is irrelevant.
 
-\emph{Being tolerant of frustration.}
+\item \emph{Being tolerant of frustration.}
 The game can increase in difficulty to increase frustration levels, therefore it is relevant.
 
-\emph{Showing early adoption behaviour.}
+\item \emph{Showing early adoption behaviour.}
 Early adoption behaviour happens before the game is played, therefore it is irrelevant.
 
-\emph{Desiring to modify or extend games in a creative way.}
+\item \emph{Desiring to modify or extend games in a creative way.}
 The game engine can be made with modification or extension in mind, allowing for players to create their own content or features, therefore it is relevant.
 
-\emph{Having technological savvy.}
+\item \emph{Having technological savvy.}
 Technological savvy is used to access the game, once it is accessed it is up to the game to be user friendly, therefore it is irrelevant.
 
-\emph{Having the latest high-end computers/consoles.}
+\item \emph{Having the latest high-end computers/consoles.}
 Since we are developing for mobile platforms, and they generally have low-end hardware, this is irrelevant.
 
-\emph{Playing for the exhilaration of defeating (or completing) the game.}
+\item \emph{Playing for the exhilaration of defeating (or completing) the game.}
 The game can offer the player a reward for completing the game, therefore it is relevant.
 
-\emph{Hungering for gaming-related information.}
+\item \emph{Hungering for gaming-related information.}
 Gathering information about the gaming world happens outside of the game, therefore it is irrelevant.
 
-\todobenjamin{not done yet}
+\item \emph{Being engaged in competition with oneself, the game and other players.}
+The game can provide the player with the ability to challenge other players through various means. Therefore this is relevant.
+
+\item \emph{Being willing to pay for the game.}
+Since the game we are developing is a university project it will be free, so this is not relevant.
+
+\item \emph{Preferring games that have depth and complexity.}
+The game can directly cater to this preferrence by having deep and complex gameplay, therefore this is relevant.
+
+\item \emph{Time started playing games relative to the age of the industry.}
+The game cannot affect this, therefore it is not relevant.
+
+\item \emph{Preferring violent/action games.}
+Theming the game as a violent action game will cater to this preferrence, therefore it is relevant.
+\end{enumerate}
+
+The relevant factors can then be taken into consideration when designing the game.
 
 \begin{table}[h]
-\begin{tabular}{|l|l|}
+\begin{tabular}{|l|l|l|}
 \hline
 \rowcolor[HTML]{C0C0C0} 
-Factor                                                                & Weight \\ \hline
-Playing games over many long sessions                                 & 10     \\ \hline
-Discussing games with friends/bulletin boards                         & 10     \\ \hline
-Having comparative knowledge of the industry                          & 10     \\ \hline
-Being tolerant of frustration                                         & 9      \\ \hline
-Showing early adoption behaviour                                      & 9      \\ \hline
-Desiring to modify or extend games in a creative way                  & 8      \\ \hline
-Having technological savvy                                            & 7      \\ \hline
-Having the latest high-end computers/consoles                         & 7      \\ \hline
-Playing for the exhilaration of defeating (or completing) the game    & 7      \\ \hline
-Hungering for gaming-related information                              & 6      \\ \hline
-Being engaged in competition with oneself, the game and other players & 6      \\ \hline
-Being willing to pay for the game                                     & 5      \\ \hline
-Preferring games that have depth and complexity                       & 3      \\ \hline
-Time started playing games relative to the age of the industry        & 2      \\ \hline
-Preferring violent/action games                                       & 1      \\ \hline
+Factor                                                                & Weight 	& Relevancy \\ \hline
+Playing games over many long sessions                                 & 10     	& Relevant 	\\ \hline
+Discussing games with friends/bulletin boards                         & 10     	& Irrelevant\\ \hline
+Having comparative knowledge of the industry                          & 10      & Irrelevant\\ \hline
+Being tolerant of frustration                                         & 9       & Relevant 	\\ \hline
+Showing early adoption behaviour                                      & 9       & Irrelevant\\ \hline
+Desiring to modify or extend games in a creative way                  & 8       & Relevant  \\ \hline
+Having technological savvy                                            & 7       & Irrelevant\\ \hline
+Having the latest high-end computers/consoles                         & 7       & Irrelevant\\ \hline
+Playing for the exhilaration of defeating (or completing) the game    & 7       & Relevant  \\ \hline
+Hungering for gaming-related information                              & 6       & Irrelevant\\ \hline
+Being engaged in competition with oneself, the game and other players & 6       & Relevant  \\ \hline
+Being willing to pay for the game                                     & 5       & Irrelevant\\ \hline
+Preferring games that have depth and complexity                       & 3       & Relevant  \\ \hline
+Time started playing games relative to the age of the industry        & 2       & Irrelevant\\ \hline
+Preferring violent/action games                                       & 1       & Relevant  \\ \hline
 \end{tabular}
 \label{tab:gamerdedication}
-\caption{Table of factors describing the gamer dedication and their weight.}
+\caption{Table of factors describing the gamer dedication, their weight and whether they are relevant from a game design perspective.}
 \end{table}
 
 \begin{table}[h]
@@ -90,32 +105,6 @@ Ultra hardcore         & 71 - 100 \\ \hline
 \caption{Type of gamer derived from $GD$.}
 \end{table}
 
-\begin{table}[h]
-\begin{tabular}{|l|l|}
-\hline
-\rowcolor[HTML]{C0C0C0}
-Factor                                                                & Weight \\ \hline
-Play session duration and frequency									  & 10     \\ \hline
-Frustration level			                                          & 9      \\ \hline
-Modifying the game 									                  & 8      \\ \hline
-Exhilaration of defeating (or completing) the game 				      & 7      \\ \hline
-Engaging in competition with oneself, the game and other players 	  & 6      \\ \hline
-Paying for the game          			                              & 5      \\ \hline
-Depth and complexity level					                          & 3      \\ \hline
-Violence/action level 		                                          & 1      \\ \hline
-\end{tabular}
-\label{tab:relevantFactors}
-\caption{List of factors the game can influence.}
-\end{table}
-
-%Common for casual mobile games is a short game-session time span and often a \textit{progression system} and/or \textit{high score system}. 
-%The main focus is to foster these systems and become the best on the leaderboards.
-%The multiplayer aspects are asynchronous, where players are not necessarily online at the same time, and mainly sharing your achievements, sharing items or otherwise participating in segregated multiplayer experiences.\\
-
-%Synchronous multiplayer mobile games do exist, such as \textit{GunBros 2} and \textit{Angry Birds Go!}, but such games are often designed around the same casual game concepts as described above. 
-%That is, they are to be played in short bursts, utilizing short play-sessions, and also they are to be played many times utilizing the progression system.\\
-
-%The traditional PC/console games are normally games with more advanced controls and expect the player to spend a reasonable amount of time on a game-session. 
 This leads to the question:
 \begin{center}\label{intro:problem_statement}
 \textit{What is required in order to create a non-casual game for mobile devices?}
