@@ -3,7 +3,7 @@ game. This involves loading the level - encoded as an image in the PNG format -
 parsing values from this format, and finally placing tiles in the game world
 representing those values.
 
-\section{Loading levels}
+\section{Designing and loading levels}
 Early in the development process, we established that for the type of game we
 are making, it is important that we can quickly create levels of varying layout
 and sizes, for various reasons, such as:
@@ -82,33 +82,130 @@ Having decided on the format and encoded color values, we can design levels
 such as seen in figure~\ref{fig:png_map}.
 
 \begin{figure}[H]
-    \caption{A PNG image encoding a map}
     \centering
     \includegraphics{figures/generating_levels/map.png}
     \label{fig:png_map}
+    \caption{A PNG image encoding a map}
 \end{figure}
 
-From figure~\ref{fig:png_map}, we can immediately see that there are some patches
-of grass, a building in the middle of the map and some torn-down buildings in
-the periphery of the map. Some individual pixels of cyan color can be seen,
-which encode where monster should spawn. Likewise, a single white pixel encode
-the exit point of the map, which is where players are required to go to when
-the missions for this map have been completed. And last, a single blue pixels
-encodes where the crafting table should be placed within the level.
+From figure~\ref{fig:png_map}, we can immediately see that there are some
+patches of grass, a building in the middle of the map and some torn-down
+buildings in the periphery of the map. Some individual pixels of cyan color can
+be seen, which encode where monster should spawn. Likewise, a single white
+pixel encode the exit point of the map, which is where players are required to
+go to when the missions for this map have been completed. And last, a single
+blue pixels encodes where the crafting table should be placed within the level.
 \\
-
-(show below how the image is converted into a 2d array)
-{\footnotesize
-\setlength{\tabcolsep}{2.5pt}
-\begin{center}
-  \begin{tabular}{|c|c|c|c|c|}
+\\
+Color values are then interpreted into distinct integer values in a
+two-dimensional array, as seen in figure~\ref{fig:png_to_array}.
+%thread carefully below...
+\begin{figure}[H]
+    \centering
+    \label{fig:png_to_array}
+\begin{tabular}{cc}
+    {\footnotesize
+\setlength{\tabcolsep}{4.5pt}
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
     \hline
-    1 & 2 & 3 & 3 & 3 \\ \hline
-    4 & 5 & 6 & 3 & 3 \\ \hline
-    4 & 5 & 6 & 3 & 3 \\ \hline
-    4 & 5 & 6 & 3 & 3 \\ \hline
-    7 & 8 & 9 & 3 & 3 \\
-    \hline
+    \cellcolor{black} & \cellcolor{black} & \cellcolor{black} &
+    \cellcolor{black} & \cellcolor{black} & \cellcolor{red} &
+    \cellcolor{red} & \cellcolor{red} & \cellcolor{red} &
+    \cellcolor{red} \\ \hline
+    \cellcolor{green} & \cellcolor{green} & \cellcolor{black} &
+    \cellcolor{black} & \cellcolor{black} & \cellcolor{yellow} &
+    \cellcolor{red} & \cellcolor{red} & \cellcolor{red} &
+    \cellcolor{red} \\ \hline
+    \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
+    \cellcolor{black} & \cellcolor{black} & \cellcolor{yellow} &
+    \cellcolor{red} & \cellcolor{red} & \cellcolor{red} &
+    \cellcolor{red} \\ \hline
+    \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
+    \cellcolor{black} & \cellcolor{black} & \cellcolor{yellow} &
+    \cellcolor{red} & \cellcolor{red} & \cellcolor{red} &
+    \cellcolor{red} \\ \hline
+    \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
+    \cellcolor{black} & \cellcolor{black} & \cellcolor{yellow} &
+    \cellcolor{yellow} & \cellcolor{red} & \cellcolor{red} &
+    \cellcolor{yellow} \\ \hline
+    \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
+    \cellcolor{black} & \cellcolor{black} & \cellcolor{black} &
+    \cellcolor{black} & \cellcolor{black} & \cellcolor{black} &
+    \cellcolor{black} \\ \hline
+    \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
+    \cellcolor{green} & \cellcolor{black} & \cellcolor{black} &
+    \cellcolor{black} & \cellcolor{black} & \cellcolor{black} &
+    \cellcolor{black} \\ \hline
+    \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
+    \cellcolor{green} & \cellcolor{black} & \cellcolor{black} &
+    \cellcolor{black} & \cellcolor{black} & \cellcolor{black} &
+    \cellcolor{black} \\ \hline
+    \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
+    \cellcolor{green} & \cellcolor{green} & \cellcolor{black} &
+    \cellcolor{black} & \cellcolor{black} & \cellcolor{black} &
+    \cellcolor{black} \\ \hline
+    \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
+    \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
+    \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
+    \cellcolor{black} \\ \hline
   \end{tabular}
-\end{center}
-}
+  }
+&
+  {\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+    \hline
+    0 & 0 & 0 & 0 & 0 & 4 & 4 & 4 & 4 & 4 \\ \hline
+    1 & 1 & 0 & 0 & 0 & 3 & 4 & 4 & 4 & 4 \\ \hline
+    1 & 1 & 1 & 0 & 0 & 3 & 4 & 4 & 4 & 4 \\ \hline
+    1 & 1 & 1 & 0 & 0 & 3 & 4 & 4 & 4 & 4 \\ \hline
+    1 & 1 & 1 & 0 & 0 & 3 & 3 & 4 & 4 & 3 \\ \hline
+    1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+    1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+    1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+    1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 \\ \hline
+    1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 \\ \hline
+  \end{tabular}
+  }
+\end{tabular}
+    \caption{Interpreting a PNG map image into a two-dimensional array}
+\end{figure}
+
+Values are then further separated into two-dimensional arrays consisting of
+only each individual value.  Those arrays are then used to generate tiles and
+some game entities within the gameworld.
+
+\section{Generating level objects}
+As explained previously, our game is a top-down 2D action game. Important to
+note is the top-down 2D aspect of it when we are to generate our levels.
+A historical and still prevalent technique for 2D games, is using a
+tiling approach for the layout of both the backdrop of the level and entities
+within it. Several different approaches to tiling have been used in games,
+including squares, isometric and hexagonal tiles. Figure(insert figure)
+show examples of historical games using each of the mentioned techniques of
+tiling.
+\\
+\\
+Insert fig
+\\
+\\
+Since the individual techniques mostly impact the visual appearance of the game
+- the underlying data structures remain the same - we have simply chosen the
+most straightforward tile technique: square tiles.
+\\
+\\
+The first naive implementation we prototyped was to iterate through the
+two-dimensional maps and place tiles corresponding to the values. Specifically,
+we need to place \texttt{sprites} in the gameworld. Sprites needs to be
+assigned a \texttt{sprite renderer} component which in turn needs to be
+attached a \texttt{gameobject}. This effectively means that for each tile, we
+have to instantiate a gameobject. Figure(insert fig) shows a representation of
+this using a shaded wireframe rendering so that each tile can be seen.
+\\
+\\
+Insert fig
+\\
+\\
+Since tiles exhibit no particular behavior, it seems excessive to instantiate
+gameobjects for each tile. No only that, but we were experiencing performance
+implications on mobile devices using this method.
