@@ -56,7 +56,7 @@ reasons:
         \textit{Enough} being relative, but each colorchannel for each
         individual pixel offers 1 \texttt{byte} of information. With each pixel
         being encoded with RGBA (red, green, blue and alpha) channels, that
-        gives us a total of 4 \texttt{bytes} of information.
+        gives us a total of 4 \texttt{bytes} of information, for each pixel.
 \end{itemize}
 
 Using the PNG format, it is then only a matter of specifying \textit{what} a
@@ -84,8 +84,7 @@ such as seen in figure~\ref{fig:png_map}.
 \begin{figure}[H]
     \centering
     \includegraphics{figures/generating_levels/map.png}
-    \label{fig:png_map}
-    \caption{A PNG image encoding a map}
+    \caption{A PNG image encoding a map}\label{fig:png_map}
 \end{figure}
 
 From figure~\ref{fig:png_map}, we can immediately see that there are some
@@ -102,110 +101,149 @@ two-dimensional array, as seen in figure~\ref{fig:png_to_array}.
 %thread carefully below...
 \begin{figure}[H]
     \centering
-    \label{fig:png_to_array}
-\begin{tabular}{cc}
-    {\footnotesize
-\setlength{\tabcolsep}{4.5pt}
-  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
-    \hline
-    \cellcolor{black} & \cellcolor{black} & \cellcolor{black} &
-    \cellcolor{black} & \cellcolor{black} & \cellcolor{red} &
-    \cellcolor{red} & \cellcolor{red} & \cellcolor{red} &
-    \cellcolor{red} \\ \hline
-    \cellcolor{green} & \cellcolor{green} & \cellcolor{black} &
-    \cellcolor{black} & \cellcolor{black} & \cellcolor{yellow} &
-    \cellcolor{red} & \cellcolor{red} & \cellcolor{red} &
-    \cellcolor{red} \\ \hline
-    \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
-    \cellcolor{black} & \cellcolor{black} & \cellcolor{yellow} &
-    \cellcolor{red} & \cellcolor{red} & \cellcolor{red} &
-    \cellcolor{red} \\ \hline
-    \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
-    \cellcolor{black} & \cellcolor{black} & \cellcolor{yellow} &
-    \cellcolor{red} & \cellcolor{red} & \cellcolor{red} &
-    \cellcolor{red} \\ \hline
-    \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
-    \cellcolor{black} & \cellcolor{black} & \cellcolor{yellow} &
-    \cellcolor{yellow} & \cellcolor{red} & \cellcolor{red} &
-    \cellcolor{yellow} \\ \hline
-    \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
-    \cellcolor{black} & \cellcolor{black} & \cellcolor{black} &
-    \cellcolor{black} & \cellcolor{black} & \cellcolor{black} &
-    \cellcolor{black} \\ \hline
-    \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
-    \cellcolor{green} & \cellcolor{black} & \cellcolor{black} &
-    \cellcolor{black} & \cellcolor{black} & \cellcolor{black} &
-    \cellcolor{black} \\ \hline
-    \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
-    \cellcolor{green} & \cellcolor{black} & \cellcolor{black} &
-    \cellcolor{black} & \cellcolor{black} & \cellcolor{black} &
-    \cellcolor{black} \\ \hline
-    \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
-    \cellcolor{green} & \cellcolor{green} & \cellcolor{black} &
-    \cellcolor{black} & \cellcolor{black} & \cellcolor{black} &
-    \cellcolor{black} \\ \hline
-    \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
-    \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
-    \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
-    \cellcolor{black} \\ \hline
-  \end{tabular}
-  }
-&
-  {\footnotesize
-\setlength{\tabcolsep}{2.5pt}
-  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
-    \hline
-    0 & 0 & 0 & 0 & 0 & 4 & 4 & 4 & 4 & 4 \\ \hline
-    1 & 1 & 0 & 0 & 0 & 3 & 4 & 4 & 4 & 4 \\ \hline
-    1 & 1 & 1 & 0 & 0 & 3 & 4 & 4 & 4 & 4 \\ \hline
-    1 & 1 & 1 & 0 & 0 & 3 & 4 & 4 & 4 & 4 \\ \hline
-    1 & 1 & 1 & 0 & 0 & 3 & 3 & 4 & 4 & 3 \\ \hline
-    1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-    1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-    1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-    1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 \\ \hline
-    1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 \\ \hline
-  \end{tabular}
-  }
-\end{tabular}
-    \caption{Interpreting a PNG map image into a two-dimensional array}
+    \begin{tabular}{cc}
+        {\footnotesize
+            \setlength{\tabcolsep}{4.5pt}
+            \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+                \hline
+                \cellcolor{black} & \cellcolor{black} & \cellcolor{black} &
+                \cellcolor{black} & \cellcolor{black} & \cellcolor{red} &
+                \cellcolor{red} & \cellcolor{red} & \cellcolor{red} &
+                \cellcolor{red} \\ \hline
+                \cellcolor{green} & \cellcolor{green} & \cellcolor{black} &
+                \cellcolor{black} & \cellcolor{black} & \cellcolor{yellow} &
+                \cellcolor{red} & \cellcolor{red} & \cellcolor{red} &
+                \cellcolor{red} \\ \hline
+                \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
+                \cellcolor{black} & \cellcolor{black} & \cellcolor{yellow} &
+                \cellcolor{red} & \cellcolor{red} & \cellcolor{red} &
+                \cellcolor{red} \\ \hline
+                \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
+                \cellcolor{black} & \cellcolor{black} & \cellcolor{yellow} &
+                \cellcolor{red} & \cellcolor{red} & \cellcolor{red} &
+                \cellcolor{red} \\ \hline
+                \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
+                \cellcolor{black} & \cellcolor{black} & \cellcolor{yellow} &
+                \cellcolor{yellow} & \cellcolor{red} & \cellcolor{red} &
+                \cellcolor{yellow} \\ \hline
+                \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
+                \cellcolor{black} & \cellcolor{black} & \cellcolor{black} &
+                \cellcolor{black} & \cellcolor{black} & \cellcolor{black} &
+                \cellcolor{black} \\ \hline
+                \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
+                \cellcolor{green} & \cellcolor{black} & \cellcolor{black} &
+                \cellcolor{black} & \cellcolor{black} & \cellcolor{black} &
+                \cellcolor{black} \\ \hline
+                \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
+                \cellcolor{green} & \cellcolor{black} & \cellcolor{black} &
+                \cellcolor{black} & \cellcolor{black} & \cellcolor{black} &
+                \cellcolor{black} \\ \hline
+                \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
+                \cellcolor{green} & \cellcolor{green} & \cellcolor{black} &
+                \cellcolor{black} & \cellcolor{black} & \cellcolor{black} &
+                \cellcolor{black} \\ \hline
+                \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
+                \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
+                \cellcolor{green} & \cellcolor{green} & \cellcolor{green} &
+                \cellcolor{black} \\ \hline
+            \end{tabular}
+        }
+        &
+        {\footnotesize
+            \setlength{\tabcolsep}{2.5pt}
+            \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+                \hline
+                0 & 0 & 0 & 0 & 0 & 4 & 4 & 4 & 4 & 4 \\ \hline
+                1 & 1 & 0 & 0 & 0 & 3 & 4 & 4 & 4 & 4 \\ \hline
+                1 & 1 & 1 & 0 & 0 & 3 & 4 & 4 & 4 & 4 \\ \hline
+                1 & 1 & 1 & 0 & 0 & 3 & 4 & 4 & 4 & 4 \\ \hline
+                1 & 1 & 1 & 0 & 0 & 3 & 3 & 4 & 4 & 3 \\ \hline
+                1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+                1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+                1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+                1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 \\ \hline
+                1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 \\ \hline
+            \end{tabular}
+        }
+    \end{tabular}
+    \caption{Interpreting a PNG map image into a two-dimensional array}\label{fig:png_to_array} 
 \end{figure}
 
 Values are then further separated into two-dimensional arrays consisting of
 only each individual value.  Those arrays are then used to generate tiles and
 some game entities within the gameworld.
 
-\section{Generating level objects}
+\section{Generating level backdrop}
 As explained previously, our game is a top-down 2D action game. Important to
 note is the top-down 2D aspect of it when we are to generate our levels.
 A historical and still prevalent technique for 2D games, is using a
 tiling approach for the layout of both the backdrop of the level and entities
 within it. Several different approaches to tiling have been used in games,
-including squares, isometric and hexagonal tiles. Figure(insert figure)
-show examples of historical games using each of the mentioned techniques of
+including squares, isometric and hexagonal tiles.
+Figures~\ref{fig:civ-1_square},~\ref{fig:civ-2_iso}~and~\ref{fig:wesnoth_hex}
+show examples of games using each of the mentioned techniques of
 tiling.
-\\
-\\
-Insert fig
-\\
-\\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/generating_levels/civ-1_square.png}
+    \caption{Civilizations 1, using squares as tiles}\label{fig:civ-1_square} 
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/generating_levels/civ-2_iso.png}
+    \caption{Civilizations 2, using the isometric technique}\label{fig:civ-2_iso} 
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/generating_levels/wesnoth_hex.png}
+    \caption{Battle of Wesnoth, using a hexagonal tiling technique}\label{fig:wesnoth_hex} 
+\end{figure}
+
 Since the individual techniques mostly impact the visual appearance of the game
-- the underlying data structures remain the same - we have simply chosen the
+- the underlying data structures remain the same - we have chosen the apply the
 most straightforward tile technique: square tiles.
 \\
 \\
 The first naive implementation we prototyped was to iterate through the
-two-dimensional maps and place tiles corresponding to the values. Specifically,
+two-dimensional map and place tiles corresponding to the values. Specifically,
 we need to place \texttt{sprites} in the gameworld. Sprites needs to be
 assigned a \texttt{sprite renderer} component which in turn needs to be
 attached a \texttt{gameobject}. This effectively means that for each tile, we
-have to instantiate a gameobject. Figure(insert fig) shows a representation of
-this using a shaded wireframe rendering so that each tile can be seen.
-\\
-\\
-Insert fig
-\\
-\\
-Since tiles exhibit no particular behavior, it seems excessive to instantiate
-gameobjects for each tile. No only that, but we were experiencing performance
-implications on mobile devices using this method.
+instantiate a gameobject.
+But since tiles exhibit no particular behavior, it seems excessive to
+instantiate gameobjects for each tile. Not only that, but we were experiencing
+performance implications on mobile devices using this method.  We can
+substantially reduce the gameobjects required to be instantiated by
+\textit{grouping} similar areas into bigger tiles. We do so by first
+manipulating the data map such that we mark large areas, consisting of only one
+type. We then \textit{blit} the texture associated with that type in a
+tile-pattern, onto a bigger texture.  There is a technical limit to this
+technique however, as texture-resolutions are limited by hardware. For our
+particular implementation, we limit texturesizes to 1024x1024. A comparison of
+the result of the two techniques can be seen in
+figure~\ref{fig:grouped_tiling_comparison}.
+
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{cc}
+        \includegraphics[width=0.5\textwidth]{figures/generating_levels/naive-tile.png}
+        &
+        \includegraphics[width=0.5\textwidth]{figures/generating_levels/grouped-tile.png}
+    \end{tabular}
+    \caption{(left) naive tiling, (right) grouping tiles into larger tiles}\label{fig:grouped_tiling_comparison}
+\end{figure}
+
+The blitting is performed during runtime whenever a map is loaded, but in order
+to avoid blitting the same texture - w.r.t. size and kind - again, we cache the
+larger tiles to disk such that they can be loaded on request. The performance
+overhead \textit{can} be significant on mobile devices, as the larger textures
+have to be uploaded to the GPU in order to reflect changes, and we did see
+improvements in that regard by caching the blitted textures.
+\\\\
+(write about smooting tiles)
+
+\section{Placing walls and colliders}
+write it!
