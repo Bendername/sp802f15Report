@@ -1,0 +1,87 @@
+As we target a mobile platform, we have a limited input interface, and have as such decided to create a shooter, see section \ref{sec:selectionofgametype:mobiledevices}.
+This is a popular game genre today, as can be seen by games like \textit{Call of Duty}, played on consoles. \todomichael{Do we need a source somewhere here, or is it just common knowlegde?}
+Given that shooters on consoles are popular, having controller support for our game is essential, and trying to replicate this control scheme on a touch device provides an interface that is familiar to players.\\
+
+\section{Gamepad Control Scheme}
+Controlling the game with a gamepad is natively supported by Unity3D, where the user can use the Input Manager \cite{unity_manual_inputmanager} and add axes that use ``Joystick Axis''. Unity allows reading 20 different axes, where buttons also count as axes.
+
+However this is not straight forward if the game is to run on different platforms, and even more difficult if the game should support different gamepads. This is because there is no standard for which axes the different thumbsticks and buttons are mapped to, and this is instead dependent on the driver software. This means that an Xbox 360 controller will be mapped differently on for example Windows, Mac, and Linux.
+\cite{unity_wiki_xbox360controller}
+
+To solve this, one could identify the gamepad and operating system and from that, determine which axes correspond to the right sticks and buttons. A plugin for Unity3D called ``InControl''\cite{incontrol_github} does this. ``InControl'' is an open source project that \begin{quote}``Standardizes controller input mappings across various platforms.''\cite{incontrol_website}\end{quote}
+
+The open sourced version is free and available at Github, but there is also a pro version available through the Unity3d asset store\cite{incontrol_assetstore} which offers some additional features.
+
+\subsection{Controls}\label{sec:modules:controlscheme:gamepad:controls}
+In the game, moving is done using the left thumbstick, and aiming is done using the right thumbstick.
+Further, shooting, reloading and other actions are bound to different buttons.
+For navigating the menus, each button will be highlighted, and you click the menu button by pressing a button on the gamepad.
+This is similar to the way shooters are handled on consoles.
+
+\section{Touch Control Scheme}
+The main issue of touch devices is that the input device is the screen.
+This inheritly requires the control scheme to be designed to obscure the least amount of screen available, as the mobile devices are already rather small.
+Further the screen on a mobile device gives no feedback to the hands which also has to be taken into account.
+These two constraints can be formalised as:
+\begin{itemize}
+\item Minimize the space the input interface requires as much as possible, and make the interface intuitive such that it does not draw attention away from the game.
+\item Make sure the input interface is simple to use, such that the need for feedback is minimized as much as possible.
+\end{itemize}
+
+\subsection{Similar games control scheme}
+In order to make the best possible mobile control scheme, it is relevant to briefly look at some other popular games choices.
+Most games seems to use the same \emph{blueprint} in order to make an easy to use interface. Some sort of virtual joypad one the left side of the screen for movement, and then a mix of buttons and joypads on the right side of the screen for actions. 
+One of the most popular and well designed games in this category is BombSquad.
+
+\subsection*{BombSquad}\label{sec:modules:controlscheme:bombsquad}
+Bombsquad\cite{bombsquad} is a 2.5D action multiplayer game, where the player controls a character who's goal is to eliminate the opposing characters whom are either player or computer controlled.
+The character can move in all directions and it has 4 main abilities. 
+The movement input is based on a virtual joystick in the lower left corner.
+When the player places the thumb on the joystick, it will work similarly to an ordinary joystick and move the character in the direction the stick is pointing. 
+The distance from the thumb/stick to the center of the virtual joystick defines the speed by which the character moves. 
+The stick is activated by any finger on the left half of the screen, such that it is not required to actually hit the thumbstick directly with your finger to trigger the input.
+
+The abilities are used in much the same way. 
+There are 4 abilities, which can be selected by a mix of touch and thumbstick behavior. 
+Each ability can be activated once by dragging the virtual thumbstick across the designated area for the ability. 
+Some abilities, like the sprint, will remain activated as long as a finger is hold upon the ability. 
+Other abilities, like the punch, will only trigger once, and require taps on the ability to trigger it again. 
+The ability is triggered if any part of ''its'' quarter of the screen is tapped.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{figures/controlscheme/onscreen_control}
+\caption{Bombsquad game screen, \url{http://www.froemling.net/wp-content/uploads/2014/04/IMG_1088.jpg}}
+\end{figure}
+
+The great thing about this control scheme is that it is compact, easy to use, and allows for focus on the gameplay it self, rather than making sure you are bashing the right buttons when you want to.
+
+\subsection*{Heroes of the Order and Chaos}\label{sec:modules:controlscheme:hoftoac}
+Heroes of the Order and Chaos\cite{hotoacGP} has the same movement scheme as BombSquad. 
+Where it differs from BombSquad is in the actions-interface.
+It is placed in the right side of the screen as in BombSquad, however, there are quite a few more actions than the four which BombSquad uses.
+It includes 4 useable abilities along the right side of the screen, two useable abilities along the bottom of the screen, an \emph{attack} button and a \emph{change target} button.
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{figures/controlscheme/hotoac_control}
+\caption{Heroes of the Order and Chaos control interface \url{http://3.bp.blogspot.com/-EQUyarxR56U/ULdIChk_LhI/AAAAAAAAArs/73MwPMoDhnI/s1600/IMG_3227.PNG}}
+\end{figure}
+
+The placement of the action buttons make it such that you don't accidentally hit the wrong buttons. 
+There are quite a few input buttons though, so it takes a bit longer getting used to than the BombSquad interface. 
+The buttons are also grouped such that the buttons you usually press in the same situations are at the same place. 
+Further some in-game logic has been added such that some of the buttons wont always require pressing (such as attack), and some will queue if pressed in succession without the first action being finished.
+
+\subsection{Controls}
+Given that we are trying to replicate a gamepad on the touch devices, we follow a similar pattern as described in section \ref{sec:modules:controlscheme:gamepad:controls}.
+Two thumbsticks are present in the GUI on touch devices, the left one controlling movement, similar to \textit{BombSquad} section \ref{sec:modules:controlscheme:bombsquad}, and the right one controlling aim, see figure \ref{sec:modules:controlscheme:touch:controls:ui}.
+Further, in minimizing the space required for input, as aiming has no other purpose than shooting, it will continuously shoot when aiming.
+In addition, more GUI buttons will be present on touch devices to handle reloading, changing weapons, etc., similar to \textit{Heroes of the Order and Chaos} section \ref{sec:modules:controlscheme:hoftoac}.
+Menus will simply be navigated by performing touching the menu buttons.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{figures/controlscheme/ui}
+\caption{UI for the game during development stages. You can see the GUI thumbsticks as well as some of the buttons.}
+\label{sec:modules:controlscheme:touch:controls:ui}
+\end{figure}
