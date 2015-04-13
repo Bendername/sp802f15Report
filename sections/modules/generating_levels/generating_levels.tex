@@ -242,8 +242,27 @@ larger tiles to disk such that they can be loaded on request. The performance
 overhead \textit{can} be significant on mobile devices, as the larger textures
 have to be uploaded to the GPU in order to reflect changes, and we did see
 improvements in that regard by caching the blitted textures.
-\\\\
-(write about smooting tiles)
+\\
+\\
+We also wanted \textit{transition} tiles between certain type of tiles, in
+particular between grass and ground (this technique is also
+used in the games seen in
+figures~\ref{fig:civ-1_square},~\ref{fig:civ-2_iso}~and~\ref{fig:wesnoth_hex}).
+We do so by using an adaptation of the \textit{Marching squares} algorithm, and
+mark a position in the map as a particular type, based on the values of its
+neighbors. A corresponding \textit{transition tile} is then blitted together
+(and cached to disk), and assigned to it. Figure~\ref{fig:transition_comparisons}
+shows a comparison before and after integrating the algorithm.
+
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{cc}
+        \includegraphics[width=0.5\textwidth]{figures/generating_levels/no_transition.png}
+        &
+        \includegraphics[width=0.5\textwidth]{figures/generating_levels/with_transition.png}
+    \end{tabular}
+    \caption{(left) without transitioning, (right) with transitioning tiles}\label{fig:transition_comparison}
+\end{figure}
 
 \section{Placing walls and colliders}
 write it!
