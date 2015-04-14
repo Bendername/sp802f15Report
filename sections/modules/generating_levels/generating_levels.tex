@@ -20,7 +20,7 @@ and sizes, for various reasons, such as:
 
 From the above arguments, it is clear that we not only want to produce levels
 in a quick manner, but also automate the process of placing
-\texttt{gameobjects} in gameworld. While Unity's Editor can for many purposes
+\texttt{gameobjects} in the gameworld. While Unity's Editor can for many purposes
 be thought of as a \textit{level editor}, we have chosen \textit{not} to use it
 for designing levels for the following reasons:
 \begin{itemize}
@@ -251,8 +251,10 @@ figures~\ref{fig:civ-1_square},~\ref{fig:civ-2_iso}~and~\ref{fig:wesnoth_hex}).
 We do so by using an adaptation of the \textit{Marching squares} algorithm, and
 mark a position in the map as a particular type, based on the values of its
 neighbors. A corresponding \textit{transition tile} is then blitted together
-(and cached to disk), and assigned to it. Figure~\ref{fig:transition_comparisons}
-shows a comparison before and after integrating the algorithm.
+(and cached to disk in the same manner as grouped tiles), and assigned to it.
+Figure~\ref{fig:transition_comparison} shows a comparison before and after
+integrating the algorithm.
+\todobrian{add ref for marching squares}
 
 \begin{figure}[H]
     \centering
@@ -265,4 +267,46 @@ shows a comparison before and after integrating the algorithm.
 \end{figure}
 
 \section{Placing walls and colliders}
-write it!
+Placing walls involves both placing them as textured tiles within the
+gameworld, and placing colliders such that players and NPC's cannot move
+through them.
+
+\subsection{Placing wall sprites}
+A naive implementation for placing wallsprites within the gameworld is to place
+a gameobject with the texture of a wall. However, we want our walls to look
+``connected'' as if constructed together as on homogeneous unit. We do so by
+using an adaptation of the \textit{Marching squares} (as we do with
+transitional tiles between grass and ground). We can then detect if a wall is a
+``stump'', a regular vertical or horizontal middle section or a t-section. We
+do not allow for diagonal walls, so our marching squares adaptation only
+considers adjacent tiles at 90-degree angles. Figure~\ref{fig:wall_comparison}
+shows an example of placing walls where tiles are ``connected'' and one where
+tiles are ``connected'' and figure~\ref{fig:walls_ingame} showing an in-game
+example.
+
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{cc}
+        \includegraphics[width=0.5\textwidth]{figures/generating_levels/wall_no_border.png}
+        &
+        \includegraphics[width=0.5\textwidth]{figures/generating_levels/wall_with_border.png}
+    \end{tabular}
+    \caption{(left) not connected, and (right) where walls are connected}\label{fig:wall_comparison}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/generating_levels/walls_ingame.png}
+    \caption{In-game example of connected walls}\label{fig:walls_ingame} 
+\end{figure}
+
+\subsection{Placing wall colliders}
+For wall colliders we want to \textit{translate} the contour of walls into
+gameobjects assigned a collide-able component in the gameworld. The first naive
+implementation we attempted was to place a square collider for each wall tile.
+This resulted in the unfortunate behaviour that collisions from rigid bodies -
+the player and enemies - were unreliable and rigid bodies would ``bounce off''
+the walls whenever they would be ``between'' the two collider sections.
+\todobrian{fix this shit}
+vertices and edges for a  Unity3d component \texttt{Polygon
+Collider 2D}. The
