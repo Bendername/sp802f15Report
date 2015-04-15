@@ -303,10 +303,25 @@ example.
 \subsection{Placing wall colliders}
 For wall colliders we want to \textit{translate} the contour of walls into
 gameobjects assigned a collide-able component in the gameworld. The first naive
-implementation we attempted was to place a square collider for each wall tile.
+implementation we attempted was to place a square collider (regular
+\texttt{Collider2D}) for each wall tile.
+The positions for these colliders is shown as red dots in
+figure~\ref{fig:wall_vertices}.
 This resulted in the unfortunate behaviour that collisions from rigid bodies -
-the player and enemies - were unreliable and rigid bodies would ``bounce off''
-the walls whenever they would be ``between'' the two collider sections.
-\todobrian{fix this shit}
-vertices and edges for a  Unity3d component \texttt{Polygon
-Collider 2D}. The
+the player and enemies - behaved unreliable and rigid bodies would ``bounce off''
+the walls whenever they would be ``between'' two collider sections.
+\\
+Our next idea was to find offsets for countour vertices for each tile, and
+placing \texttt{Polygon Collider2D}, contour vertices shown as blue in
+figure~\ref{fig:wall_vertices}. However this reveals a problem: the resulting
+polygon we are interrested in is concave. This means that we cannot
+\textit{easily} construct the polygon from only knowing the vertices. Our
+solution was to use an adaptation of \textit{flood fill} to first find
+connected vertical and then horizontal wall sections. From the algorithm, we
+can find vertices for and construct concave polygons which are \textit{larger}
+than single wall sections. This significantly reduces the number of colliders
+necessary, almost eliminates the mentioned problem of unreliable behavior for
+rigid bodies colliding with walls. An \textit{optimal} solution would be to
+construct a concave polygon from the vertices, which would require finding all
+countour vertices \textit{and} the order in which they should connected when
+constructing the polygon. The result of our \textit{flood fill} adaptation
