@@ -91,6 +91,8 @@ IF %USERNAME%==Golvin EXIT
 
 IF %USERNAME%==Dennis goto :dennis
 
+IF %USERNAME%==jelly goto :jelly
+
 :mik
 Main.pdf
 EXIT
