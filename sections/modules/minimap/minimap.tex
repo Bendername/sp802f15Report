@@ -1,0 +1,54 @@
+\todobrian{I know this should not go here. We need to come up with a structure
+for individual implementation modules, like for the levels, minimap, loading
+in shit from json etc.}
+In this chapter, we explore two different implementation of our in-game
+``minimap'' representation. The underlying implementations are similar, however
+the initial implementation was developed during prototyping sessions to show
+the feasibility and usefulness of having a minimap in-game. This initial
+implementation was however encumbered by sub-par performance on mobile devices,
+for reasons which we will explore in more depth later in this chapter. The
+following implementation was an attempt in mitigating the performance issues,
+which proved successful.
+
+\section{Initial implementation}
+The minimap implementation was initially inspired by \textit{bitmap-blitting}
+techniques used in \textit{older} games, which means that the general idea for
+the implementation is to \textit{blit} - or plot - individual pixels to a
+texture, corresponding to specific types of tiles or entities. This means that
+there are several variable factors we need to consider:
+
+\begin{itemize}
+    \item The current position of the player - we need to know which section of
+        the map we need to present to the player.
+    \item The position of entities within the game - enemies, other players
+        etc.
+    \item And what pixelcolor to use when plotting the background and entities.
+\end{itemize}
+
+Having all enemies and players managed in other singleton-accessible instances,
+makes it easy to satisfy the two first items on the list. The last item
+however, we want to be able to define in a flexible way. This
+has to do with the fact that any level can be loaded with any given
+texturepack, meaning that walls, ground, grass and so on, appear differently
+in the game, depending on the texture pack used - we want to reflect that
+difference in the minimap as well. We suggest the following
+approaches to this problem:
+
+\begin{itemize}
+    \item Iterate over tiles in the texturepack for the current level and find
+        the average color for each corresponding tile.
+    \item for each texturepack, define the colors in an external file.
+\end{itemize}
+
+While the first approach would have provided us with a more generic and
+automated solution, we inadvertently chose the latter as it was quickly
+prototyped.
+\\
+\\
+Defining the colors used to plot pixels in the minimap cc
+Colors used for plotting pixels on the minimap is defined from loading a
+\texttt{PNG} imagefile.
+\todobrian{write more}
+\section{Optimized implemtation}
+\todobrian{knock yourself out Anders}
+
