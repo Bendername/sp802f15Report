@@ -5,8 +5,8 @@ representing those values.
 
 \section{Designing and loading levels}
 Early in the development process, we established that for the type of game we
-are making, it is important that we can quickly create levels of varying layout
-and sizes, for various reasons, such as:
+are making, it is important that we can quickly create levels with different
+layout and sizes, for various reasons, such as:
 \begin{itemize}
     \item Our development process, in it being agile. This should afford quick
         turnarounds and iterations, therefore requiring that we can quickly
@@ -90,7 +90,7 @@ such as seen in figure~\ref{fig:png_map}.
 From figure~\ref{fig:png_map}, we can immediately see that there are some
 patches of grass, a building in the middle of the map and some torn-down
 buildings in the periphery of the map. Some individual pixels of cyan color can
-be seen, which encode where monster should spawn. Likewise, a single white
+be seen, which encode where monster should appear. Likewise, a single white
 pixel encode the exit point of the map, which is where players are required to
 go to when the missions for this map have been completed. And last, a single
 blue pixels encodes where the crafting table should be placed within the level.
@@ -170,8 +170,8 @@ two-dimensional array, as seen in figure~\ref{fig:png_to_array}.
 \end{figure}
 
 Values are then further separated into two-dimensional arrays consisting of
-only each individual value.  Those arrays are then used to generate tiles and
-some game entities within the gameworld.
+only each individual value.  The data within those arrays are what we use to
+generate tiles and some game entities within the gameworld.
 
 \section{Generating level backdrop}
 As explained previously, our game is a top-down 2D action game. Important to
@@ -204,27 +204,26 @@ tiling.
 
 Since the individual techniques mostly impact the visual appearance of the game
 - the underlying data structures remain the same - we have chosen the apply the
-most straightforward tile technique: square tiles.
+most straightforward tiling technique: square tiles.
 \\
 \\
 The first naive implementation we prototyped was to iterate through the
-two-dimensional map and place tiles corresponding to the values. Specifically,
-we need to place \texttt{sprites} in the gameworld. Sprites needs to be
-assigned a \texttt{sprite renderer} component which in turn needs to be
-attached a \texttt{gameobject}. This effectively means that for each tile, we
-instantiate a gameobject.
-But since tiles exhibit no particular behavior, it seems excessive to
-instantiate gameobjects for each tile. Not only that, but we were experiencing
-performance implications on mobile devices using this method.  We can
-substantially reduce the gameobjects required to be instantiated by
+two-dimensional map and place tiles corresponding to the values, with tiles
+being \texttt{sprites} in the gameworld. Sprites need to be assigned a
+\texttt{sprite renderer} component which in turn needs to be attached a
+\texttt{gameobject}. This effectively means that for each tile, we instantiate
+a gameobject.  But since tiles exhibit no particular behavior, it seems
+excessive to instantiate gameobjects for each tile. Not only that, but we were
+experiencing performance implications on mobile devices using this method.  We
+can substantially reduce the gameobjects required to be instantiated by
 \textit{grouping} similar areas into bigger tiles. We do so by first
 manipulating the data map such that we mark large areas, consisting of only one
 type. We then \textit{blit} the texture associated with that type in a
 tile-pattern, onto a bigger texture.  There is a technical limit to this
 technique however, as texture-resolutions are limited by hardware. For our
-particular implementation, we limit texturesizes to 1024x1024. A comparison of
-the result of the two techniques can be seen in
-figure~\ref{fig:grouped_tiling_comparison}.
+particular implementation, we limit the resolution to 1024x1024 pixels, which
+is within the limits of our target hardware. A comparison of the result of the
+two techniques can be seen in figure~\ref{fig:grouped_tiling_comparison}.
 
 \begin{figure}[H]
     \centering
@@ -237,16 +236,17 @@ figure~\ref{fig:grouped_tiling_comparison}.
 \end{figure}
 
 The blitting is performed during runtime whenever a map is loaded, but in order
-to avoid blitting the same texture - w.r.t. size and kind - again, we cache the
-larger tiles to disk such that they can be loaded on request. The performance
-overhead \textit{can} be significant on mobile devices, as the larger textures
-have to be uploaded to the GPU in order to reflect changes, and we did see
-improvements in that regard by caching the blitted textures.
+to avoid blitting the same texture - w.r.t. size and kind - more than once, we
+cache the larger tiles to disk such that they can be loaded between subsequent
+runs of the application. The performance overhead of blitting \textit{can} be
+significant on mobile devices, as the larger textures have to be uploaded to
+the GPU in order to reflect changes, and we did see improvements in that regard
+by caching the blitted textures.
 \\
 \\
 We also wanted \textit{transition} tiles between certain type of tiles, in
-particular between grass and ground (this technique is also
-used in the games seen in
+particular between grass and ground (this technique is also used in the games
+seen in
 figures~\ref{fig:civ-1_square},~\ref{fig:civ-2_iso}~and~\ref{fig:wesnoth_hex}).
 We do so by using an adaptation of the \textit{Marching squares} algorithm, and
 mark a position in the map as a particular type, based on the values of its
@@ -306,14 +306,14 @@ gameobjects assigned a collide-able component in the gameworld. The first naive
 implementation we attempted was to place a square collider (regular
 \texttt{Collider2D}) for each wall tile.
 The positions for these colliders is shown as red dots in
-figure~\ref{fig:wall_vertices}.
+figure~\ref{fig:wall_with_vertices}.
 This resulted in the unfortunate behaviour that collisions from rigid bodies -
 the player and enemies - behaved unreliable and rigid bodies would ``bounce off''
 the walls whenever they would be ``between'' two collider sections.
 \\
 Our next idea was to find offsets for countour vertices for each tile, and
 placing \texttt{Polygon Collider2D}, contour vertices shown as blue in
-figure~\ref{fig:wall_vertices}. However this reveals a problem: the resulting
+figure~\ref{fig:wall_with_vertices}. However this reveals a problem: the resulting
 polygon we are interrested in is concave. This means that we cannot
 \textit{easily} construct the polygon from only knowing the vertices. Our
 solution was to use an adaptation of \textit{flood fill} to first find
@@ -324,4 +324,17 @@ necessary, almost eliminates the mentioned problem of unreliable behavior for
 rigid bodies colliding with walls. An \textit{optimal} solution would be to
 construct a concave polygon from the vertices, which would require finding all
 countour vertices \textit{and} the order in which they should connected when
-constructing the polygon. The result of our \textit{flood fill} adaptation
+constructing the polygon. The result of our \textit{flood fill} approach can be
+seen in figure~\ref{fig:wall_with_convex}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/generating_levels/wall_with_vertices.png}
+    \caption{Finding contour vertices}\label{fig:wall_with_vertices} 
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/generating_levels/wall_with_convex.png}
+    \caption{Finding connected concave polygons using flood fill}\label{fig:wall_with_convex} 
+\end{figure}
