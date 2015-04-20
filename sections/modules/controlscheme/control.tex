@@ -1,22 +1,12 @@
-As we target a mobile platform, we have a limited input interface, and have as such decided to create a shooter, see section \ref{sec:selectionofgametype:mobiledevices}.
-This is a popular game genre today, as can be seen by games like \textit{Call of Duty}, played on consoles. \todomichael{Do we need a source somewhere here, or is it just common knowlegde?}
-Given that shooters on consoles are popular, having controller support for our game is essential, and trying to replicate this control scheme on a touch device provides an interface that is familiar to players.\\
+The platform target for this game is mobiles. The platform has some limitations in its input interface. The game being developed is a shooter(\ref{sec:selectionofgametype:mobiledevices}), which are fairly popular with large titles like \emph{Call Of Duty} and \emph{Battlefield}. These games can be played using a controller on consoles, and trying to recreate these controls on the touch interface will create a familiar input scheme with which players can relate.
 
 \section{Gamepad Control Scheme}
-Controlling the game with a gamepad is natively supported by Unity3D, where the user can use the Input Manager \cite{unity_manual_inputmanager} and add axes that use ``Joystick Axis''. Unity allows reading 20 different axes, where buttons also count as axes.
+Controlling the game with a gamepad is natively supported by Unity3D, where the user can use the Input Manager \cite{unity_manual_inputmanager} and add axes that use ''Joystick Axis''. Unity allows reading 20 different axes, where buttons also count as axes.
 
-However this is not straight forward if the game is to run on different platforms, and even more difficult if the game should support different gamepads. This is because there is no standard for which axes the different thumbsticks and buttons are mapped to, and this is instead dependent on the driver software. This means that an Xbox 360 controller will be mapped differently on for example Windows, Mac, and Linux.
+This is not straight forward however, if the game is to run on different platforms. It is even more difficult if the game should support different gamepads. This is because there is no standard for which axes the different thumbsticks and buttons are mapped to, and this is instead dependent on the driver software. This means that an Xbox 360 controller will be mapped differently on for example Windows, Mac, and Linux.
 \cite{unity_wiki_xbox360controller}
 
-To solve this, one could identify the gamepad and operating system and from that, determine which axes correspond to the right sticks and buttons. A plugin for Unity3D called ``InControl''\cite{incontrol_github} does this. ``InControl'' is an open source project that \begin{quote}``Standardizes controller input mappings across various platforms.''\cite{incontrol_website}\end{quote}
-
-The open sourced version is free and available at Github, but there is also a pro version available through the Unity3d asset store\cite{incontrol_assetstore} which offers some additional features.
-
-\subsection{Controls}\label{sec:modules:controlscheme:gamepad:controls}
-In the game, moving is done using the left thumbstick, and aiming is done using the right thumbstick.
-Further, shooting, reloading and other actions are bound to different buttons.
-For navigating the menus, each button will be highlighted, and you click the menu button by pressing a button on the gamepad.
-This is similar to the way shooters are handled on consoles.
+To solve this, one could identify the gamepad and operating system and from that, determine which axes correspond to the right sticks and buttons. This is a rather large task which the opensource plugin ''InControl'' solves beautifully for Unity3D\cite{incontrol_github}. ''InControl'' is an open source project that \begin{quote}Standardizes controller input mappings across various platforms.\cite{incontrol_website}\end{quote}
 
 \section{Touch Control Scheme}
 The main issue of touch devices is that the input device is the screen.
@@ -72,16 +62,30 @@ There are quite a few input buttons though, so it takes a bit longer getting use
 The buttons are also grouped such that the buttons you usually press in the same situations are at the same place. 
 Further some in-game logic has been added such that some of the buttons wont always require pressing (such as attack), and some will queue if pressed in succession without the first action being finished.
 
+\subsection{Gamepad controls}\label{sec:modules:controlscheme:gamepad:controls}
+Using a gamepad to play the game is rather intuitive. Moving is done using the left thumb-stick, and aiming is done using the right thumbstick, much like in other games.
+Due to the fact a gamepad has many buttons, we can bind shooting, aiming and actions to their own buttons. 
+For navigating the menus, each menu item will be highlighted. The menu item is selected by clicking a button the the gamepad.
+This is similar to the way most game menus are handled on a gamepad, and the control scheme is close to what shooting games normally use.
+
 \subsection{Controls}
-Given that we are trying to replicate a gamepad on the touch devices, we follow a similar pattern as described in section \ref{sec:modules:controlscheme:gamepad:controls}.
-Two thumbsticks are present in the GUI on touch devices, the left one controlling movement, similar to \textit{BombSquad} section \ref{sec:modules:controlscheme:bombsquad}, and the right one controlling aim, see figure \ref{sec:modules:controlscheme:touch:controls:ui}.
-Further, in minimizing the space required for input, as aiming has no other purpose than shooting, it will continuously shoot when aiming.
-In addition, more GUI buttons will be present on touch devices to handle reloading, changing weapons, etc., similar to \textit{Heroes of the Order and Chaos} section \ref{sec:modules:controlscheme:hoftoac}.
-Menus will simply be navigated by performing touching the menu buttons.
+Given that we are trying to replicate a gamepad on a touch device, we follow a similar pattern as described in section \ref{sec:modules:controlscheme:gamepad:controls}. The inherit issue, however, is that  there is only one input option which is the screen. 
+Two thumbsticks are present in the GUI on touch devices, the left one controlling movement, similar to \textit{BombSquad}, see section \ref{sec:modules:controlscheme:bombsquad}, and the right one controlling aim, see figure \ref{sec:modules:controlscheme:touch:controls:ui}.
+In order to prevent cluttering the game-screen with a lot of input items, there is no button to shoot. If you aim in any direction, the character will shoot automatically. Similarly the character will also reload  automatically when it runs out of bullets. A button for reloading has been prioritized though, as some times you may want to reload before you actually run out of ammunition.
+Contextual actions such as crafting will automatically show if you go near the ''crafting table'', rather than having a designated button for it. On other control-schemes it will require a button to be pressed in order to show.
+Menus are navigated by performing a touch on the menu buttons. 
+
+Figure \ref{sec:modules:controlscheme:prototype} shows the envisioned layout of the touch interface, and figure \ref{sec:modules:controlsheme:touch:controls:ui} shows the implemented layout from the game.
+\begin{figure}[H]
+\centering
+\includegraphics[width=.75\textwidth]{figures/controlscheme/prototype}
+\caption{Papir visualization of the game control scheme.}
+\label{sec:modules:controlscheme:prototype}
+\end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\textwidth]{figures/controlscheme/ui}
+\includegraphics[width=.75\textwidth]{figures/controlscheme/ui}
 \caption{UI for the game during development stages. You can see the GUI thumbsticks as well as some of the buttons.}
 \label{sec:modules:controlscheme:touch:controls:ui}
 \end{figure}
