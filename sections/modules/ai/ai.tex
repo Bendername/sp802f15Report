@@ -1,17 +1,16 @@
 \section{Artificial Intelligence}
 Challenging gameplay is an requirement of the game since it keeps the user in the flow zone. %ref to flowzone shizzle
-The AI in \#GAME is what makes the game challenging so therefore we have to develop some kind of AI which can be a threat to the player. 
-
-To make the enemies more challenging they would have to go towards the player without getting stuck on a static obstacle.
+The challenge in the game is the horde of enemies that chase the player, but if the enemies are all stuck behind a wall the challenge is non-existent.
+Therefore the enemies need to be able to avoid obstacles and chase the players in a intelligent way.
 This could be achieved by applying a pathfinding algorithm to the AI's behaviour.
 
-The pathfinding algorithm that we will be using is A* search pathfinding which has a runtime of [].
+The pathfinding algorithm that we will be using is A* search pathfinding which has a runtime of $O(n*m)$, where n is the number of nodes that will be explored, m is the average number of neighbours in the graph, and we assume that the graph and heuristic operations take constant time \cite{AIG:Millington}.
 %Other pathfinding possibilities would be BFS or floyd-warshall algorithm, but as BFS has a runtime of [] and floyd-warshall has a runtime of [] with a high memory usage, we will not be using them.
 
 The first step in using an A* search algorithm, is to have a proper graph which represents the level in the game.
 Our initial idea was to simply have each walkable square in the grid to be a node.
 A node would then have up to eight connections which would point to a neighbour of that certain node with a cost of traversing to this node.
-Possible neighbours would be four to each side of the node with a cost of 10 and four diagonal neighbours with a cost of 14.
+Possible neighbours would be four to each side of the node with a cost of 10 and four diagonal neighbours with a cost of 14, which is the length of the hypotenuse when the length of the catheti are 10.
 This approach resulted in a very large graph which took a lot of time to create and traverse through, when running the algorithm on it.
 An example of this can be seen in figure \ref{gridGraph} where you can see a level of size 64x64, the graph created for that level has 3984 nodes and 30450 edges.
 
@@ -21,7 +20,7 @@ Each point would then do a check on every other point to see if it was in direct
 A resulting graph can be seen in figure \ref{waypointgraph}.
 This approach resulted in a much smaller graph with 47 nodes and 624 edges, thus improving both the creation of the graph and the traversal of it.
 
-Running the A* search pathfinding from every enemy is very costly, and as of such we will have to make some cheap optimisations to avoid that.
+Running the A* search pathfinding from every enemy is very costly and as of such we want to do some alternative solutions when we can.
 First optimisation is to check whether the player is in direct sight which means we can go straight towards the player and not run any pathfinding algorithm.
 If the player then runs out of sight, we can still continue to walk towards the position where the player was last seen and once we have reached that position we look for the player again.
 When the player is not in sight, we check for surrounding enemies who perhaps have run the pathfinding algorithm and are on their way towards the player, then we simply follow this entity.
@@ -34,18 +33,18 @@ When neither of the above options are available, we run the pathfinding algorith
 
 \begin{figure}
 	\includegraphics[width=\textwidth]{figures/astar/gridGraph}
-	\caption{Somegraph....}
+	\caption{Graph based on the grid of the level}
 	\label{gridGraph}
 \end{figure}
 
 \begin{figure}
 	\includegraphics[width=\textwidth]{figures/astar/waypoints}
-	\caption{Somegraph....}
+	\caption{The placement of the waypoints}
 	\label{waypointsNode}
 \end{figure}
 
 \begin{figure}
 	\includegraphics[width=\textwidth]{figures/astar/waypointsGraph}
-	\caption{Somegraph....}
+	\caption{Graph based on the waypoints}
 	\label{waypointgraph}
 \end{figure}
