@@ -2,7 +2,16 @@
 TITLE Select action
 SET de=0
 CLS
- 
+
+taskkill /fi "WindowTitle eq Main.pdf - Adobe Reader"
+taskkill /fi "WindowTitle eq Main.pdf - SumatraPDF"
+
+IF [%1] == [](GOTO 0)
+IF "%1"=="1" (GOTO 1)
+IF "%1"=="2" (GOTO 2)
+IF "%1"=="3" (GOTO 3)
+
+:0
 ECHO 1 - Compile fast
 ECHO 2 - Compile with Table of contents
 ECHO 3 - Compile with references
@@ -11,8 +20,7 @@ ECHO Q - Exit
 
 SET /P comp=Your choice [1, 2, 3, D, E, Q]: 
 
-taskkill /fi "WindowTitle eq Main.pdf - Adobe Reader"
-taskkill /fi "WindowTitle eq Main.pdf - SumatraPDF"
+
 
 start .\_clean.bat
 
