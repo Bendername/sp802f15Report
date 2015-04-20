@@ -69,9 +69,11 @@ Further some enemies have traits just as players do. Some are fast, some will he
 The score system is the heart of the replayability of the game. The main goal is to better your self and your team, and try to beat your own or other groups' score.
 
 The score is calculated by the following formulae:
-\begin{center}
-\textit{For all enemy types (EnemyTypeValue * AmountKilled) * WaveFactor * LevelFactor * Time * Difficulty}
-\end{center}
+
+\begin{equation}\label{eq:score}
+Score = \frac{WaveFactor \times LevelFactor \times Difficulty \times \sum\limits_{i=EnemyType}^{EnemyTypeCount}(Value_i \times KillAmount_i)}{Time}
+\end{equation}
+
 \begin{itemize}
 \item \textit{EnemyTypeValue} is a constant based off of the enemy. Some enemies are more valueable to kill than others.
 \item \textit{AmountKilled} is the amount of enemies killed of that type.
