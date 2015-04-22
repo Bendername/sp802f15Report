@@ -14,7 +14,7 @@ These mechanics also caters to items 2, 4, 5 and 6 of our requirements in \ref{g
 
 \subsection{Player classes and traits}\label{gamedesign:ourgame:classes}
 The classes in the game are rather simple, yet have their own distinct role.
-It is emphasized in the design that all classes are viable for beating the game.
+All classes have been designed in such a way that the game can be beaten using any of them.
 The goal of the classes are to cater to different players play-style, rather than enforcing a specific team setup to have fun in the game.
 Some may feel most at home being close up and personal with the enemies, while others may feel more engaged and entertained by standing back and having a slightly slower pace.
 The classes in the game include:
@@ -34,7 +34,7 @@ There is a shared pool of traits, and a few examples are:
 \begin{itemize}
 \item Fast learner - Gain double experience points
 \item Boom! Headshot!  - Gain 20\% critical hit chance
-\item Just Can?t Get Enough - More zombies will spawn
+\item Just Can?t Get Enough - More aliens will spawn
 \end{itemize} 
 These traits can be obtained by all classes when they level up, given the conditions for a trait is met. These conditions may include certain prior traits being unlocked, a certain level reached and so on.
 
@@ -44,7 +44,7 @@ This further enhances the fulfilment of item 6 in the requirements in \ref{gamed
 
 \subsection{Resources and crafting}\label{gamedesign:ourgame:crafting}
 Resources are a requirement to gain new weapons.
-If a player has the given resources required to \emph{craft} a weapon, he will receive it.
+If a player has collected a sufficient amount of resources then he will be able to spend these to craft a new weapon at a crafting table.
 A weapon cost any given amount of three different resources:
 \begin{itemize}
 \item Junk - The most common resource
@@ -52,11 +52,11 @@ A weapon cost any given amount of three different resources:
 \item Alien Tech - Very rare resource
 \end{itemize}
 
-These resources are obtained by a mixture of shooting the enemies and completing objectives. 
+These resources are dropped by the enemies in the game when they die and the player is then able to run over it to collect it. Another way of obtaining resources is by completing objectives described in section \ref{gamedesign:ourgame:objectives}. 
 The management of your resources, and the choice of what the player spends it on increases strategical aspects as well as the depth and complexity of the game, see \ref{gamedesign:selectionofgametype:importantstuff} and \ref{sec:specifyingtheproblemstatemen}
 
 \subsubsection*{Weapons crafting}\label{gamedesign:ourgame:weapons}
-The weapons are another place which allow both player customization and progression. This allows for a variation in play-style and strategies for certain enemies and play-sessions; maybe a different strategy and a different set of traits will gain us a higher score in this case?
+The weapons are another place which allow both player customization and progression. This allows for a variation in play-style and strategies for certain enemies and play-sessions; Perhaps a different strategy and a different set of traits would achieve a higher score in.
 
 There are many different weapons, which all have iconic shooting patterns that are good in some situations and bad in others.
 Each weapon has multiple upgrades all of which are crafted by spending resources\ref{gamedesign:ourgame:crafting}. The possibility of obtaining new weapons and upgrading the ones already obtained, increases the amount of different scenarios in the game, which in turn makes the game more complex. This makes the game more strategical and also acts against the progression becoming boring, both of which are important and described in \ref{gamedesign:selectionofgametype:importantstuff} and \ref{sec:specifyingtheproblemstatemen}.
@@ -69,14 +69,16 @@ Further some enemies have traits just as players do. Some are fast, some will he
 The score system is the heart of the replayability of the game. The main goal is to better your self and your team, and try to beat your own or other groups' score.
 
 The score is calculated by the following formulae:
-\begin{center}
-\textit{For all enemy types (EnemyTypeValue * AmountKilled) * WaveFactor * LevelFactor * Time * Difficulty}
-\end{center}
+
+\begin{equation}\label{eq:score}
+Score = \frac{WaveFactor \times LevelFactor \times Difficulty \times \sum\limits_{i=EnemyType}^{EnemyTypeCount}(Value_i \times KillAmount_i)}{Time}
+\end{equation}
+
 \begin{itemize}
-\item \textit{EnemyTypeValue} is a constant based of off the enemy. Some enemies are more valueable to kill than others.
+\item \textit{EnemyTypeValue} is a constant based off of the enemy. Some enemies are more valueable to kill than others.
 \item \textit{AmountKilled} is the amount of enemies killed of that type.
-\item \textit{WaveFactor} is a constant based of off the current wave, higher is better.
-\item \textit{LevelFactor} is a constant based of off which level you are at, higher is better.
+\item \textit{WaveFactor} is a constant based off of the current wave, higher is better.
+\item \textit{LevelFactor} is a constant based off of which level you are at, higher is better.
 \item \textit{Time} is the time it took to clear a wave. Faster yields a higher score.
 \item \textit{Difficulty} is a constant based on which difficulty the session has been started on.
 \end{itemize}
