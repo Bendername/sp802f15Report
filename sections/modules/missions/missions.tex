@@ -1,0 +1,36 @@
+This chapter will describe the mission system and the creation of custom content as these are closely tied.
+
+\section{Mission System}
+
+The Mission System is the system that handles the missions, maps and waves that the players play.
+It supports custom created content, as described in section \ref{sec:modules:missions:customcontent}.
+A single mission contains several waves, each started when all the players declare themselves as ready.
+Waves spawn enemies from a series of spawn points at a certain tick rate, in the attempt to populate the map with enemies according to defined boundaries.
+Furthermore, waves have a probability on every tick to create an objective that the players can complete.
+
+\section{Custom Content}\label{sec:modules:missions:customcontent}
+
+The game supports custom content, see section \ref{sec:selectionofgametype:customcontent}.
+Custom content must be placed in the \lstinline|Application.persistentDataPath| directory, and consists of several files.
+The main file is a JSON, specifying the content that can be seen in figure \ref{fig:json_chart}.
+To encapsulate the desired data, many formats could have been used successfully.
+The choice fell upon JSON due to it being an open, human readable format that can be easily edited using raw text editors.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/missions/chart.png}
+    \caption{Chart depicting data contained in JSON file for content creation.}
+    \label{fig:json_chart}
+\end{figure}
+
+As can be seen in figure \ref{fig:json_chart}, for the custom map we use the PNG (Portable Network Graphics) format.
+The choice of PNG was for the following reasons:
+\begin{itemize}
+    \item The PNG format is ubiquitous, in that there exists support for it almost anywhere, including in Unity3d - both in terms of API and the editor itself.
+    \item It being ubiquitous means that we do not have to develop additional software in order to edit levels - most mainstream image editors support the PNG format.
+    \item The PNG allows us to encode \textit{enough} information. 
+    	\textit{Enough} being relative, but each colorchannel for each individual pixel offers 1 \texttt{byte} of information.
+    	With each pixel being encoded with RGBA (red, green, blue and alpha) channels that gives us a total of 4 \texttt{bytes} of information, for each pixel.
+\end{itemize}
+
+A sample map can be seen in figure \ref{fig:png_map}.

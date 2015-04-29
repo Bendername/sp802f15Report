@@ -19,14 +19,7 @@ To keep up with potential changes, a quick way to create levels is preferred for
 While there are different approaches for circumventing the above inconveniences, our solution is to encode the layout of each individual level in an external file which is then loaded and interpreted.
 Historically, game developers have often used this approach, usually encoded in some in-house binary format~\cite{quake-bsp-format}.
 While customized in-house format would offer significant flexibility, but it would also result in additional development, if the players should have the option to create their own levels, as a custom level editor would be necessary.
-Instead the choice of encoding the map in the PNG (Portable Network Graphics) format was made for the following reasons:
-\begin{itemize}
-    \item The PNG format is ubiquitous, in that there exists support for it almost anywhere, including in Unity3d - both in terms of API and the editor itself.
-    \item It being ubiquitous means that we do not have to develop additional software in order to edit levels - most mainstream image editors support the PNG format.
-    \item The PNG allows us to encode \textit{enough} information. 
-    	\textit{Enough} being relative, but each colorchannel for each individual pixel offers 1 \texttt{byte} of information.
-    	With each pixel being encoded with RGBA (red, green, blue and alpha) channels that gives us a total of 4 \texttt{bytes} of information, for each pixel.
-\end{itemize}
+Instead the choice of encoding the map in the PNG format was made, as described in section \ref{sec:modules:missions:customcontent}.
 Using the PNG format, it is only a matter of specifying \textit{what} a particular color should encode and interpreting that color when loading a level.
 As an example, the following could specify how colors could be specified to encode information about a level:
 \begin{itemize}
