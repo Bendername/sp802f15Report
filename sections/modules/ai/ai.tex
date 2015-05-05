@@ -1,8 +1,9 @@
-\section{Artificial Intelligence}
-Challenging gameplay is an requirement of the game since it keeps the user in the flow zone. %ref to flowzone shizzle
+The game being challenging confines largely to item 2, but also items 5 and 6 from the requirements in section \ref{gamedesign:selectionofgametype:importantstuff}.
 The challenge in the game is the horde of enemies that chase the player, but if the enemies are all stuck behind a wall the challenge is non-existent.
 Therefore the enemies need to be able to avoid obstacles and chase the players in a intelligent way.
 This could be achieved by applying a pathfinding algorithm to the AI's behaviour.
+
+\section{Pathfinding}
 
 The pathfinding algorithm that we will be using is A* search pathfinding which has a runtime of $O(n*m)$, where n is the number of nodes that will be explored, m is the average number of neighbours in the graph, and we assume that the graph and heuristic operations take constant time \cite{AIG:Millington}.
 %Other pathfinding possibilities would be BFS or floyd-warshall algorithm, but as BFS has a runtime of [] and floyd-warshall has a runtime of [] with a high memory usage, we will not be using them.
