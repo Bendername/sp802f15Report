@@ -1,16 +1,13 @@
 \subsection{Waves and objectives}\label{gamedesign:ourgame:objectives}
-Each level consists of a set of \emph{waves}. Each wave contains a set amount of enemies which attempts to overcome the players. It is the players' job to survive each wave by killing all enemies, and progress to the next wave. In between waves it is intended for the player to get a breathing room, talk brief tactics with the team and craft new weapons. See \ref{gamedesign:ourgame:crafting} for crafting details. 
+Each mission consists of a set of \emph{waves}. Each wave contains a set amount of enemies which attempts to overcome the players. It is the players' job to survive each wave by killing all enemies, and progress to the next wave. In between waves it is intended for the player to get a breathing room, talk brief tactics with the team and craft new weapons. See \ref{gamedesign:ourgame:crafting} for crafting details. 
 
 An objective is an event which forces the player to make a risk/reward evaluation. 
 An objective may start on a wave, where a special monster is trying to flee with some precious alien cargo. 
 The player can then attempt to kill this monster to reap the rewards, this will however, force the player to go out into the open environment, which in turn makes him more vulnerable to being swarmed. So the player has to make a quick analysis of whether or not the risk is worth the reward.
-Further, each object can favor a certain subset of the classes, which enhances the value of the players choice of class.
-
-A special type of event also exists, which is called a \emph{level event}. A level event is an event which allows the player to progress to the next level. This is desirable as it allows for a faster accumulating score as well as caters a sense of progression in the game.\tododennis{inset nice pictures from the game here}
 
 The objectives serves multiple purposes in the game. It is a dynamic stress-factor, and a selective event which caters different skill levels. 
 That is, the game is scalable to what the players skill level is, which is important in terms of the player being able to reach its goals, described in \ref{makingthegamefun:cognitiveflow}. 
-These mechanics also caters to items 2, 4, 5 and 6 of our requirements in \ref{gamedesign:selectionofgametype:importantstuff}.
+These mechanics also caters to the requirement 2, 4, 5 and 6 of our requirements in \ref{gamedesign:selectionofgametype:importantstuff}.
 
 \subsection{Player classes and traits}\label{gamedesign:ourgame:classes}
 The classes in the game are rather simple, yet have their own distinct role.
@@ -20,26 +17,25 @@ Some may feel most at home being close up and personal with the enemies, while o
 The classes in the game include:
 
 \begin{itemize}
-\item Jack 'Happy' Tricker - Appealing to tanky, ''in your face'' kind a player
-\item 'Mending' Medy - Appealing to supportive types, who like to stand a bit back
-\item Hunting Hank - Appealing to high stress players who enjoy low life with large damage and lots of movement
-\item Mad Joe - Appealing to the player who desires an overall decent class. \todomichael{Who's the average player?}
+\item Jack 'Happy' Tricker - Should be a class which have more Health Point but less movement speed
+\item 'Mending' Mendy - Should be a class which have the capability of healing other player
+\item Hunting Hank - Should be a class which deals more damage but with less health points
+\item Joe - Should be a standard class which have some increased base values
 \end{itemize}
 
-By having multiple classes a greater amount of depth in the game is also achieved. This allows for strategic decisions regarding team composition and objectives, which is important in terms of items 5 and 6 in the requirements in \ref{gamedesign:selectionofgametype:importantstuff}.
+By having multiple classes a greater amount of depth in the game is also achieved. This allows for strategic decisions regarding team composition, which is important in terms of items 5 and 6 in the requirements in \ref{gamedesign:selectionofgametype:importantstuff}.
 
 \subsection*{Traits}\label{gamedesign:ourgame:traits}
 The trait system allows for customization of the chosen character, and thus the play-style and strategy the player intends to use.
 There is a shared pool of traits, and a few examples are:
 \begin{itemize}
-\item Fast learner - Gain double experience points
-\item Boom! Headshot!  - Gain 20\% critical hit chance
-\item Just Can?t Get Enough - More aliens will spawn
+\item Increased XP - Gain extra experience points
+\item Critical Hit  - Gain critical hit chance
 \end{itemize} 
 These traits can be obtained by all classes when they level up, given the conditions for a trait is met. These conditions may include certain prior traits being unlocked, a certain level reached and so on.
 
 Additionally a list of class specific traits can be chosen at given level intervals. 
-These traits are only obtainable by the individual classes. This separates the purpose for each character enough to make them feel individual and powerful. When a player is eligible for a class trait multiple traits will be presented. The player may only select one of these, and the other options will be unavailable for the rest of the current game. This force the player to make a choice, \emph{''which class trait is the best in my situation in this game?''}. 
+These traits are only obtainable by the individual classes. This separates the purpose for each character enough to make them feel individual and powerful. When a player is eligible for a class trait multiple traits will be presented. The player may only select one of these. This force the player to make a choice, \emph{''which class trait is the best in my situation in this game?''}. 
 This further enhances the fulfilment of item 6 in the requirements in \ref{gamedesign:selectionofgametype:importantstuff}, as well as the strategical aspect of \emph{interesting choices} described earlier in \ref{sec:specifyingtheproblemstatemen}.
 
 \subsection{Resources and crafting}\label{gamedesign:ourgame:crafting}
@@ -51,38 +47,26 @@ A weapon cost any given amount of three different resources:
 \item Electrical Parts - Somewhat rare resource
 \item Alien Tech - Very rare resource
 \end{itemize}
-
 These resources are dropped by the enemies in the game when they die and the player is then able to run over it to collect it. Another way of obtaining resources is by completing objectives described in section \ref{gamedesign:ourgame:objectives}. 
 The management of your resources, and the choice of what the player spends it on increases strategical aspects as well as the depth and complexity of the game, see \ref{gamedesign:selectionofgametype:importantstuff} and \ref{sec:specifyingtheproblemstatemen}
 
 \subsubsection*{Weapons crafting}\label{gamedesign:ourgame:weapons}
-The weapons are another place which allow both player customization and progression. This allows for a variation in play-style and strategies for certain enemies and play-sessions; Perhaps a different strategy and a different set of traits would achieve a higher score in.
+The weapons are another place which allow both player customization and progression. This allows for a variation in play-style and strategies for certain enemies and play-sessions; Perhaps a different strategy and a different set of weapons would achieve a higher score.
 
-There are many different weapons, which all have iconic shooting patterns that are good in some situations and bad in others.
-Each weapon has multiple upgrades all of which are crafted by spending resources\ref{gamedesign:ourgame:crafting}. The possibility of obtaining new weapons and upgrading the ones already obtained, increases the amount of different scenarios in the game, which in turn makes the game more complex. This makes the game more strategical and also acts against the progression becoming boring, both of which are important and described in \ref{gamedesign:selectionofgametype:importantstuff} and \ref{sec:specifyingtheproblemstatemen}.
+There should be different weapons, which all have unique shooting patterns that are good in some situations and bad in others.
+Each weapon has multiple upgrades all of which are crafted by spending resources\ref{gamedesign:ourgame:crafting}. The possibility of obtaining new weapons and upgrading the ones already obtained, increases the amount of different scenarios in the game, which in turn makes the game more complex. This makes the game have increased depth and complexity, which satisfies requirement 7 described in \ref{gamedesign:selectionofgametype:importantstuff}.
 
 \subsection{Enemies}
-There is a wide array of enemies, whom all have different roles in terms of stressing the player. Some will go for the player, and some enemies attempts to reach a level-objective. In case the player have captured a general whom unlocks to possibility to go to the next level, some enemies will attempt to rescue him. If this happens the team will loose. 
-Further some enemies have traits just as players do. Some are fast, some will heal and so on. This creates a dynamic combat situation which cannot always be predicted, keeping the game from becoming boring as well as keeping the players on their toes, which is relevant in terms of stressing the player, see\ref{sec:specifyingtheproblemstatemen}.
+There should be a wide array of enemies, who all have different roles in terms of stressing the player.
+Some examples could be:
+\begin{itemize}
+\item An enemy that had more health point and would stand in front soaking the damage from the players
+\item An enemy that has more speed making it harder to hit and a bigger threat since it would reach the player faster
+\item An enemy which has a very high damage output but might have a very slow movement speed
+\end{itemize}
+These could be combined to create a higher factor.
 
 \subsection{Scoring system}\label{gamedesign:ourgame:scoring}
-The score system is the heart of the replayability of the game. The main goal is to better your self and your team, and try to beat your own or other groups' score.
+The scoring system should be a simple system, that enables the player to use it for measuring the players own impact on the game.
 
-The score is calculated by the following formulae:
-
-\begin{equation}\label{eq:score}
-Score = \frac{WaveFactor \times LevelFactor \times Difficulty \times \sum\limits_{i=EnemyType}^{EnemyTypeCount}(Value_i \times KillAmount_i)}{Time}
-\end{equation}
-
-\begin{itemize}
-\item \textit{EnemyTypeValue} is a constant based off of the enemy. Some enemies are more valueable to kill than others.
-\item \textit{AmountKilled} is the amount of enemies killed of that type.
-\item \textit{WaveFactor} is a constant based off of the current wave, higher is better.
-\item \textit{LevelFactor} is a constant based off of which level you are at, higher is better.
-\item \textit{Time} is the time it took to clear a wave. Faster yields a higher score.
-\item \textit{Difficulty} is a constant based on which difficulty the session has been started on.
-\end{itemize}
-
-\emph{WaveFactor} and \emph{Time} is only applied to the formulae if a team beats the wave.
-
-This is very important in terms of item 4 of our requirements, described in\ref{gamedesign:selectionofgametype:importantstuff}.
+This is very important in terms of item 5 of our requirements, described in\ref{gamedesign:selectionofgametype:importantstuff}.
