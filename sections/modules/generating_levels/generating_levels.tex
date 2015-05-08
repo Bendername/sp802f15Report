@@ -1,52 +1,82 @@
-In this chapter the process of loading individual levels will be explained.
-This involves loading the level, encoded as an image in the PNG format, parsing values from this format, and finally placing tiles in the game world representing those values.
-Levels are closely tied to the Mission System and Custom Content described in chapter \ref{chapter:modules:missions}.
-As follows, this means it falls under items 3 and 6 in the requirements in section \ref{gamedesign:selectionofgametype:importantstuff}.
+In this chapter the process of loading individual maps will be explained.
+This involves loading the map, encoded as an image in the PNG format, parsing values from this format, and finally placing tiles in the game world representing those values.
+Maps are closely tied to the Mission System and Custom Content described in chapter \ref{chapter:modules:missions}.
+As follows, this means it falls under requirements 3 and 6 in section \ref{gamedesign:selectionofgametype:importantstuff}.
 
-\section{Designing and loading levels}
-Level creation is an important aspect when developing a game, and for this project there are different elements to consider for the level creation workflow.
+\section{Tiling}
+As explained previously, our game is a top-down 2D action game.
+The top-down 2D aspect of it is important when we are to generate our maps.
+A historical, and still prevalent technique for 2D games, is using a tiling approach for the layout of both the backdrop of the level and entities within it.
+Several different approaches to tiling have been used in games, including squares, isometric and hexagonal tiles.
+Figures~\ref{fig:civ-1_square},~\ref{fig:civ-2_iso}~and~\ref{fig:wesnoth_hex}
+show examples of games using each of the mentioned techniques of tiling.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures/generating_levels/civ-1_square.png}
+    \caption{Civilizations 1, using squares as tiles}\label{fig:civ-1_square}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures/generating_levels/civ-2_iso.png}
+    \caption{Civilizations 2, using the isometric technique}\label{fig:civ-2_iso}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures/generating_levels/wesnoth_hex.png}
+    \caption{Battle of Wesnoth, using a hexagonal tiling technique}\label{fig:wesnoth_hex}
+\end{figure}
+Since the individual techniques mostly impact the visual appearance of the game, the underlying data structures remain the same.
+We have chosen to apply the most straightforward tiling technique: square tiles.
+
+\section{Designing and loading maps}
+Map creation is an important aspect when developing a game, and for this project there are different elements to consider for the map creation workflow.
 \begin{itemize}
-    \item The development process is agile, meaning the level should be easily modifiable to adapt to changes
-    \item Game balancing, requiring the production of levels at a sufficient pace in order to quickly iterate on game balancing topics, such as strategies for a particular map layout
-    \item The project has no dedicated level designer whom we can allocate to finely tune and manually design levels
+    \item The development process is agile, meaning the map should be easily modifiable to adapt to changes
+    \item Game balancing, requiring the production of maps at a sufficient pace in order to quickly iterate on game balancing topics, such as strategies for a particular map layout
+    \item The project has no dedicated map designer whom we can allocate to finely tune and manually design maps
 \end{itemize}
-These elements sets up some different challenges to the project.
-To keep up with potential changes, a quick way to create levels is preferred for the following reasons:
+These elements set up some different challenges to the project.
+To keep up with potential changes, a quick way to create maps is preferred for the following reasons:
 \begin{itemize}
-    \item Designing levels and placing gameobjects in the Editor does not afford quick iterations, as required by our development process
-    \item The Editor does not afford easy refactoring of large levels, in that objects must be moved or replaced manually. \textit{Large} is relative, but for our purposes it could be upwards +10.000 gameobjects
-    \item Individual levels would have to reside in individual \texttt{Scene} files, increasing the complexity of collaboration since scenefiles does not  automatically merge correct in version control systems.
+    \item Designing maps and placing gameobjects in the Editor does not afford quick iterations, as required by our development process.
+    \item The Editor does not afford easy refactoring of large maps, in that objects must be moved or replaced manually. \textit{Large} is relative, but for our purposes it could be upwards 100 gameobjects.
+    \item Individual maps would have to reside in individual \texttt{Scene} files, increasing the complexity of collaboration since scenefiles do not  automatically merge correct in git, the version control system we use.
 \end{itemize}
 
-While there are different approaches for circumventing the above inconveniences, our solution is to encode the layout of each individual level in an external file which is then loaded and interpreted.
+While there are different approaches for circumventing the above inconveniences, our solution is to encode the layout of each individual map in an external file which is then loaded and interpreted.
 Historically, game developers have often used this approach, usually encoded in some in-house binary format~\cite{quake-bsp-format}.
-While customized in-house format would offer significant flexibility, but it would also result in additional development, if the players should have the option to create their own levels, as a custom level editor would be necessary.
+While customized in-house format would offer significant flexibility, but it would also result in additional development, especially with regards to players creating custom maps because then a custom map editor would have to be created.
 Instead the choice of encoding the map in the PNG format was made, as described in section \ref{sec:modules:missions:customcontent}.
-Using the PNG format, it is only a matter of specifying \textit{what} a particular color should encode and interpreting that color when loading a level.
-As an example, the following could specify how colors could be specified to encode information about a level:
+Using the PNG format, it is only a matter of specifying \textit{what} a particular color should encode and interpreting that color when loading a map.
+As an example, the following could specify how colors could encode information about a map:
 \begin{itemize}
     \item Black would be ground
     \item Green is grass
     \item Red is building floor
-    \item And yellow being building walls.
+    \item And yellow being building walls
 \end{itemize}
-One obvious shortcoming from the above example is the lack of variation - maybe one would like to be able to specify different types of walls or floors. This could however be mitigated by either specifying more colors or by interpreting a color differently depending on the context of the pixel.
+One obvious shortcoming from the above example is the lack of variation - maybe one would like to be able to specify different types of walls or floors. 
+This could be mitigated by either specifying more colors or by interpreting a color differently depending on the context of the pixel.
 To introduce variety into our levels, we use the latter approach for some colors, which we will describe later in this chapter.
-\\
 
 Having decided on the format and encoded color values, we can design levels such as seen in figure~\ref{fig:png_map}.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{figures/generating_levels/map.png}
-    \caption{A PNG image encoding a level}
+    \caption{A PNG image encoding a map.}
     \label{fig:png_map}
 \end{figure}
 By looking at Figure~\ref{fig:png_map}, it is illustrated that there are some patches of grass, a building in the middle of the map and some torn-down buildings in the periphery of the map encoded in the PNG.
-A single blue pixels encodes where the crafting table should be placed within the level.
+A single blue pixel encodes where the crafting table should be placed within the map.
 \\\\
-The color values can then be interpreted into distinct integer values in a two-dimensional array, as seen in Figure~\ref{fig:png_to_array}.
+Color values can then separated into a new two-dimensional array, each cell consisting of the color value of its corresponding pixel, as illustrated on the right side in Figure \ref{fig:png_to_array}.
+The data within that array is what we use to generate tiles and some game entities within the gameworld.
 %thread carefully below...
+%no
 \begin{figure}[H]
     \centering
     \begin{tabular}{cc}
@@ -116,48 +146,18 @@ The color values can then be interpreted into distinct integer values in a two-d
     \end{tabular}
     \caption{Interpreting a PNG map image into a two-dimensional array}\label{fig:png_to_array} 
 \end{figure}
-Values are then further separated into a new two-dimensional array consisting of only each individual value, as illustrated on the right side in Figure \ref{fig:png_to_array}.
-The data within those arrays are what we use to generate tiles and some game entities within the gameworld.
 
-\section{Generating level backdrop}
-As explained previously, our game is a top-down 2D action game.
-Important to note is the top-down 2D aspect of it when we are to generate our levels.
-A historical, and still prevalent technique for 2D games, is using a tiling approach for the layout of both the backdrop of the level and entities within it.
-Several different approaches to tiling have been used in games, including squares, isometric and hexagonal tiles.
-Figures~\ref{fig:civ-1_square},~\ref{fig:civ-2_iso}~and~\ref{fig:wesnoth_hex}
-show examples of games using each of the mentioned techniques of tiling.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{figures/generating_levels/civ-1_square.png}
-    \caption{Civilizations 1, using squares as tiles}\label{fig:civ-1_square}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{figures/generating_levels/civ-2_iso.png}
-    \caption{Civilizations 2, using the isometric technique}\label{fig:civ-2_iso}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{figures/generating_levels/wesnoth_hex.png}
-    \caption{Battle of Wesnoth, using a hexagonal tiling technique}\label{fig:wesnoth_hex}
-\end{figure}
-Since the individual techniques mostly impact the visual appearance of the game, the underlying data structures remain the same.
-We have chosen to apply the most straightforward tiling technique: square tiles.
-\\
-\\
+\section{Implementation}
 The first naive implementation that we prototyped, was to iterate through the two-dimensional map and place tiles corresponding to the values, with tiles being \texttt{sprites} in the gameworld.
-In Unity sprites needs to be assigned a \texttt{sprite renderer} component which in turn needs to be attached a \texttt{gameobject}.
+In Unity sprites need to be assigned a \texttt{sprite renderer} component which in turn needs to be attached a \texttt{gameobject}.
 This effectively means that for each tile, an instantiation a gameobject has to be made, which easily can get expensive in computation.
 
 Since tiles exhibit no particular behavior, it seems excessive to instantiate gameobjects for each tile.
-Not only that, but we were experiencing performance implications on mobile devices using this method.
+This method also resulted in performance implications on mobile devices.
 It is possible to substantially reduce the gameobjects required to be instantiated by \textit{grouping} similar areas into bigger tiles.
 To do this, the map needs to be grouped such that large area consisting of only one type will be marked with a similar value in the data structure.
 The groups are then \textit{blitted} together in a tile-pattern to form a larger texture.
-There is a technical limit to this technique however, as texture-resolutions are limited by hardware. For our implementation, we limit the resolution of larger textures to $1024 x 1024$, as that would be within the bounds of the capabilities of the target hardware.
+There is a technical limit to this technique however, as texture-resolutions are limited by hardware, as such we limit the resolution of larger textures to $1024 \times 1024$.
 A comparison of the result of the two techniques can be seen in figure~\ref{fig:grouped_tiling_comparison}.
 \begin{figure}[H]
     \centering
