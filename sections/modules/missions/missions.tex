@@ -1,5 +1,5 @@
 This chapter will describe the mission system and the creation of custom content as these are closely tied.
-Support for creating custom content confines with item 3, and the mission system is created with items 1, 2, 4, 5, and 6 of the requirements specified in \ref{gamedesign:selectionofgametype:importantstuff} in mind.
+From the requirements listed in Section \ref{gamedesign:selectionofgametype:importantstuff}, custom content creation will satisfy requirement 3, and the mission system satisfies requirements 1, 2, 4, 5 and 6.
 
 \section{Mission System}
 
@@ -13,7 +13,7 @@ Furthermore, waves have a probability on every tick to create an objective that 
 
 The game supports custom content, see section \ref{sec:selectionofgametype:customcontent}.
 Custom content must be placed in the \lstinline|Application.persistentDataPath| directory, and consists of several files.
-The main file is a JSON, specifying the content that can be seen in figure \ref{fig:json_chart}.
+The main file is a JSON formated text-file, specifying the content that can be seen in figure \ref{fig:json_chart}.
 To encapsulate the desired data, many formats could have been used successfully.
 The choice fell upon JSON due to it being an open, human readable format that can be easily edited using raw text editors.
 
@@ -24,7 +24,7 @@ The choice fell upon JSON due to it being an open, human readable format that ca
     \label{fig:json_chart}
 \end{figure}
 
-As can be seen in figure \ref{fig:json_chart}, for the custom map we use the PNG (Portable Network Graphics) format.
+As seen in figure \ref{fig:json_chart}, for the custom map we use the PNG (Portable Network Graphics) format.
 The choice of PNG was for the following reasons:
 \begin{itemize}
     \item The PNG format is ubiquitous, in that there exists support for it almost anywhere, including in Unity3d - both in terms of API and the editor itself.
