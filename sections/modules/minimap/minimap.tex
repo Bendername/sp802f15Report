@@ -1,71 +1,50 @@
 \todobrian{I know this should not go here. We need to come up with a structure
 for individual implementation modules, like for the levels, minimap, loading
-in shit from json etc.}
-In this chapter, we explore two different implementation of our in-game
-``minimap'' representation. The underlying implementations are similar, however
-the initial implementation was developed during prototyping sessions to show
+in things from json etc.}
+In this chapter,  two different implementation of our in-game
+``minimap'' representation are explored. The initial implementation was developed during prototyping sessions to show
 the feasibility and usefulness of having a minimap in-game. This initial
-implementation was however encumbered by sub-par performance on mobile devices,
-for reasons which we will explore in more depth later in this chapter. The
-implementation following was an attempt in mitigating the performance issues,
-which proved successful.
+implementation was however encumbered by sub-par performance,
+for reasons which will be explained in more depth later in this chapter.
 
 \section{Initial implementation}
 The minimap implementation was initially inspired by \textit{bitmap-blitting}
-techniques used in \textit{older} games, which means that the general idea for
+techniques used in \textit{older} games\todoanders{a reference here could be nice}, which means that the general idea for
 the implementation is to \textit{blit} - or plot - individual pixels to a
 texture, corresponding to specific types of tiles or entities. This means that
-there are several variable factors we need to consider:
-
+there are several variable factors that needs to be considered:
 \begin{itemize}
-    \item The current position of the player - we need to know which area of
-        the map we need to present to the player.
-    \item The position of entities within the game - enemies, other players
-        etc.
-    \item And what pixel-color to use when plotting the background and entities.
+    \item The current position of the player
+    \item The position of enemies within the game 
+    \item What pixel-color to use when plotting the background and entities
 \end{itemize}
-
-Having all enemies and players managed in other singleton-accessible instances,
+Having all enemies and players managed in singleton-accessible instances,
 makes it easy to satisfy the two first items on the list. The last item
 however, we want to be able to define in a flexible way. This
 has to do with the fact that any level can be loaded with any given
-texturepack, meaning that walls, ground, grass and so on, appear differently
-in the game, depending on the texture pack used - we want to reflect that
-difference in the minimap as well. We suggest the following
-approaches to this problem:
-
-\begin{itemize}
-    \item Iterate over tiles in the texturepack for the current level and find
-        the average color for each corresponding tile, or
-    \item for each texturepack, define the colors in an external file.
-\end{itemize}
-
-While the first approach would have provided us with a more generic and
-automated solution, we inadvertently chose the latter as it was quickly
-prototyped.
+texture pack, meaning that walls, ground, grass and so on, appear differently
+in the game, depending on the texture pack used.
+We solved the problem by following the colors defined on the map in the texture pack. \todoanders{insert picture}
 \\
 \\
 The colors used for plotting entities and the background on the minimap are
-defined in a \texttt{PNG} image, accompanying the selected texturepack for that
+defined in a \texttt{PNG} image, accompanying the selected texture pack for that
 level. The colors are parsed by index, e.g. the first pixel defines ground
 color, second pixel defines grass color and etc.
 \\
 \\
 The entities and background is blitted onto a texture at a shifted position, in
 order to represent the players current position on the map. If entities such as
-enemies and other players are within the players vicinity and the bounds of the
-texture, they are blitted onto the minimap textures as well.
+enemies and other players are within the players view bounds of the
+texture, they are blitted onto the minimap textures as well. \todoanders{insert picture}
 \\
 \\
-As mentioned in the beginning of this chapter, the implementation we just
-described proved to have performance implications, which we
-partly expected. This has to do with the performance overhead of blitting - or
-changing pixel information - on a textures. Whenever a texture changes and
-those changes has to be reflected in the screen rendering, the instances method
-\texttt{Apply()} has to be called on the texture. Calling \texttt{Apply()}
-\textit{uploads} the texture to the GPU (graphics processing unit) - a
-potentially expensive operation according to Unity3D's documentation, and shown
-by our own profiling and testing.
+As mentioned in the beginning of this chapter, the implementation just
+described proved to have performance implications, which was partly expected. 
+This has to do with the performance overhead of blitting the whole texture every time something changed.
+Whether that was due to the camera position or an entity that changed position.
+This had a big cost of CPU time because the CPU had to recalculate each pixel on the map all the time.
+
 
 \section{Optimized implementation}
 In order to optimize our minimap it was important to avoid the recalculation of texture each time something changed.
@@ -80,20 +59,22 @@ The \textit{Raw Image} contains the properties:
 \item Material
 \item UV Rectangle
 \end{itemize}
-Where the texture will be our full map, and the UV Rectangle will be used to offset and control the size of will be shown in the minimap.
+Where the texture will be our full map, and the UV Rectangle will be used to offset and control the size of will be shown in the minimap.\todoanders{inser picture here}
 \\\\
 The task which the CPU is still required to do is:
 \begin{itemize}
+\item Give the view screen a size and width relative to the map
 \item Calculate the offset that is required for the player to be inside the minimap view screen
 \item Plotting entities on the texture
 \end{itemize}
-To calculate the offset to keep the player in minimap view screen, the position of the players character is used.
-
-The UV Rectangle, which controls this process, is controllable by changing the values:
+Modifying the size of the raw image is relatively easy. To do so you have the UV Rectangle which contains a height and a width property.
 \begin{itemize}
-\item Height (H) - Height of the what should be shown, represented in a ratio of
-, a width (W), a X-offset(X) and Y-offset (Y).
+\item The Height (H) - Height of the what should be shown, represented in a ratio of the full height of the texture given from 0 to 1
+\item  The Width (W) - Height of the what should be shown, represented in a ratio of the full height of the texture given from 0 to 1
 \end{itemize}
+From here one can convert the height and width of the map into a vector and normalize it which gives a  ratio aspect of the height and width. Which then can be scaled to represent the desired view screen.
 
-Since the offset The offset is simply calculated from taking the player position relative to the width and height 
-\todoanders{Anders make this better and finish it.}
+The offset which the
+The UV Rectangle, which controls this process, is controllable by changing the values:
+
+
