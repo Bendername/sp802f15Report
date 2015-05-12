@@ -58,7 +58,7 @@ texture, they are blitted onto the minimap textures as well.
 \\
 \\
 As mentioned in the beginning of this chapter, the implementation we just
-described proved to have performance implications on mobile devices, which we
+described proved to have performance implications, which we
 partly expected. This has to do with the performance overhead of blitting - or
 changing pixel information - on a textures. Whenever a texture changes and
 those changes has to be reflected in the screen rendering, the instances method
@@ -66,11 +66,34 @@ those changes has to be reflected in the screen rendering, the instances method
 \textit{uploads} the texture to the GPU (graphics processing unit) - a
 potentially expensive operation according to Unity3D's documentation, and shown
 by our own profiling and testing.
-\todobrian{insert ref for this. Also, show profiling graph?}.
 
-Our idea on how to improve the performance of rendering the minimap is to
-\textit{shift} the position of the texture on a \textit{quad} using a
-programmable shader, as we go into detail on in the following section.
 \section{Optimized implementation}
-\todobrian{knock yourself out Anders}
+In order to optimize our minimap it was important to avoid the recalculation of texture each time something changed.
+To do so a new approach was applied. 
+The new approach is based on offsetting the texture instead of recalculate a new texture all the time.
+By doing so a lot time is saved on the CPU and transferred to the GPU instead. 
+This is done by adding a \textit{Raw Image} to a \textit{game object} with a canvas renderer.
+The \textit{Raw Image} contains the properties:
+\begin{itemize}
+\item Texture
+\item Color
+\item Material
+\item UV Rectangle
+\end{itemize}
+Where the texture will be our full map, and the UV Rectangle will be used to offset and control the size of will be shown in the minimap.
+\\\\
+The task which the CPU is still required to do is:
+\begin{itemize}
+\item Calculate the offset that is required for the player to be inside the minimap view screen
+\item Plotting entities on the texture
+\end{itemize}
+To calculate the offset to keep the player in minimap view screen, the position of the players character is used.
 
+The UV Rectangle, which controls this process, is controllable by changing the values:
+\begin{itemize}
+\item Height (H) - Height of the what should be shown, represented in a ratio of
+, a width (W), a X-offset(X) and Y-offset (Y).
+\end{itemize}
+
+Since the offset The offset is simply calculated from taking the player position relative to the width and height 
+\todoanders{Anders make this better and finish it.}
