@@ -48,33 +48,48 @@ This had a big cost of CPU time because the CPU had to recalculate each pixel on
 
 \section{Optimized implementation}
 In order to optimize our minimap it was important to avoid the recalculation of texture each time something changed.
-To do so a new approach was applied. 
+To do so a new approach was applied.
+
 The new approach is based on offsetting the texture instead of recalculate a new texture all the time.
-By doing so a lot time is saved on the CPU and transferred to the GPU instead. 
-This is done by adding a \textit{Raw Image} to a \textit{game object} with a canvas renderer.
-The \textit{Raw Image} contains the properties:
+By doing so we believe that the offset calculation of the texture is transferred to the GPU instead of happening on the CPU.
+This is done by adding a \textit{RawImage} to a \textit{game object} with a canvas renderer.
+The \textit{RawImage} contains the properties:
 \begin{itemize}
 \item Texture
 \item Color
 \item Material
 \item UV Rectangle
 \end{itemize}
-Where the texture will be our full map, and the UV Rectangle will be used to offset and control the size of will be shown in the minimap.\todoanders{inser picture here}
+The texture will be our full map, and the UV Rectangle will be used to offset and control the size of the minimap, as shown in Figure \ref{minimap:creation}.
+\begin{figure}
+    \includegraphics[scale=0.5]{figures/minimap/RawImage.png}
+    \caption{Illustration of the minimap creation and control}
+    \label{minimap:creation}
+\end{figure}
 \\\\
 The task which the CPU is still required to do is:
 \begin{itemize}
-\item Give the view screen a size and width relative to the map
-\item Calculate the offset that is required for the player to be inside the minimap view screen
+\item Give the \textit{RawImage} a size and width relative to the map
+\item Calculate the offset that is required for the player to be inside the minimap
 \item Plotting entities on the texture
 \end{itemize}
-Modifying the size of the raw image is relatively easy. To do so you have the UV Rectangle which contains a height and a width property.
+Modifying the size of the \textit{RawImage} is relatively easy. 
+To do so you have the UV Rectangle which contains a height and a width property:
 \begin{itemize}
 \item The Height (H) - Height of the what should be shown, represented in a ratio of the full height of the texture given from 0 to 1
-\item  The Width (W) - Height of the what should be shown, represented in a ratio of the full height of the texture given from 0 to 1
+\item The Width (W) - Height of the what should be shown, represented in a ratio of the full height of the texture given from 0 to 1
 \end{itemize}
-From here one can convert the height and width of the map into a vector and normalize it which gives a  ratio aspect of the height and width. Which then can be scaled to represent the desired view screen.
+From here one can convert the height and width of the map into a vector and normalize it which gives a  ratio aspect of the height and width. Which then can be scaled to represent the desired \textit{RawImage}.
 
-The offset which the
-The UV Rectangle, which controls this process, is controllable by changing the values:
-
-
+The UV Rectangle is also used to control the offset from the button left corner, this is done by changing the values:
+\begin{itemize}
+\item X - Which controls the offset on the x-axis
+\item Y - Which controls the offset on the y-axis
+\end{itemize}
+In order to determine the offset that makes the player stay inside the RawImage, two simple equations are used\\
+$Offset_x = \frac{playerPosition.x}{Minimap.width} \cdot maxOffset$\\
+$Offset_y = \frac{playerPosition.y}{Minimap.width} \cdot maxOffset$\\
+The last task was to add the different entities to the texture. 
+In order to do so an a copy of the untouched map is created and a dictionary which uses an entity as key and a position as value.
+When a entity is plotted onto the minimap the entities' position is store in the dictionary.
+The next time the minimap then updates it checks whether a entity has moved or died, if so the old position is recolored back to its original color using the untouched map, and the new position is color with the color of the entity.
