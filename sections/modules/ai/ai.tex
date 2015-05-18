@@ -4,6 +4,8 @@ Therefore the enemies need to be able to avoid obstacles and chase the players i
 This could be achieved by applying a pathfinding algorithm to the AI's behaviour.
 
 \section{Pathfinding}
+%Gridbased graph: 3984 nodes, 30450 edges
+%Waypoint graph: 47 nodes, 624 edges
 
 The pathfinding algorithm that we will be using is A* search pathfinding which has a runtime of $O(n*m)$, where n is the number of nodes that will be explored, m is the average number of neighbours in the graph, and we assume that the graph and heuristic operations take constant time \cite{AIG:Millington}.
 %Other pathfinding possibilities would be BFS or floyd-warshall algorithm, but as BFS has a runtime of [] and floyd-warshall has a runtime of [] with a high memory usage, we will not be using them.
@@ -15,11 +17,29 @@ Possible neighbours would be four to each side of the node with a cost of 10 and
 This approach resulted in a very large graph which took a lot of time to create and traverse through, when running the algorithm on it.
 An example of this can be seen in figure \ref{gridGraph} where you can see a level of size 64x64, the graph created for that level has 3984 nodes and 30450 edges.
 
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{figures/astar/gridGraph}
+	\caption{Graph based on the grid of the level}
+	\label{gridGraph}
+\end{figure}
+
 An optimisation for to this was to change the graph from being grid based to a waypoint graph.
 We would create the graph based on the outer corners of the obstacles on the map, where the AI had to make a turn, as seen in figure \ref{waypointsNode}.
 Each point would then do a check on every other point to see if it was in direct sight, if that was the case it was added as a neighbour and the cost for that edge would be the euclidean distance to that point.
 A resulting graph can be seen in figure \ref{waypointgraph}.
 This approach resulted in a much smaller graph with 47 nodes and 624 edges, thus improving both the creation of the graph and the traversal of it.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{figures/astar/waypoints}
+	\caption{The placement of the waypoints}
+	\label{waypointsNode}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{figures/astar/waypointsGraph}
+	\caption{Graph based on the waypoints}
+	\label{waypointgraph}
+\end{figure}
 
 Running the A* search pathfinding from every enemy is very costly and as of such we want to do some alternative solutions when we can.
 First optimisation is to check whether the player is in direct sight which means we can go straight towards the player and not run any pathfinding algorithm.
@@ -27,25 +47,29 @@ If the player then runs out of sight, we can still continue to walk towards the 
 When the player is not in sight, we check for surrounding enemies who perhaps have run the pathfinding algorithm and are on their way towards the player, then we simply follow this entity.
 When neither of the above options are available, we run the pathfinding algorithm and follow the path until we have the player in sight again or reached the end of the path where we then have to run the algorithm again.
 
-
-
-%Gridbased graph: 3984 nodes, 30450 edges
-%Waypoint graph: 47 nodes, 624 edges
-
-\begin{figure}
-	\includegraphics[width=\textwidth]{figures/astar/gridGraph}
-	\caption{Graph based on the grid of the level}
-	\label{gridGraph}
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{figures/astar/waypointMerge}
+	\caption{Waypoint merging.}
+	\label{waypointMerge}
 \end{figure}
 
-\begin{figure}
-	\includegraphics[width=\textwidth]{figures/astar/waypoints}
-	\caption{The placement of the waypoints}
-	\label{waypointsNode}
+This is still an expensive algorithm, so in order to optimize further, an effor is made to reduce the number of redundant waypoints.
+All waypoints are looped through to find adjacent waypoints, meaning waypoints whose distance to each other is less or equal to one.
+Those that are adjacent are then removed and a new waypoint is placed halfway between them.
+This is illustrated in Figure \ref{waypointMerge}.
+The resulting waypoints can be seen in Figure \ref{waypointOpt} with the graph in Figure \ref{waypointgraphOpt}.
+Most notably, the amount of edges are significantly reduced.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{figures/astar/optimizedWaypoints}
+	\caption{Waypoints after optimizations.}
+	\label{waypointOpt}
 \end{figure}
 
-\begin{figure}
-	\includegraphics[width=\textwidth]{figures/astar/waypointsGraph}
-	\caption{Graph based on the waypoints}
-	\label{waypointgraph}
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{figures/astar/optimizedWaypointsGraph}
+	\caption{Graph based on the waypoints after waypoint optimization.}
+	\label{waypointgraphOpt}
 \end{figure}
+
+
