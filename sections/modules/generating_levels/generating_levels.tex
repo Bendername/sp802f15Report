@@ -6,7 +6,7 @@ As follows, this means it falls under requirements 3 and 6 in section \ref{gamed
 \section{Tiling}
 As explained previously, our game is a top-down 2D action game.
 The top-down 2D aspect of it is important when we are to generate our maps.
-A historical, and still prevalent technique for 2D games, is using a tiling approach for the layout of both the backdrop of the level and entities within it.
+A historical, and still prevalent technique for 2D games, is using a tiling approach for the layout of both the backdrop of the map and entities within it.
 Several different approaches to tiling have been used in games, including squares, isometric and hexagonal tiles.
 Figures~\ref{fig:civ-1_square},~\ref{fig:civ-2_iso}~and~\ref{fig:wesnoth_hex}
 show examples of games using each of the mentioned techniques of tiling.
@@ -60,9 +60,9 @@ As an example, the following could specify how colors could encode information a
 \end{itemize}
 One obvious shortcoming from the above example is the lack of variation - maybe one would like to be able to specify different types of walls or floors. 
 This could be mitigated by either specifying more colors or by interpreting a color differently depending on the context of the pixel.
-To introduce variety into our levels, we use the latter approach for some colors, which we will describe later in this chapter.
+To introduce variety into our maps, we use the latter approach for some colors, which we will describe later in this chapter.
 
-Having decided on the format and encoded color values, we can design levels such as seen in figure~\ref{fig:png_map}.
+Having decided on the format and encoded color values, we can design maps such as seen in figure~\ref{fig:png_map}.
 
 \begin{figure}[H]
     \centering

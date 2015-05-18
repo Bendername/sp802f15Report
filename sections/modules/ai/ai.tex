@@ -10,16 +10,16 @@ This could be achieved by applying a pathfinding algorithm to the AI's behaviour
 The pathfinding algorithm that we will be using is A* search pathfinding which has a runtime of $O(n*m)$, where n is the number of nodes that will be explored, m is the average number of neighbours in the graph, and we assume that the graph and heuristic operations take constant time \cite{AIG:Millington}.
 %Other pathfinding possibilities would be BFS or floyd-warshall algorithm, but as BFS has a runtime of [] and floyd-warshall has a runtime of [] with a high memory usage, we will not be using them.
 
-The first step in using an A* search algorithm, is to have a proper graph which represents the level in the game.
+The first step in using an A* search algorithm, is to have a proper graph which represents the map in the game.
 Our initial idea was to simply have each walkable square in the grid to be a node.
 A node would then have up to eight connections which would point to a neighbour of that certain node with a cost of traversing to this node.
 Possible neighbours would be four to each side of the node with a cost of 10 and four diagonal neighbours with a cost of 14, which is the length of the hypotenuse when the length of the catheti are 10.
 This approach resulted in a very large graph which took a lot of time to create and traverse through, when running the algorithm on it.
-An example of this can be seen in figure \ref{gridGraph} where you can see a level of size 64x64, the graph created for that level has 3984 nodes and 30450 edges.
+An example of this can be seen in figure \ref{gridGraph} where you can see a map of size 64x64, the graph created for that map has 3984 nodes and 30450 edges.
 
 \begin{figure}[H]
 	\includegraphics[width=\textwidth]{figures/astar/gridGraph}
-	\caption{Graph based on the grid of the level}
+	\caption{Graph based on the grid of the map}
 	\label{gridGraph}
 \end{figure}
 
