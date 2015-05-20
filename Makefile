@@ -2,19 +2,21 @@ OTHER = *~ *.aux *.dvi *.toc *.bbl *.blg *.gz *.out *.thm *.ps *.idx *.ilg *.ind
 MAIN = Main
 
 pdflatex: $(MAIN).tex
-	pdflatex --synctex=1 $(MAIN)
-	pdflatex --synctex=1 $(MAIN)
-	pdflatex --synctex=1 $(MAIN)
-	bibtex $(MAIN)
-	pdflatex --synctex=1 $(MAIN)
+	@echo "-- compiling"
+	@pdflatex --synctex=1 -halt-on-error $(MAIN) | grep "Fatal"
+	@pdflatex --synctex=1 -halt-on-error $(MAIN) | grep "Fatal"
+	@pdflatex --synctex=1 -halt-on-error $(MAIN) | grep "Fatal"
+	@echo "-- running bibtex"
+	@bibtex $(MAIN)
+	@pdflatex --synctex=1 -halt-on-error $(MAIN) | grep "Fatal"
 
 lite: $(MAIN).tex
-	pdflatex $(MAIN)
+	pdflatex --synctex=1 -halt-on-error $(MAIN) | grep "Fatal"
 
 toc: $(MAIN).tex
-	pdflatex $(MAIN)
-	pdflatex $(MAIN)
-	pdflatex $(MAIN)
+	pdflatex --synctex=1 -halt-on-error $(MAIN) | grep "Fatal"
+	pdflatex --synctex=1 -halt-on-error $(MAIN) | grep "Fatal"
+	pdflatex --synctex=1 -halt-on-error $(MAIN) | grep "Fatal"
 
 clean:
 	rm -f $(OTHER)
