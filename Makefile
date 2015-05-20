@@ -3,20 +3,21 @@ MAIN = Main
 
 pdflatex: $(MAIN).tex
 	@echo "-- compiling"
-	@pdflatex --synctex=1 -halt-on-error $(MAIN) | grep "Fatal"
-	@pdflatex --synctex=1 -halt-on-error $(MAIN) | grep "Fatal"
-	@pdflatex --synctex=1 -halt-on-error $(MAIN) | grep "Fatal"
+	@pdflatex -halt-on-error $(MAIN) | grep "Fatal" || true
+	@pdflatex -halt-on-error $(MAIN) | grep "Fatal" || true
+	@pdflatex -halt-on-error $(MAIN) | grep "Fatal" || true
 	@echo "-- running bibtex"
 	@bibtex $(MAIN)
-	@pdflatex --synctex=1 -halt-on-error $(MAIN) | grep "Fatal"
+	@pdflatex -halt-on-error $(MAIN) | grep "Fatal" || true
 
 lite: $(MAIN).tex
-	pdflatex --synctex=1 -halt-on-error $(MAIN) | grep "Fatal"
+	@pdflatex -halt-on-error $(MAIN) | grep "Fatal" || true
 
 toc: $(MAIN).tex
-	pdflatex --synctex=1 -halt-on-error $(MAIN) | grep "Fatal"
-	pdflatex --synctex=1 -halt-on-error $(MAIN) | grep "Fatal"
-	pdflatex --synctex=1 -halt-on-error $(MAIN) | grep "Fatal"
+	@pdflatex -halt-on-error $(MAIN) | grep "Fatal" || true
+	@pdflatex -halt-on-error $(MAIN) | grep "Fatal" || true
+	@pdflatex -halt-on-error $(MAIN) | grep "Fatal" || true
 
 clean:
-	rm -f $(OTHER)
+	@echo "-- cleaning shit up"
+	@rm -f $(OTHER)
