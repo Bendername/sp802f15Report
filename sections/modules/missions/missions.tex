@@ -3,7 +3,7 @@ From the requirements listed in Section \ref{gamedesign:selectionofgametype:impo
 
 \section{Mission System}
 
-The Mission System is the system that handles the missions, maps and waves that the players play.
+The mission system is the system that handles the missions, maps and waves that the players play.
 It supports custom created content, as described in section \ref{sec:modules:missions:customcontent}.
 A single mission contains several waves, each started when all the players declare themselves as ready.
 Waves spawn enemies from a series of spawn points at a certain tick rate, in the attempt to populate the map with enemies according to defined boundaries.
@@ -15,7 +15,7 @@ The game supports custom content, see section \ref{sec:selectionofgametype:custo
 Custom content must be placed in the \lstinline|Application.persistentDataPath| directory, and consists of several files.
 The main file is a JSON formated text-file, specifying the content that can be seen in figure \ref{fig:json_chart}.
 To encapsulate the desired data, many formats could have been used successfully.
-The choice fell upon JSON due to it being an open, human readable format that can be easily edited using raw text editors.
+The choice fell upon JSON due to it being an open, human readable format that can be easily edited using regular text editors.
 
 \begin{figure}[H]
     \centering
