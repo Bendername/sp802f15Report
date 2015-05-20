@@ -41,8 +41,8 @@ This approach resulted in a much smaller graph with 47 nodes and 624 edges, thus
 	\label{waypointgraph}
 \end{figure}
 
-Running the A* search pathfinding from every enemy is very costly and as of such we want to do some alternative solutions when we can.
-First optimisation is to check whether the player is in direct sight which means we can go straight towards the player and not run any pathfinding algorithm.
+Running an A* search pathfinding from every enemy is computationally costly which lead us to futher optimise pathfinding.
+First optimisation is to check whether the player is in direct line of sight in which case we can go straight towards the player and not execute any pathfinding algorithm.
 If the player then runs out of sight, we can still continue to walk towards the position where the player was last seen and once we have reached that position we look for the player again.
 When the player is not in sight, we check for surrounding enemies who perhaps have run the pathfinding algorithm and are on their way towards the player, then we simply follow this entity.
 When neither of the above options are available, we run the pathfinding algorithm and follow the path until we have the player in sight again or reached the end of the path where we then have to run the algorithm again.
