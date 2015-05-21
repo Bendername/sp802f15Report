@@ -21,7 +21,7 @@ there are several variable factors that needs to be considered:
 Having all enemies and players managed in singleton-accessible instances,
 makes it easy to satisfy the two first items on the list. The last item
 however, we want to be able to define in a flexible way. This
-has to do with the fact that any level can be loaded with any given
+has to do with the fact that any map can be loaded with any given
 texture pack, meaning that walls, ground, grass and so on, appear differently
 in the game, depending on the texture pack used.
 We solved the problem by following the colors defined on the map in the texture pack. \todoanders{insert picture}
@@ -29,7 +29,7 @@ We solved the problem by following the colors defined on the map in the texture 
 \\
 The colors used for plotting entities and the background on the minimap are
 defined in a \texttt{PNG} image, accompanying the selected texture pack for that
-level. The colors are parsed by index, e.g. the first pixel defines ground
+map. The colors are parsed by index, e.g. the first pixel defines ground
 color, second pixel defines grass color and etc.
 \\
 \\

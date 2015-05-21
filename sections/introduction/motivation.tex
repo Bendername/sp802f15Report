@@ -1,12 +1,12 @@
 \section{Motivation} \label{sec:motivation}
-Nowadays the most played category of games for mobile devices is casual games.
+Presently the most played category of games for mobile devices is casual games.
 According to ESA\cite{ESA}\cite{ESApdf} (\textit{Entertainment Software Association}), 46\% of the mobile gamers play casual games, not including the 31\% that play a combination of puzzle-, board-, game show-, trivia- and card-games.
 
 But what is a casual game exactly?
 Casual games are games that cater to casual gamers.
 In an article from Gamasutra, a proposed way to measure the \textit{casualness} of a player is through a questionaire concerning 15 factors\cite{casual_vs_hardcore}.
 These 15 factors and their weight according to Gamasutra can be seen in Table \ref{tab:gamerdedication}\cite{casual_vs_hardcore}.
-For each factor, a player can answer a number from 1 to 5, where 1 means he/she thinks the factor doesn't fit him, and a 5 meaning he thinks the factor fits him/her very well.
+For each factor, a player can answer a number from 1 to 5, where 1 means he thinks the factor doesn't fit him, and a 5 meaning he thinks the factor fits himi very well.
 Through these numbers, a \emph{Gamer Dedication Score} or \emph{GD} can be calculated using Equation \ref{eq:GD} where $w$ is the weight, $s$ is the score and $n$ is 15 (because there is 15 factors).
 
 \begin{equation}\label{eq:GD}
@@ -14,14 +14,16 @@ GD = \frac{\sum\limits_{j=1}^n w_j s_j}{\sum\limits_{j=1}^n 5 w_j}
 \end{equation}
 
 The result is a percentage that through Table \ref{tab:gamertype} can be used to determine the type of gamer the player is\cite{casual_vs_hardcore}.
-Not all of these factors can be directly influenced by the game, so not all of them are relevant when designing a game.
+Not all of these factors can be directly influenced when designing a game, and not all of them are relevant when designing our game.
+
+Below we list the factors mentioned in the article from Gamasutra, as well as mentioning whether a particular factor is relevant in our case:
 
 \begin{enumerate}
 \item \emph{Playing games over many long sessions.}
 The game can encourage the player to play longer through reward or progress, therefore it is relevant.
 
 \item \emph{Discussing games with friends/bulletin boards.}
-Bulletin boards happen outside of the game, therefore it is irrelevant. \todo{Eller hvad? Man kan vel have et forum ingame?}
+We have no intention of creating a bulletin board or chat-system within our game, and therefore we deem this an irrelevant factor.
 
 \item \emph{Having comparative knowledge of the industry.}
 Knowledge of the industry happens outside of the game, therefore it is irrelevant.
@@ -63,7 +65,7 @@ The game cannot affect this, therefore it is not relevant.
 Theming the game as a violent action game will cater to this preferences, therefore it is relevant.
 \end{enumerate}
 
-The relevant factors can then be taken into consideration when designing the game.
+The relevant factors are then taken into consideration when designing our game.
 
 \begin{table}[H]
 \begin{tabular}{|l|l|l|}
@@ -105,7 +107,7 @@ Ultra hardcore         & 71 - 100 \\ \hline
 \label{tab:gamertype}
 \end{table}
 
-These factors give an indication of how to categorize players, to which we ask the question: 
-\begin{center}\label{intro:problem_statement}
-\textit{What is required in order to create a game, with gameplay which caters to hardcore gamers on a mobile device?}
-\end{center}
+%These factors give an indication of how to categorize players, to which we ask the question: 
+%\begin{center}\label{intro:problem_statement}
+%\textit{What is required in order to create a game, with gameplay which caters to hardcore gamers on a mobile device?}
+%\end{center}

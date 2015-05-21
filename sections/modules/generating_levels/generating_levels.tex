@@ -6,7 +6,7 @@ As follows, this means it falls under requirements 3 and 6 in section \ref{gamed
 \section{Tiling}
 As explained previously, our game is a top-down 2D action game.
 The top-down 2D aspect of it is important when we are to generate our maps.
-A historical, and still prevalent technique for 2D games, is using a tiling approach for the layout of both the backdrop of the level and entities within it.
+A historical, and still prevalent technique for 2D games, is using a tiling approach for the layout of both the backdrop of the map and entities within it.
 Several different approaches to tiling have been used in games, including squares, isometric and hexagonal tiles.
 Figures~\ref{fig:civ-1_square},~\ref{fig:civ-2_iso}~and~\ref{fig:wesnoth_hex}
 show examples of games using each of the mentioned techniques of tiling.
@@ -48,7 +48,7 @@ To keep up with potential changes, a quick way to create maps is preferred for t
 
 While there are different approaches for circumventing the above inconveniences, our solution is to encode the layout of each individual map in an external file which is then loaded and interpreted.
 Historically, game developers have often used this approach, usually encoded in some in-house binary format~\cite{quake-bsp-format}.
-While customized in-house format would offer significant flexibility, but it would also result in additional development, especially with regards to players creating custom maps because then a custom map editor would have to be created.
+While developing a custom format would offer significant flexibility, it would also result in additional development, especially with regards to players creating custom maps as a custom map editor would have to be designed and implemented.
 Instead the choice of encoding the map in the PNG format was made, as described in section \ref{sec:modules:missions:customcontent}.
 Using the PNG format, it is only a matter of specifying \textit{what} a particular color should encode and interpreting that color when loading a map.
 As an example, the following could specify how colors could encode information about a map:
@@ -60,9 +60,9 @@ As an example, the following could specify how colors could encode information a
 \end{itemize}
 One obvious shortcoming from the above example is the lack of variation - maybe one would like to be able to specify different types of walls or floors. 
 This could be mitigated by either specifying more colors or by interpreting a color differently depending on the context of the pixel.
-To introduce variety into our levels, we use the latter approach for some colors, which we will describe later in this chapter.
+To introduce variety into our maps, we use the latter approach for some colors, which we will describe later in this chapter.
 
-Having decided on the format and encoded color values, we can design levels such as seen in figure~\ref{fig:png_map}.
+Having decided on the format and encoded color values, we can design maps such as seen in figure~\ref{fig:png_map}.
 
 \begin{figure}[H]
     \centering
@@ -220,7 +220,7 @@ Figure~\ref{fig:wall_comparison} illustrates an example of placing walls where t
 \end{figure}
 
 \subsection{Placing wall colliders}
-For wall colliders it is desired to find the contour of walls into gameobjects assigned a collide-able component in the gameworld.
+For wall colliders it is desired to find the contour of walls and place gameobjects assigned a collide-able component in the gameworld inside the contour.
 The first naive implementation is to place a square collider (regular \texttt{Collider2D}) for each wall tile.
 An example of placing colliders at each wall tile can be seen in figure~\ref{fig:wall_with_vertices}.
 This resulted in the unfortunate behaviour that collisions from rigidbodies - the player and enemies - behaved unreliable and rigid bodies would ``bounce off'' the walls whenever they would be ``between'' two collider sections.

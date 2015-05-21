@@ -1,36 +1,40 @@
-The platform target for this game is mobiles.
-The platform has some limitations in its input interface.
-The game being developed is a shooter, see section \ref{sec:selectionofgametype:mobiledevices}, which are fairly popular with large titles like \emph{Call Of Duty}\todoanders{Missing cites} and \emph{Battlefield}\todoanders{Missing cites}
+The platform target for this game is mobile devices with touch input interfaces.
+Because of this, the input interface we have to develop for is significant different compare to conventional interfaces such as keyboard, mouse and gamepads.
+The game being developed is a shooter, a genre with popular titles such as \textit{Call Of Duty}\cite{callofdutysales} and \textit{Battlefield}\cite{battlefieldsales}.
 These games can be played using a controller on consoles, and trying to recreate these controls on the touch interface will create a familiar input scheme with which players can relate.
 Successfully implementing a controller scheme on touch, means the game will have better support for items 6 and 7 specified in the requirements in section \ref{gamedesign:selectionofgametype:importantstuff}.
 
 \section{Gamepad Control Scheme}
-Controlling the game with a gamepad is natively supported by Unity3D, where the user can use the Input Manager \cite{unity_manual_inputmanager} and add axes that use ''Joystick Axis''. Unity allows reading 20 different axes, where buttons also count as axes.
+Gamepads are natively supported in the Unity3D engine, meaning that games developed using it also supports gamepads\cite{unity_manual_inputmanager}.
+When starting a game developed in Unity3D, users are able to map axes and buttons onto a gamepad or joystick. Unity allows reading and mapping 20 different axes, where buttons also count as axes.
 
-This is not straight forward however, if the game is to run on different platforms. It is even more difficult if the game should support different gamepads. This is because there is no standard for which axes the different thumbsticks and buttons are mapped to, and this is instead dependent on the driver software. This means that an Xbox 360 controller will be mapped differently on for example Windows, Mac, and Linux.
+Mapping axes is not straight forward however, if the game is to run on different platforms.
+It is even more difficult if the game should support different gamepads.
+This is because there is no standard for which axes the different thumbsticks and buttons are mapped to, and this is instead dependent on the driver software.
+This means that an Xbox 360 controller will be mapped differently on for example Windows, Mac, and Linux.
 \cite{unity_wiki_xbox360controller}
 
-To solve this, one could identify the gamepad and operating system and from that, determine which axes correspond to the right sticks and buttons. This is a rather large task which the opensource plugin ''InControl'' solves beautifully for Unity3D\cite{incontrol_github}. ''InControl'' is an open source project that \begin{quote}Standardizes controller input mappings across various platforms.\cite{incontrol_website}\end{quote}
+To solve this, one could identify the gamepad and operating system and from that, determine which axes correspond to the right sticks and buttons. This is a rather large task ,which is solved by ''InControl'', an open source project for Unity3D\cite{incontrol_github}. ''InControl'' \begin{quote}Standardizes controller input mappings across various platforms.\cite{incontrol_website}\end{quote}
 
 \section{Touch Control Scheme}
-The main issue of touch devices is that the input device is the screen.
-This inheritly requires the control scheme to be designed to obscure the least amount of screen available, as the mobile devices are already rather small.
-Further the screen on a mobile device gives no feedback to the hands which also has to be taken into account.
-These two constraints can be formalised as:
+An issue in our case is that for touch devices, the main input device is the screen.
+This inherently requires the control scheme to be designed to obscure the least amount of screen space available, as the mobile devices are already rather small.
+Further the screen on a mobile device offers no tactile feedback when activated, which also has to be taken into account.
+These two constraints can be formalized as:
 \begin{itemize}
-\item Minimize the space the input interface requires as much as possible, and make the interface intuitive such that it does not draw attention away from the game, see section \ref{introductions:makingthegamefun:removedistractionsfromplayerfocus}.
+\item Minimize the screen space interfered with by the input interface, and make it as intuitive such that it does not draw attention away from the game, see section \ref{introductions:makingthegamefun:removedistractionsfromplayerfocus}.
 \item Make sure the input interface is simple to use, such that the need for feedback is minimized as much as possible.
 \end{itemize}
 This further ties in with the idea of Cognitive Flow, as described in section \ref{makingthegamefun:cognitiveflow}.
 
 \subsection{Similar games control scheme}
 In order to make the best possible mobile control scheme, it is relevant to briefly look at some other popular games choices.
-Most games seems to use the same \emph{blueprint} in order to make an easy to use interface. Some sort of virtual joypad one the left side of the screen for movement, and then a mix of buttons and joypads on the right side of the screen for actions. 
-One of the most popular and well designed games in this category is BombSquad.
+Most games seems to use the same approach when designing the user interface; some sort of virtual joypad one the left side of the screen for movement, and then a mix of buttons and joypads on the right side of the screen for actions.
+One of the most popular and well designed games in this category is BombSquad, which is explained in more depth in the following subsection.
 
 \subsection*{BombSquad}\label{sec:modules:controlscheme:bombsquad}
 Bombsquad\cite{bombsquad} is a 2.5D action multiplayer game, where the player controls a character who's goal is to eliminate the opposing characters whom are either player or computer controlled.
-The character can move in all directions and it has 4 main abilities. 
+The character can move in all directions and has 4 main abilities.
 The movement input is based on a virtual joystick in the lower left corner.
 When the player places the thumb on the joystick, it will work similarly to an ordinary joystick and move the character in the direction the stick is pointing. 
 The distance from the thumb/stick to the center of the virtual joystick defines the speed by which the character moves. 
@@ -49,7 +53,7 @@ The ability is triggered if any part of ''its'' quarter of the screen is tapped.
 \caption{Bombsquad game screen, \url{http://www.froemling.net/wp-content/uploads/2014/04/IMG_1088.jpg}}
 \end{figure}
 
-The great thing about this control scheme is that it is compact, easy to use, and allows for focus on the gameplay it self, rather than making sure you are bashing the right buttons when you want to.
+The great thing about this control scheme is that it is compact, easy to use, and often ensures that you are hitting the right button even though the interface has no tactile feedback.
 
 %\subsection*{Heroes of the Order and Chaos}\label{sec:modules:controlscheme:hoftoac}
 %Heroes of the Order and Chaos\cite{hotoacGP} has the same movement scheme as BombSquad. 
@@ -76,7 +80,7 @@ This is similar to the way most game menus are handled on a gamepad, and the con
 \subsection{Controls}
 Given that we are trying to replicate a gamepad on a touch device, we follow a similar pattern as described in section \ref{sec:modules:controlscheme:gamepad:controls}. The inherit issue, however, is that  there is only one input option which is the screen. 
 Two thumbsticks are present in the GUI on touch devices, the left one controlling movement, similar to \textit{BombSquad}, see section \ref{sec:modules:controlscheme:bombsquad}, and the right one controlling aim, see figure \ref{sec:modules:controlscheme:touch:controls:ui}.
-In order to prevent cluttering the game-screen with a lot of input items, there is no button to shoot. If you aim in any direction, the character will shoot automatically. Similarly the character will also reload  automatically when it runs out of bullets. A button for reloading has been prioritized though, as some times you may want to reload before you actually run out of ammunition.
+In order to prevent cluttering the game-screen with a lot of input items, there is no button to shoot. If you aim in any direction, the character will shoot automatically. Similarly the character will also reload the current weapon when out of bullets. A button for reloading has been prioritized though, as some times you may want to reload before you actually run out of ammunition.
 Contextual actions such as crafting will automatically show if you go near the ''crafting table'', rather than having a designated button for it. On other control-schemes it will require a button to be pressed in order to show.
 Menus are navigated by performing a touch on the menu buttons. 
 
