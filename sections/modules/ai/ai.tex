@@ -26,9 +26,31 @@ An example of this can be seen in figure \ref{gridGraph} where you can see a map
 An optimisation for to this was to change the graph from being grid based to a waypoint graph.
 We would create the graph based on the outer corners of the obstacles on the map, where the AI had to make a turn, as seen in figure \ref{waypointsNode}.
 Each point would then do a check on every other point to see if it was in direct sight, if that was the case it was added as a neighbour and the cost for that edge would be the euclidean distance to that point.
-A resulting graph can be seen in figure \ref{waypointgraph}.
+A resulting graph can be seen in The  \ref{waypointgraph}.
 This approach resulted in a much smaller graph with 47 nodes and 624 edges, thus improving both the creation of the graph and the traversal of it.
 
+During the development process we found that having A* run during the runtime was costly and resources were wasted on calculating the same path.
+Due to this we moved the pathfinding of the graph to load and saved all the shortest path in a hash table.
+
+
+
+\subsection{line-of-sight......}
+Checking whether objects are in direct line of sight was initially done with Unity's raycasting system, but since this approach caused performance issues, we had to do further optimisations aiming for as few raycasts as possible.
+Another approach would be to partition the map into rectangles.
+Then when the enemy is in the same rectangle as the player we can simply go towards the player as the rectangle is convex.
+The partitions are created by.... \tododaniel{Brian write this}
+
+Once the partitions are made we give them trigger colliders which cover the size of the partitions.
+These triggers are used to add and remove themselves from an enemies' and players' list of partitions when a player enters the region.
+\textit{onTriggerEnter} and \textit{onTriggerExit} monobehaviour functions are used for...
+A list of partitions is needed since the player and enemies can overlap with multiple partitions.
+Without the list the order of \textit{onTriggerEnter} and \textit{onTriggerExit} would result in errors for instance the assigned partition being something completely different from the actual partition the enemy is in.
+
+
+
+%Running the A* search pathfinding from every enemy is very costly and as of such we want to do some alternative solutions when we can.
+Since our graph is based on waypoints it will not always return the shortest path to the player, for instance if the player is in direct line of sight, we should just walk towards him instead of going to a node first.
+First optimisation is to check whether the player is in direct sight which means we can go straight towards the player and not run any pathfinding algorithm.
 \begin{figure}[H]
 	\includegraphics[width=\textwidth]{figures/astar/waypoints}
 	\caption{The placement of the waypoints}
@@ -44,8 +66,9 @@ This approach resulted in a much smaller graph with 47 nodes and 624 edges, thus
 Running an A* search pathfinding from every enemy is computationally costly which lead us to futher optimise pathfinding.
 First optimisation is to check whether the player is in direct line of sight in which case we can go straight towards the player and not execute any pathfinding algorithm.
 If the player then runs out of sight, we can still continue to walk towards the position where the player was last seen and once we have reached that position we look for the player again.
-When the player is not in sight, we check for surrounding enemies who perhaps have run the pathfinding algorithm and are on their way towards the player, then we simply follow this entity.
 When neither of the above options are available, we run the pathfinding algorithm and follow the path until we have the player in sight again or reached the end of the path where we then have to run the algorithm again.
+%filltable
+%if player is in same partition or neighbor partition = follow
 
 \begin{figure}[H]
 	\includegraphics[width=\textwidth]{figures/astar/waypointMerge}
