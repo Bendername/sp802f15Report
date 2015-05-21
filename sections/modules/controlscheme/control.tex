@@ -1,5 +1,6 @@
-The platform target for this game is mobile devices with touch input interfaces. Because of this, the input interface we have to develop for is significant different compare to conventional interfaces such as keyboard, mouse and gamepads.
-The game being developed is a shooter which are fairly popular with larges titles such as \emph{Call Of Duty}\todoanders{Missing cites} and \emph{Battlefield}\todoanders{Missing cites}
+The platform target for this game is mobile devices with touch input interfaces.
+Because of this, the input interface we have to develop for is significantly different compared to conventional interfaces such as keyboard, mouse and gamepads.
+The game being developed is a shooter, a genre with popular titles such as \textit{Call Of Duty}\cite{callofdutysales} and \textit{Battlefield}\cite{battlefieldsales}.
 These games can be played using a controller on consoles, and trying to recreate these controls on the touch interface will create a familiar input scheme with which players can relate.
 Successfully implementing a controller scheme on touch, means the game will have better support for items 6 and 7 specified in the requirements in section \ref{gamedesign:selectionofgametype:importantstuff}.
 
@@ -7,7 +8,10 @@ Successfully implementing a controller scheme on touch, means the game will have
 Gamepads are natively supported in the Unity3D engine, meaning that games developed using it also supports gamepads\cite{unity_manual_inputmanager}.
 When starting a game developed in Unity3D, users are able to map axes and buttons onto a gamepad or joystick. Unity allows reading and mapping 20 different axes, where buttons also count as axes.
 
-Mapping axes is not straight forward however, if the game is to run on different platforms. It is even more difficult if the game should support different gamepads. This is because there is no standard for which axes the different thumbsticks and buttons are mapped to, and this is instead dependent on the driver software. This means that an Xbox 360 controller will be mapped differently on for example Windows, Mac, and Linux.
+Mapping axes is not straight forward however, if the game is to run on different platforms.
+It is even more difficult if the game should support different gamepads.
+This is because there is no standard for which axes the different thumbsticks and buttons are mapped to, and this is instead dependent on the driver software.
+This means that an Xbox 360 controller will be mapped differently on for example Windows, Mac, and Linux.
 \cite{unity_wiki_xbox360controller}
 
 To solve this, one could identify the gamepad and operating system and from that, determine which axes correspond to the right sticks and buttons. This is a rather large task ,which is solved by ''InControl'', an open source project for Unity3D\cite{incontrol_github}. ''InControl'' \begin{quote}Standardizes controller input mappings across various platforms.\cite{incontrol_website}\end{quote}
