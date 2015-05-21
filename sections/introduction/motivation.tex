@@ -4,35 +4,40 @@ According to ESA\cite{ESA}\cite{ESApdf} (\textit{Entertainment Software Associat
 
 But what is a casual game exactly?
 Casual games are games that cater to casual gamers.
-In an article from Gamasutra, a proposed way to measure the \textit{casualness} of a player is through a questionaire concerning 15 factors\cite{casual_vs_hardcore}.
+In an article from Gamasutra, a proposed way to measure how \textit{casual} or \textit{hardcore} a gamer is, is through a questionaire concerning 15 factors\cite{casual_vs_hardcore}.
 These 15 factors and their weight according to Gamasutra can be seen in Table \ref{tab:gamerdedication}\cite{casual_vs_hardcore}.
-For each factor, a player can answer a number from 1 to 5, where 1 means he thinks the factor doesn't fit him, and a 5 meaning he thinks the factor fits himi very well.
+For each factor, a game can answer a number from 1 to 5, where 1 means he thinks the factor doesn't fit him, and a 5 meaning he thinks the factor fits him very well.
 Through these numbers, a \emph{Gamer Dedication Score} or \emph{GD} can be calculated using Equation \ref{eq:GD} where $w$ is the weight, $s$ is the score and $n$ is 15 (because there is 15 factors).
 
 \begin{equation}\label{eq:GD}
 GD = \frac{\sum\limits_{j=1}^n w_j s_j}{\sum\limits_{j=1}^n 5 w_j}
 \end{equation}
 
-The result is a percentage that through Table \ref{tab:gamertype} can be used to determine the type of gamer the player is\cite{casual_vs_hardcore}.
+The result is a percentage that through Table \ref{tab:gamertype} can be used to determine the type of a gamer a person is\cite{casual_vs_hardcore}.
 Not all of these factors can be directly influenced when designing a game, and not all of them are relevant when designing our game.
 
-Below we list the factors mentioned in the article from Gamasutra, as well as mentioning whether a particular factor is relevant in our case:
+Below we list the factors mentioned in the article from Gamasutra, as well as shortly mentioning whether we find a particular factor relevant in our case, when designing our game:
 
 \begin{enumerate}
 \item \emph{Playing games over many long sessions.}
-The game can encourage the player to play longer through reward or progress, therefore it is relevant.
+The game should encourage the gamer to play longer through reward or progress, therefore it is relevant.
 
 \item \emph{Discussing games with friends/bulletin boards.}
+The game should encourage games to discuss the game outside the boundaries of the game itself, such as on forums.
 We have no intention of creating a bulletin board or chat-system within our game, and therefore we deem this an irrelevant factor.
 
 \item \emph{Having comparative knowledge of the industry.}
-Knowledge of the industry happens outside of the game, therefore it is irrelevant.
+Hardcore games tend to show greater knowledge of the gaming industry than more casual games.
+Knowledge of the industry happens outside of the game and it not easily affected by a game. We deem it irrelevant in our case.
 
 \item \emph{Being tolerant of frustration.}
-The game can increase in difficulty to increase frustration levels, therefore it is relevant.
+Hardcore games tend to be more tolerant to games of higher difficulty.
+While \textit{higher difficulty} is subjective, one can affect this factor by adjusting the difficulty of the game.
+We find it relevant.
 
 \item \emph{Showing early adoption behaviour.}
-Early adoption behaviour happens before the game is played, therefore it is irrelevant.
+While hardcore gamers tend to be \textit{early adoptors}, it is not a factor that can be influenced by a game itself.
+We find it irrelevant in our case.
 
 \item \emph{Desiring to modify or extend games in a creative way.}
 The game engine can be made with modification or extension in mind, allowing for players to create their own content or features, therefore it is relevant.
