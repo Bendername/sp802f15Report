@@ -40,7 +40,16 @@ Most notably, the amount of edges are significantly reduced.
 Checking whether objects are in direct line of sight was initially done with Unity's raycasting system, but since this approach caused performance issues, we had to do further optimisations aiming for as few raycasts as possible.
 Another approach would be to partition the map into rectangles.
 Then when the enemy is in the same rectangle as the player we can simply go towards the player since the rectangle is convex.
-The partitions are created by.... \tododaniel{Brian write this}
+Such partitions are generated while also generating the backdrop. Rectangles
+are found using the same algorithm for finding rectangles for tiles. For
+finding rectangles for partitions, we use an inverted version of the map
+representing collidable walls. Doing so, we find rectangles for partitions as
+shown in Figure~\ref{fig:partition_colliders_on_map}.
+
+\begin{figure}[H]
+        \includegraphics[width=0.9\textwidth]{figures/generating_levels/partition_colliders.png}
+    \caption{Rectangles for partitions}\label{fig:partition_colliders_on_map}
+\end{figure}
 
 Once the partitions are made we give them trigger colliders which cover the size of the partitions.
 These triggers are used to add and remove the partitions from an enemies' and players' list of partitions when a player enters the region.
