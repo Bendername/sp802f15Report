@@ -2,12 +2,18 @@ The game being challenging confines largely to item 2, but also items 5 and 6 fr
 The challenge in the game is the horde of enemies that chase the player, but if the enemies are all stuck behind a wall the challenge is non-existent.
 Therefore the enemies need to be able to avoid obstacles and chase the players in a intelligent way.
 This could be achieved by applying a pathfinding algorithm to the AI's behaviour.
+The process of creating an adequate pathfinding algorithm for our game was a three iteration process which involved different optimizations to the algorithm.
+
+\section{First Iteration}
+\input{sections/modules/ai/firstIteration}
+\section{Second Iteration}
+\section{Third Iteration}
 
 \section{Pathfinding}
 %Gridbased graph: 3984 nodes, 30450 edges
 %Waypoint graph: 47 nodes, 624 edges
 
-The pathfinding algorithm that we will be using is A* search pathfinding which has a runtime of $O(n*m)$, where n is the number of nodes that will be explored, m is the average number of neighbours in the graph, and we assume that the graph and heuristic operations take constant time \cite{AIG:Millington}.
+The pathfinding algorithm that will be used is A* search pathfinding which has a runtime of $O(n \times m)$, where n is the number of nodes that will be explored, m is the average number of neighbours in the graph, and we assume that the graph and heuristic operations take constant time \cite{AIG:Millington}.
 %Other pathfinding possibilities would be BFS or floyd-warshall algorithm, but as BFS has a runtime of [] and floyd-warshall has a runtime of [] with a high memory usage, we will not be using them.
 
 The first step in using an A* search algorithm, is to have a proper graph which represents the map in the game.
