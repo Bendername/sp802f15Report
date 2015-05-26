@@ -1,16 +1,54 @@
+In this section we will discuss the user experience of our game, the performance issues encountered, as well the extend of our extensible system.
+
+\subsection{User Experience}
+
+\subsection{Performance}
+
+\subsection{Extensibility}
 Creating a game from a programming perspective is not only about manufacturing the game itself, but also about making the tools that facilitate the creation of the game.
-This has also been the case with our game.
-The current framework supports an advanced set of mechanics; the trait system is the basis of all character customization, be it player based or enemy based.
-As such, it is easy to develop new types of player classes or enemies with certain abilities, it is merely a question of creating more effects, wrapping them up in a trait, and adding them to a player class or enemy.
-Our mission system is also extensible.
-It is possible to create custom missions with a set of waves, enemies and objectives.
-The system is made such that it is easy to make new and interesting missions which can cater to different types of players. 
 
-Another place for improvement is performance.
-It is a tall order to have a large environment with hordes of intelligent enemies, and on top of that have it run smoothly on mobile devices.
-In order to have the game contain more stress points, it is essential that the game supports many types of enemies with many types of attack strategies.
-In order to do this, one could have more agent states in the enemies, making sure that resources are only spent when they are directly interacting with a player.
-This has already been done to some extent, but could be optimized even further.
+\subsubsection{Traits}\label{dicsussion:traits}
+The trait system is used to create traits that the player receive upon leveling up.
+\todomichael{Discuss trait system, someone}
+
+\subsubsection{Missions}\label{dicsussion:missions}
+For creating missions, maps and waves the mission system is used.
+The system relies on .png files used to generate the map, and .json files to define the missions and waves, as well as which enemies and objectives encountered in these.
+Using these ubiquitous formats, we have been able to open up these systems, so that users may create custom content.
+The .json files, while human readable, tends to become large and thus hard to comprehend.
+In addition to this, its precise functionality and syntax is vague without knowing the internal representation.
+As a result, the user may find it difficult to create valid content that can be loaded into the game.
+
+In addition, the missions have support for \textit{MissionObjectives}, see figure \ref{fig:json_chart}, which are currently not implemented into the game.
+
+%\subsection{DO NOT READ BELOW THIS}
+
+%
+%This has also been the case with our game.
+%The current framework supports an advanced set of mechanics; the trait system is the basis of all character customization, be it player based or enemy based.
+%As such, it is easy to develop new types of player classes or enemies with certain abilities, it is merely a question of creating more effects, wrapping them up in a trait, and adding them to a player class or enemy.
+%Our mission system is also extensible.
+%It is possible to create custom missions with a set of waves, enemies and objectives.
+%The system is made such that it is easy to make new and interesting missions which can cater to different types of players. 
+
+%Another place for improvement is performance.
+%It is a tall order to have a large environment with hordes of intelligent enemies, and on top of that have it run smoothly on mobile devices.
+%In order to have the game contain more stress points, it is essential that the game supports many types of enemies with many types of attack strategies.
+%In order to do this, one could have more agent states in the enemies, making sure that resources are only spent when they are directly interacting with a player.
+%This has already been done to some extent, but could be optimized even further.
 
 
-Aaand something about networking
+%Exntensibility:
+%	Trait system
+%	Mission System
+%	GUI/tools for custom content
+
+%Performance
+%	AI/Enemies
+%	Networking
+%		server does everything \& mobile being server
+
+%UX Daniel - 
+%	GUI is shoit
+%		How to control shit? reference tests
+
