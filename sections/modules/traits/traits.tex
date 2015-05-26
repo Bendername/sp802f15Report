@@ -9,6 +9,7 @@ Base traits define the class they belong to, and are acquired immediately rather
 Traits are implemented as an interface as shown in figure \ref{traits:traitclassdiagram}, consisting of a \texttt{Name}, \texttt{Description} and list of \texttt{Effect}s.
 When implementing a trait the name should be descriptive, as it will be the text shown on the button when the player is selecting a trait as shown in figure \ref{traits:traitselection:traits}. 
 The description is not used anywhere but had we not opted to just use buttons for displaying traits, the description would have served as the place to display details about a trait.
+Effects are described in section \ref{sec:modules:effects}.
 
 As shown in figure \ref{traits:traitclassdiagram}, the trait itself does not specify whether it is a base trait or a shared trait.
 This is to allow some classes to have a trait such as \texttt{Fast Boots} as a base trait but also have it available as a shared trait.
@@ -18,7 +19,7 @@ Any class inheriting from \texttt{CharacterClass} will then populate these two l
 The \texttt{AvailableTieredTraits} list will be populated with traits defined in the \texttt{SharedTraits} class.
 
 The \texttt{AvailableTieredTraits} list is used in the selection of traits and as the name implies, they are divided into tiers.
-Every character starts at tier one and advances to the next one every fifth level.
+Every character starts at tier 1 and advances to the next one every 5th level.
 For each tier a certain set of traits is available and three random traits from this set are presented to the user when selecting traits.
 
 The \texttt{RunAllEffects} method is used to activate the effects of a trait and is run whenever a player selects a trait.
@@ -36,14 +37,14 @@ The reason why traits use effects to define their behavior is because a trait ma
 This allows reuse of effects rather than creating multiple similar effects.
 
 The \texttt{Effect} class is shown in figure \ref{traits:effectclassdiagram}.
-The amount field is used by effects to define how much big an impact their behavior has, eg. the \texttt{MovementSpeed} effect's amount defines how much faster it makes the player.
+The \texttt{amount} field is used by effects to define how much big an impact their behavior has, eg. the \texttt{MovementSpeed} effect's amount defines how much faster it makes the player.
 The \texttt{Name} is not used anywhere.
 
 The \texttt{Run} method is used for enabling the effect and is called whenever a trait calls its \texttt{RunAllEffects} method.
 For some effects the behavior is defined in this method, like the \texttt{MovementSpeed} which modifies the characters speed when \texttt{Run} is called.
 This is because the \texttt{MovementSpeed} is an effect that just modifies a variable of a different class.
 The \texttt{CriticalHitEffect} gives the player a chance to deal more damage, but since it is not every bullet that should have increased damage this effect cannot just modify damage in its \texttt{Run} method.
-Instead it subscribes to the \texttt{Character.OnDealDamageEvent} and modifies damage when appropriate.
+Instead it subscribes to the \texttt{Character.OnDealDamageEvent} event, and modifies damage when the event fires.
 
 \begin{figure}
 \centering
