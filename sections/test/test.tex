@@ -1,10 +1,10 @@
 \chapter{Test}
-The main goal of the game is to cater for hardcore players, the relevant factors in order to do this are outlined in the table \ref{tab:gamerdedication}.
-Therefore will this chapter focus on how to test if this game caters to hardcore players.
+The main goal of the game is to cater for hardcore players, the relevant factors in order to do this are outlined in table \ref{tab:gamerdedication}.
+This chapter focus on how to test to which extent the game caters to hardcore players.
 
 \section{Purpose}
 The purpose of the test is to discover to which extent the game caters to hardcore players.
-This will be done by creating a test which will take the players through the games features which show off all factors which cater \emph{hardcore} gamers, described in section\ref{gamedesign:maingameconcepts}.
+This will be done by creating a test which will take the players through the games features which show off all factors which cater \emph{hardcore} gamers, described in Section \ref{gamedesign:selectionofgametype}.
 This means the player should:
 \begin{itemize}
 	\item Experience leveling your character
@@ -13,13 +13,14 @@ This means the player should:
 	\item Kill some aliens
 	\item Playing with multiple classes on the team
 \end{itemize}
-The player will however not try to create their own mission packs.
+
+The player will however, not try to create their own mission packs. The main reason for this is that the data-format of the custom content is JSON and rather large. It would take a considerable amount of time to get familiar with the syntax and formatting of this file, which is not doable. More on this is described in \tododennis{Insert todonote for discussion}.
 
 \section{User Profile}
-The users for this test will be hardcore players.
-To find the test subjects a preliminary survey has been made to determine whether or not the player is hardcore.
+The users intended for this test are hardcore players.
+To find test subjects within this segment, a preliminary survey has been made to determine whether or not the player is hardcore.
 The survey will more specifically determine the players \textit{Gamer Dedication Score} which is based on the Gamasutra article\cite{casual_vs_hardcore} outlined in motivation, Section \ref{sec:motivation}.
-All the factors from the article has been turned into questions, as even the ones we cannot affect during game design are relevant to classify players.
+All the factors from the article have been turned into questions, as even the ones we cannot affect during game design are relevant to classify players.
 For each question, 5 answers exist ranging from \textit{"I strongly disagree"} to \textit{"I strongly agree"}.
 
 The answers are then used to evaluate Equation \ref{eq:GD} in order to determine a \emph{gamer dedication score}.
@@ -27,59 +28,85 @@ The goal is to find a group of \emph{hardcore} players or \emph{ultra hardcore} 
 The full survey and the complete results can be found in Appendix \ref{app:survey}.
 
 \section{Context, Equipment \& Setup}
-The test will take place in one of the group rooms of Cassiopeia.
-A test will consist a team of players, which will be three to four of the players, which was found to be hardcore players in the survey.
-The players will be equipped with three mobile devices and a computer with a game-pad connected.
+The test will take place in one of the group rooms of Cassiopeia at Aalborg University.
+Each team will consist of three to four players.
+The players will be equipped with three mobile devices and a computer.
 
 \subsection{Mission}
-The game will be equipped with a premade mission pack that is designed to allow a realistic game session in the completed game.
-The mission pack consists of:
-\begin{itemize}
-	\item 2 missions
-	\begin{enumerate}
-		\item 2 waves - Each wave will introducing a new enemy each wave
-		\item 3 waves - The first two waves will introduce new enemies and the last wave will introduce a boss
-	\end{enumerate}
-\end{itemize}
+The game will be played with a premade mission pack that is designed to show a realistic game session in the completed game.
+The mission pack consists of two missions.
+The first contains two waves - Each wave will introduce a new enemy each wave.
+Following that, the second mission contains three waves - The first two will introduce new enemies and the last wave will introduce a boss.
 The mission should furthermore enable all the players to get enough resources to try out different weapons and their upgrades.
 
 \section{Tasks}
 To show the players the features the following tasks should be done:
 \begin{enumerate}
-\item Players starts by joining a game lobby together
-\item Player then should select their favoured class
-\item The host will then start the game
-\item The players should then try and complete the mission pack
+	\item Players starts by joining a game lobby together
+	\item Player then should select their favoured class
+	\item The host will select the mission created for the purpose
+	\item The players should then attempt to complete the mission pack
 \end{enumerate}
-If the team should fail to mission pack, they should try again but have time to discuss strategy.
+If the team should fail the mission pack, they should try again but have time to discuss strategy.
 
-\section{Post-play questionnaire}
-A post-game survey is taken by the test-persons in order to determine to which extent they enjoy the concepts that has been designed to facilitate the gameplay catering to hardcore players.
-For example:
-\begin{itemize}
-\item \emph{What did you think of the concept of waves in the game?}
-\item \emph{What did you think of the concept of objectives which yield rewards?}
-\item \emph{What did you think of the concept of player classes and traits?}
-\item \emph{What did you think of the weapons and their upgrades?}
-\item \emph{What did you think of the overall difficulty of the game?}
-\item \emph{Did you find the game fun? Why/Why not?}
-\end{itemize}
+\section{Post-play questionnaire \& results}\label{test:results}
+A post-game survey is taken by the test subjects in order to determine to which extent they enjoy the concepts that have been designed to facilitate the gameplay catering to hardcore players.
+The purpose is to determine if the game adequately satisfies the goals set up in Section \ref{sec:motivation} and the problem statement in Section \ref{sec:specifyingtheproblemstatemen}.
+The full questionnaire and results can be found in the Appendix, Section \ref{app:postgame}.
+A summary of the are as follows:
+\begin{enumerate}\label{test:post-play}
+\item \textbf{What did you think of the concept of waves in the game?}\vspace{4pt}\\
+The general response was that the test subjects liked the concept.
+One player expressed that he would have preferred a constant assault instead of the wave system.
 
-Questions related to the questionnaire:
-\begin{itemize}
-    \item \emph{Would you consider playing the game for longer sessions?}
-    \item \emph{Did you find a game single game session long enough to entertain you?}
-    \item \emph{Did you find the game frustrating at times?}
-    \item \emph{Would you consider modifying the game with additional maps and missions, if tools were supplied for doing so?}
-    \item \emph{Did you find satisfaction in completing the game?}
-    \item \emph{Did you find yourself engaged in competition with yourself, the enemies or other players while playing the game?}
-    \item \emph{Did you find the game exibiting complex and deep gameplay?}
-    \item \emph{Did you find the game violent or displaying violent behaviour?}
-    \item \emph{Would you classify the game as an action game?}
-\end{itemize}
-The full questionnaire can be found in \ref{app:postgamesurvey}.
+\item \textbf{What did you think of the concept of objectives which yield rewards?}\vspace{4pt}\\
+The general response was that the test subjects did not know of or understand the objective system.
+Some players confused the objective system with the loot system.
 
-\section{Test Results}
-Smoething something
+\item \textbf{What did you think of the concept of player classes and traits?}\vspace{4pt}\\
+The test subjects generally agreed that it added complexity and strategy to the game, but it was not easy to see the difference between the different classes.
+
+\item \textbf{What did you think of the weapons and their upgrades?}\vspace{4pt}\\
+Two test subjects mentioned that controlling shooting on a mobile device is impossible due to the aiming and shooting controls being linked.
+Four test subjects were not able to try weapons and upgrades due to not noticing the feature.
+One subject expressed that he would like to be able to trade resources with other players.
+Half of the test subjects liked the system.
+
+\item \textbf{What did you think of the overall difficulty of the game?}\vspace{4pt}\\
+There were two general responses.
+Half of the test subjects liked the difficulty, the other half thought it was a bit too hard.
+One player mentioned that he liked that the game was difficult because he thinks there are too many casual games today.
+
+\item \textbf{Did you find a single game session long enough to entertain you?}\vspace{4pt}\\
+Most subjects found that the single game session was long enough to entertain them, only one test subject wanted a longer session.
+
+\item \textbf{Did you find the game frustrating at times?}\vspace{4pt}\\
+The test subjects largely agreed that the control scheme for touch-devices was frustrating, mainly due to not being able to aim without shooting.
+One subject found that the he was frustrated when the game crashed.
+
+\item \textbf{Would you consider modifying the game with additional maps and missions, if tools were supplied for doing so?}\vspace{4pt}\\
+Half of the subjects would consider creating additional maps and missions.
+
+\item \textbf{Did you find satisfaction in completing the game?}\vspace{4pt}\\
+Most of the test subjects felt satisfaction upon completing waves.
+The only test subject that managed to beat the boss and the final wave expressed that he was not aware that he had won, due to the short line of sight.
+
+\item \textbf{Did you find yourself engaged in competition with yourself, the enemies or other players while playing the game?}\vspace{4pt}\\
+All the test subjects agreed that that they were engaged in competition with each other.
+One subject wrote that he actually was more competitive about the lootable resources, than the score.
+
+\item \textbf{Did you find the game having potential to be deep and complex, if more content was added?}\vspace{4pt}\\
+Most of the test subjects thought the game had potential to be deep and complex if more content was added.
+Some of the test subjects thought that there was already too many traits.
+
+\item \textbf{Would you classify the game as an action game?}\vspace{4pt}\\
+All except one test subject answered that they thought the game is an action game.
+The one that didn't explained that it is because action games requires one to react to changes quickly, and he did not feel our game required this of him.
+
+\item \textbf{Did you find the game fun?}\vspace{4pt}\\
+All the test subjects agreed that the game was fun.
+\end{enumerate}
 
 \section{Result Analysis}
+Overall the test subjects were largely happy about the gameplay and content designed to cater to hardcore gamers.
+From this we gather that designing a game based on the factors mentioned in Table \ref{tab:relevantFactors} enables the game to cater to hardcore players as defined by Gamasutra\cite{casual_vs_hardcore}.

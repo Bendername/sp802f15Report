@@ -148,9 +148,14 @@ The data within that array is what we use to generate tiles and some game entiti
 \end{figure}
 
 \section{Implementation}
+The implementation of generating backdrop tiles underwent several iterations
+throughout the project and we explain some of the changes in this section.
+
+
 The first naive implementation that we prototyped, was to iterate through the two-dimensional map and place tiles corresponding to the values, with tiles being \texttt{sprites} in the gameworld.
 In Unity sprites need to be assigned a \texttt{sprite renderer} component which in turn needs to be attached a \texttt{gameobject}.
-This effectively means that for each tile, an instantiation a gameobject has to be made, which easily can get expensive in computation.
+This effectively means that for each tile, an instantiation of a gameobject has
+to be made, which can easily become expensive w.r.t to computation time.
 
 Since tiles exhibit no particular behavior, it seems excessive to instantiate gameobjects for each tile.
 This method also resulted in performance implications on mobile devices.
@@ -158,6 +163,8 @@ It is possible to substantially reduce the gameobjects required to be instantiat
 To do this, the map needs to be grouped such that large area consisting of only one type will be marked with a similar value in the data structure.
 The groups are then \textit{blitted} together in a tile-pattern to form a larger texture.
 There is a technical limit to this technique however, as texture-resolutions are limited by hardware, as such we limit the resolution of larger textures to $1024 \times 1024$.
+Textures also preferably have to be square in dimensions due to technical
+reasons such as compression optimizations on GPUs.
 A comparison of the result of the two techniques can be seen in figure~\ref{fig:grouped_tiling_comparison}.
 \begin{figure}[H]
     \centering
@@ -190,6 +197,41 @@ Figure~\ref{fig:transition_comparison} shows a comparison before and after integ
         \includegraphics[width=0.5\textwidth]{figures/generating_levels/with_transition.png}
     \end{tabular}
     \caption{(left) without transitioning, (right) with transitioning tiles}\label{fig:transition_comparison}
+\end{figure}
+
+The final iteration generating tiles underwent brought with it additional
+improvements w.r.t. to both loading and runtime. The improvement involves using
+Unity3D's primitive \texttt{Quad} instead of \texttt{Sprite}. Although
+Unity3D's documentation for \texttt{Sprite} describes it as graphical object
+for use in 2D gameplay\todobrian{insert ref}, for our purpose using a
+\texttt{Quad} proved to be a better approach. Quads have the
+capability of \textit{tiling} and \textit{shifting} its associated texture, and
+especially being able to tile a texture is useful in our case. This enables us
+to create rectangular areas of any size and eliminates the need for blitting
+textures together into larger textures. We developed an algorithm for finding
+rectangular areas on the map, which can be applied for each of the tile types
+(grass, walls, etc.). In the case of ground tiles, we can scale a single quad
+to cover the entire game-area, reducing the number of quads we need to
+instantiate.
+
+The iteration also brought with it a significant refactoring following a
+functional style. This enabled us to divide the workload of finding rectangular
+areas, amongst other things, to several separate threads. While this does not
+guarantee improvements w.r.t. computation time, it has the potential to be an
+improvement on multi-core platforms.
+
+The difference in using quads instead of sprites can be seen
+in Figure~\ref{fig:quad_tiling_comparison}
+
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{cc}
+        \includegraphics[width=0.5\textwidth]{figures/generating_levels/grouped-tile.png}
+        &
+        \includegraphics[width=0.5\textwidth]{figures/generating_levels/quad-tile.png}
+    \end{tabular}
+    \caption{(left) grouped tiling, (right) tiles using quads with tiled
+    textures}\label{fig:quad_tiling_comparison}
 \end{figure}
 
 \section{Placing walls and colliders}
