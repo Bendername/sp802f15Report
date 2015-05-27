@@ -24,7 +24,7 @@ however, we want to be able to define in a flexible way. This
 has to do with the fact that any map can be loaded with any given
 texture pack, meaning that walls, ground, grass and so on, appear differently
 in the game, depending on the texture pack used.
-We solved the problem by following the colors defined on the map in the texture pack. \todoanders{insert picture}
+We solved the problem by following the colors defined on the map in the texture pack as shown in figure \ref{minimap:colordefinition}.
 \\
 \\
 The colors used for plotting entities and the background on the minimap are
@@ -37,8 +37,14 @@ The entities and background is blitted onto a texture at a shifted position, in
 order to represent the players current position on the map. If entities such as
 enemies and other players are within the players view bounds of the
 texture, they are blitted onto the minimap textures as well. \todoanders{insert picture}
-\\
-\\
+
+\begin{figure}
+	\centering
+    \includegraphics[scale=.5]{figures/minimap/minimap_colors.png}
+    \caption{The image defining the colors to be used in the minimap.}
+    \label{minimap:colordefinition}
+\end{figure}
+
 As mentioned in the beginning of this chapter, the implementation just
 described proved to have performance implications, which was partly expected. 
 This has to do with the performance overhead of blitting the whole texture every time something changed.
