@@ -41,6 +41,69 @@ In addition, the missions have support for \textit{MissionObjectives}, see figur
 \subsection{Workflow}
 
 \subsection{Unity3D}
+Unity3D enabled us to develop a game from early design to prototyping to a
+finished game. We would like to mention that we find Unity3D to be an
+impressive technology that enables quick development and early results. By not
+having \textit{middleware} such as Unit3D can require significantly more work
+before a functional game comes from it.
+Having said that, Unity3D did present to us inconveniences alongside the
+advantages. In the following, we describe some of the \textit{pros} and
+\textit{cons} we experienced with working with Unity3D.
+
+\subsubsection*{Positives}
+%pros:
+%profiler in free-edition, easy-to-use,
+%rpc > low-level socket programming
+Bundled with Unity3D is feature-rich profiler, capable of profiling GPU, CPU
+and memory usage among other things - a valuable tool when attempting to
+identify performance bottlenecks. Up until recently, the profiler has only been
+available in the pro edition of Unity3D. With the release of Unity3D 5.0, the
+profiler is bundled with all editions of Unity3D. Unity3D 5.0 was released
+during this project, which made the profiler available to us. This allowed us
+to perform extensive performance analysis of different components within our
+architecture, such as AI, networking. This has in more than one occasion
+enabled us to find significant performance bottlenecks.
+\\
+\\
+Unity3D provides an API for RPC programming, removing the need for low-level
+socket programming. Much like Unity3D's other components offer quick
+development, the RPC API made it possible for us to quickly prototype the
+networked aspect of our game - an aspect with high uncertainties at the
+beginning of the project due to limited network programming experience
+among the members of the group.
+
+\subsubsection*{Negatives}
+%cons:
+%only one socket available in non-unity. Inverted  rects y axis, inconsistencies in documentation.
+%noget shit om rpc
+\todobrian{write also about socket issue and inverted y-rekt?}
+
+\todobrian{insert refs}
+Even though Unity3D has been in development for approximately 9 years, it is
+still surprisingly unstable in certain situations. It is not uncommon that the
+Unity3D editor process has to be \textit{force killed}. This is especially a
+reoccurring problem on OSX and the exact cause for this is unknown to us. This
+had a negative effect on development, as it would often be required that Unity3D
+be restarted.
+\\
+\\
+\todobrian{Is this correct?? Or was it only with 3 input source - whatever that
+means?}
+Unity3D supports various input devices, but we did experience problems with
+changing or adding input devices to the game during runtime, e.g. attaching a
+gamepad to a PC while the game is running. There were also inconsistencies in
+axis- and button-mapping among different operating systems. To circumvent this,
+we used a 3rd-party library. In the meantime, Unity Technologies have updated
+Unity3D to, presumably, offer the same capabilities.
+\\
+\\
+It is not possible to construct \textit{Nested} prefabs within Unity3D. Prefabs
+within Unity3D is the concept of creating a \textit{template} of a game object,
+pre-configured with components. So to state the problem differently, it is not
+possible to nest such templates within each other. Evidently, this did not
+impede development, but it did present inconveniences that required
+workarounds.
+\todobrian{write something about swaapping dlls - I dunno this problem}
 
 
 
