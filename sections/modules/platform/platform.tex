@@ -1,18 +1,27 @@
-%
-%
-% Something meta text here with architecture
-%
-%
+In this chapter, we describe the platform we indend to target, the underlying
+technology we use to support the development of our game, and finally an
+architectural overview of the different components needed to be implemented for
+our game. Architecture descriptions are accompanied with diagrams depicted in a
+\textit{layered architecture} style. Accompanying text describe diagrams in
+more detail where relevant.
 
 \section{Platform} \tododaniel{refactor this}
-As the development is targeting a mobile platform, it makes sense to develop for the one with the largest market share.
+As the development is targeting a mobile platform, it is sensible to target the one with the largest market share.
 According to the International Data Corporation (IDC) in 2014 this platform was Android with a 84.7\% market share\cite{marketshare}.
-Since the Android OS has the majority of market share and it is free to develop for, contrary to Apple's iOS which requires an Apple developer account that costs 99\$ a year\cite{appledevprogram}, it was decided to target this platform.
+Android OS has the majority of market share and it is free to develop
+for, contrary to Apple's iOS which requires an Apple developer account that
+costs 99\$ a year\cite{appledevprogram}.
+This leads us to choose the Android platform, specifically Android mobile
+phones as the target platform.
 
+\todobrian{formulate differently and ref list of reqs}
+While we strive to conform to the hardware specifications of lower-end Android
+phones, we only have access to mid- and high-end Android hardware, and as such
+can only benchmark performance on such devices.
 
 \section{Game Engines}
 For this project we decided against developing our own game engine as it would require too much time to create a viable one, after which we likely would not have had enough time left to create the game. 
-Seeing as the scope of this project is more focused on creating a game for a mobile platform rather than developing a game engine, we decided to use an existing game engine.
+Since the scope of this project is focused on creating a game for a mobile platform rather than developing a game engine, we decided to use an existing game engine.
 
 When looking at game engines, it became apparent that a wide variety exists, and looking through all of them would be beyond the scope of this project.
 Instead we decided to look at three popular ones: Cocos2D, Unity3D, and Unreal Engine.
@@ -30,12 +39,45 @@ Unity3D supports programming using the C\# language which most group members fel
 
 % rød tråd til subsection Unity 
 \subsection{Unity3D}
+Unity3D is a general purpose game engine designed to make it easy to make games
+of many different genres. Unity3D consists of an built-in editor, making it
+easy to design and change game environments. Using the editor, the user can
+place game objects, and attach components to them, such as colliders and
+scripts. The editor affords an intuitive approach to designing game-worlds, as
+the game can be viewed in 3D or 2D during design and in real-time while the
+game is running.
+\todobrian{insert img of editor}
+
+In some cases, the editor might not afford enough flexibility, in which case
+the Unity3D scripting API is available alongside the editor.
+Scripts can be written in three different programming languages:
+
+\begin{itemize}
+    \item \textbf{Boo:} a language developed by Unity Technologies, the
+        developers of Unity3D. Boo resembles Python.
+    \item \textbf{UnityScript:} a language also developed by Unity
+        Technologies, resembling JavaScript.
+    \item \textbf{C\#:} using the Mono framework.
+\end{itemize}
+
+All three languages can be used interchangeably within the same project.
+\\
+\\
+\todobrian{find refs}
+Unity3D provides frameworks and components for various game-development related
+tasks:
+\begin{itemize}
+    \item 2D and 3D physics simulation.
+    \item 2D and 3D graphics rendering.
+    \item Networking.
+    \item Asset management and loading.
+\end{itemize}
+
+\todobrian{find refs}
+Physics simulations are using Nvidia's PhysX physics engine, and rendering is
+offered by either Direct3D or OpenGL/ES.
 % What is unity
 % What can it do for us
 % architecture diagram
 
-\section{Game Architecture Overview}
-% Diagram
-% Beskriv diagram
-% Hvorfor ikke class diagram 
-% Details omkring diagram components er i module sections
+\input{sections/modules/platform/gamearchitecture}
