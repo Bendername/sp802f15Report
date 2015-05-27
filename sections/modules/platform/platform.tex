@@ -80,23 +80,4 @@ offered by either Direct3D or OpenGL/ES.
 % What can it do for us
 % architecture diagram
 
-\section{Game Architecture Overview}
-% Diagram
-% Beskriv diagram
-% Hvorfor ikke class diagram 
-% Details omkring diagram components er i module sections
-Since we now have the architecture of Unity3D established, we can now design the architecture of our game.
-The diagram should have the essential systems described such that the development of the game can start immediately and we can quickly set up a playable version of the game.
-The essential systems should support the requirements of the game which are described in section \ref{} \tododaniel{write requirements section of ref til den her}
-\begin{itemize}
-	\item Network to support multiplayer
-	\item Input System which can support keyboard and mouse input, gamepad input, and touchscreen input.
-	\item Level and mission generation which creates the game world and goal of the game, and can be easily modified by users
-\end{itemize}
-Early prototyping was done on the essential systems to find API's that would speed up the development of these systems.
-
-
-\begin{figure}
-\includegraphics[width = \textwidth]{figures/architecture/game_architecture_overview.png}
-\end{figure}
-
+\input{sections/modules/platform/platform/gamearchitecture}
