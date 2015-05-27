@@ -4,7 +4,9 @@
 
 \makeatletter\@addtoreset{chapter}{part}\makeatother%
 \begin{document}
+
 %frontmatter
+\counterwithout{chapter}{part} % Chapter counter no longer resets when part counter increments
 \pagestyle{empty} %disable headers and footers
 \pagenumbering{roman} %use roman page numbering in the frontmatter
 \input{sections/frontpage.tex}
@@ -33,7 +35,7 @@
 \part{Testing and Evaluation}
 \input{sections/test/test}
 \input{sections/evaluation/evaluation}
-
+\bookmarksetup{startatroot} % This moves bib out of out of previous part in ToC and bookmarks
 \bibliography{bib/main_bib}
 \newpage
 \appendix
