@@ -9,24 +9,27 @@ The resulting waypoints can be seen in Figure \ref{waypointOpt} with the graph i
 This can be compared to the old waypoint figure and graph shown in Figure \ref{waypointsNode} and Figure \ref{waypointgraph}.
 Most notably, the amount of edges are significantly reduced.
 \begin{figure}[H]
-	\includegraphics[width=\textwidth]{figures/astar/waypointMerge}
-	\caption{Waypoint merging}
-	\label{waypointMerge}
-\end{figure}
-
-\begin{figure}[H]
 \begin{center}
-
-	\includegraphics[width=0.5\textwidth]{figures/astar/optimizedWaypoints}
-	\caption{Waypoints after optimizations}
-	\label{waypointOpt}
+	\includegraphics[width=\textwidth]{figures/astar/waypointMerge}
+	\caption{Waypoint merging.}
+	\label{waypointMerge}
 \end{center}
 \end{figure}
 
 \begin{figure}[H]
-	\includegraphics[width=0.5\textwidth]{figures/astar/optimizedWaypointsGraph}
-	\caption{Graph based on the waypoints after waypoint optimization}
-	\label{waypointgraphOpt}
+\centering
+	\begin{minipage}{.5\textwidth}
+		\centering
+		\includegraphics[scale=0.3]{figures/astar/optimizedWaypoints}
+		\captionof{figure}{Waypoints after merge optimizations.}
+		\label{waypointOpt}
+	\end{minipage}%
+	\begin{minipage}{.5\textwidth}
+		\centering
+		\includegraphics[scale=0.4]{figures/astar/optimizedWaypointsGraph}
+		\captionof{figure}{Graph based on the waypoints after waypoint optimization.}
+		\label{waypointgraphOpt}
+	\end{minipage}
 \end{figure}
 
 \subsection*{Eliminating raycasts}
@@ -60,8 +63,10 @@ In hunting mode, the enemy can also check neighbouring partitions for the player
 This prevents odd behaviour from the enemies when they chase a players, since if there was no hunting mode the enemy would have to start pathfinding if the player leaves the partition, as illustrated in Figure \ref{huntingMode}.
 
 \begin{figure}[H]
+\begin{center}
         \includegraphics[width=\textwidth]{figures/astar/huntingMode.png}
     \caption{Behaviour difference between hunting mode and no hunting mode, showing if the players leave a partition the enemy without hunting mode would have to start pathfinding resulting in odd behaviour.}\label{huntingMode}
+\end{center}
 \end{figure}
 
 If the player then escapes, meaning that the player is not in the same nor a neighbouring partitions, the enemy will start to run the pathfinding algorithm and follow the path.
@@ -85,6 +90,8 @@ Furthermore A* calculations were moved to load-time which together with the wayp
 The trade-off from this improved performance is present if the player can move too quickly through partitions with a low number of waypoints.
 As illustrated in Figure \ref{tradeoff}, the enemy can only hunt through two partitions, which leads to the enemy having odd looking behaviour if the player runs too quickly through the partitions.
 \begin{figure}[H]
+\begin{center}
         \includegraphics[width=\textwidth]{figures/astar/tradeoff.png}
     \caption{Illustration of the problem with small partitions with low waypoint count. Red partitions shows the partitions of the enemy.}\label{tradeoff}
+\end{center}
 \end{figure}
