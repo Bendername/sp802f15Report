@@ -1,19 +1,27 @@
-\todomichael{Refactor this section to take base in problem statement, once performance requirements are added.}
-We set out to create a game for mobile devices which caters to the more hardcore segment of players. The major obstruction in this, is making a complex game which at the same time runs on a mobile device. Generally making  game complex means creating multiple layers of gameplay in the game, in our case this included character classes (section \ref{gamedesign:ourgame:classes}), traits(section \ref{gamedesign:ourgame:traits}), different enemies(section \ref{gamedesign:ourgame:enemies}), complex crafting system(section \ref{gamedesign:ourgame:weapons}) with a corrosponding resource system(section \ref{gamedesign:ourgame:crafting}) and finally a competitive element both internally between players, in terms of individual performance, and externally between player groups in terms of the highest achieved score, and in terms of actually beating the game(section \ref{gamedesign:ourgame:scoring}).\tododennis{Make sure this is reflected in this section}
+We began with the problem statement:
+\begin{center}
+\textit{What is required in order to create a game, with gameplay which caters to hardcore gamers on a mobile device?}
+\end{center}
 
-As shown in the user test of the game(section \ref{test:results}) we had mostly positive feedback in terms of the gameplay and features of the game.
+The major obstruction in this, is satisfying all the conditions mentioned in Table \ref{tab:relevantFactors}.
 
-According to some testers, our game also had some balancing issues. This inheritly collides with the goal of keeping \emph{players in the zone} as described in section \ref{gamedesign:science}. Although this is important, it is also something which is normally dealt with in the latter parts of developing a game.
+In order to do this we have included in our game the concepts of character classes (section \ref{gamedesign:ourgame:classes}), traits (section \ref{gamedesign:ourgame:traits}), different enemies(section \ref{gamedesign:ourgame:enemies}), a complex crafting system (section \ref{gamedesign:ourgame:weapons}) with a corrosponding resource system (section \ref{gamedesign:ourgame:crafting}) and finally a competitive element both internally between players in terms of individual performance, and externally between player groups in terms of achieving the highest score, and in terms of actually beating the game(section \ref{gamedesign:ourgame:scoring}).
 
-Overall though the game successfully solves the task we set out to do in terms of catering to the hardcore players.
-The post-play questionnaire in section \ref{test:results} clearly shows a mostly positive attitude towards the game by our target group.\\
+During testing, some testers mentioned that our game had some balancing issues. 
+This inheritly collides with the goal of keeping \emph{players in the zone} as described in section \ref{gamedesign:science}. 
 
-The other success criteria for our game, has to do with performance. We set out to make the game run on mobile devices, and as such it should be optimized for the hardware which is available on that platform. A lot of problems arose during development, but performance was a priority throughout development. This problem was mostly twofold:
+Despite this, the post-play questionnaire in section \ref{test:results} clearly shows a mostly positive attitude towards the game by our target group.
+From this we gather that the game successfully solves the task we set out to do in terms of catering to the hardcore players.\\\\
+The other success criteria for our game, has to do with performance. \todobenjamin{Skriv afsnittet i problem statement, og referrer herfra.}
+We set out to make the game run on mobile devices, and as such it should be optimized for the hardware which is available on that platform. 
+A lot of problems arose during development, but performance was a priority throughout development. 
+This problem was mostly twofold:
 
 \begin{itemize}
-\item Make sure the game runs smoothly in terms of FPS 
-\item Make sure the game run smoothly in a networked environment
+\item Make sure the game runs smoothly in terms of framerate 
+\item Make sure the game runs smoothly in terms of networking
 \end{itemize}
 
-As shown in \tododennis{ref to the hardware performance tests} the game runs smoothly at X\tododennis{insert fps} fps. This was important because it helps keeping the game \emph{fun} and \emph{engaging} because there is no disruptions, as elaborated in section \ref{gamedesign:science}.  So the performance goals has been fulfilled almost completely. 
-
+As shown in \tododennis{ref to the hardware performance tests} the game runs smoothly at X\tododennis{insert fps} fps. 
+This was important because it helps keeping the game \emph{fun} and \emph{engaging} because there are no disruptions, as elaborated in section \ref{gamedesign:science}.
+As such the performance goals has been fulfilled almost completely.
