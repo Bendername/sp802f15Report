@@ -124,15 +124,30 @@ The test will be done with multiple setups:
 \item Performance test of the server when it deals with a higher number of players
 \end{itemize}
 
-The reason the game is tested in solo mode, is to create a baseline for both platforms. That is, how fast and smooth does the game run if you are the only client, and the only server. In this scenario, the server will not handle other input but its self.
+The reason the game is tested in solo mode, is to create a baseline for both platforms. 
+That is, how fast and smooth does the game runs if you are the only client, and the only server. 
+In this scenario, the server will not handle other input but itself.
 
-The second scenario is running it with another player. This is done to see how the game, and server in particular, handles multiple game clients. This is interesting because the server handles all logic in the game, and basically instructs the clients to do ''its bidding''. So the more clients, the more the server has to do. 
+The second scenario is running it with another player. This is done to see how the game, and server in particular, handles multiple game clients. 
+This is interesting because the server handles all logic in the game, and basically instructs the clients to do ''its bidding''\tododaniel{meh, er det bare mig eller skal vi have noget mindre warcraft 3'ish word her}. 
+So the more clients, the more the server has to do. 
 
-The last test is to see how it scales to a full game which is 3-4 players. It is interesting because not only does the amount of objects in the game increase vastly, e.g. bullets, but it also means the network traffic increases and the server load increases. Does it scale linearly or are there significant drops as more clients connect?
+The last test is to see how it scales to a full game which is 3-4 players. 
+It is interesting because not only does the amount of objects in the game increase vastly, e.g. bullets, but it also means the network traffic increases and the server load increases. 
+Does it scale linearly or are there significant drops as more clients connect?
 
 \subsection{Results}
 \subsection*{Server performance}
-The main goal for having an acceptable FPS is that it is relatively high and more importantly smooth without dips. Figure \ref{test:performance:pcserverone} and figure \ref{test:performance:mobileserverone} shows the performance of a single player who is also the server, on PC and mobile respectively. Although the PC runs 150 frames per second more than the mobile server, they both share the same characteristics that the server runs extremely smoothly. The PC has an average fps of \emph{195} where the mobile has an average of \emph{57}. Both of these values are well above our goal of \emph{60} fps and \emph{45} fps for PC and mobile respectively. Additionally if you look at the data, there is a large drop in FPS at the very beginning of each data-set. This drops goes for a few frames with a few players and a few more frames if there is 4 players or more. These frames are when the server and clients load all data, so they are to be expected and have no real impact on the game flow. The actual numbers for the different tests for a server can be seen summed up in table \ref{test:table:data}. The complete data sets can be seen in Appendix \ref{appendix:test:fpsdata}.
+The main goal for having an acceptable FPS is that it is relatively high and more importantly smooth without large declines. 
+Figure \ref{test:performance:pcserverone} and figure \ref{test:performance:mobileserverone} shows the performance of a single player, who is also the server, on PC and mobile respectively. 
+Although the PC runs 150 FPS more than the mobile server, they both share the same characteristics that the server runs extremely smoothly. 
+The PC has an average FPS of 195 where the mobile has an average of 57. Both of these values are well above our goal of 60 FPS and 45 FPS for PC and mobile respectively. 
+Additionally, if you look at the data, there is a large drop in FPS at the very beginning of each data-set. 
+This drops goes for a few frames with a few players and a few more frames if there are 4 players or more. 
+These frames are when the server and clients load all data, so they are to be expected and as they happen when the game is loading they have no real impact on the player's game flow. 
+The actual numbers for the different tests for a server can be seen summed up in table \ref{test:table:data}. 
+The complete data sets can be seen in Appendix \ref{appendix:test:fpsdata}.
+
 \begin{figure}
     \includegraphics{figures/test/PCServerOnePlayer}
     \caption{PC server with one player (no clients) \\ Legend: Blue: FPS, Purple: Average FPS, Green: Max FPS, Yellow: Minimum FPS, Red: Target FPS}
@@ -158,10 +173,11 @@ Mobile / 3 Player     & 57          & 3           &             &
 \caption{The average, minimum and maximum FPS for the server in different test results (data is rounded) }
 \end{table}
 
-One thing to note is the fact that the PC server will fluctuate 10-30%  in FPS, where as the mobile normally fluctuates between 0-10% and rarely 20%. This happens mostly if there is 3 or more players connected, but it still keep a running minimum fps well above the minimum fps we set as a target though and one could easily cap the server to 120FPS to keep a rock steady frame rate.
+One thing to note is the fact that the PC server will fluctuate 10-30\%  in FPS, whereas the mobile normally fluctuates between 0-10\% and rarely 20\%. 
+This happens mostly if there are 3 or more players connected, but it still keeps a running minimum FPS well above the minimum target FPS and one could easily cap the server to 120 FPS.
 
 \subsection*{Client performance}
-The client performance is much equal to the server. A PC will run roughly \emph{250} and the mobile will run in the area of \emph{55} fps. A graph for a PC connected to a mobile server can be seen in \ref{test:performance:pcclientmobileserver} and a graph for a mobile client can be seen in figure \ref{test:performance:mobileclientpcserver}.
+The client performance is much equal to the server. A PC will run roughly 250 FPS and the mobile will run in the area of 55 FPS. A graph for a PC connected to a mobile server can be seen in \ref{test:performance:pcclientmobileserver} and a graph for a mobile client can be seen in figure \ref{test:performance:mobileclientpcserver}.
 
 \begin{figure}
     \includegraphics{figures/test/PCClient2Player}
