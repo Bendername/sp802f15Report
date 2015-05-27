@@ -1,11 +1,11 @@
-In this section we will discuss the user experience of our game, the performance issues encountered, as well the extend of our extensible system.
+In this section we will discuss the user experience of our game, the performance issues encountered, as well our extensible system.
 
 \subsection{User Experience}
 As shown in the user test of the game(section \ref{test:results}) we had mostly positive feedback in terms of the gameplay and features of the game.
 Most users took the game as an early beta, and accepted the limited content and the fact that they were testing the early stages of a game.
 
 One thing to note, however, is that the test group was instructed in the contents of the game before actually playing it. 
-This is of course because the focus has been on the actual technical part of the game, and not so much the user interface part.
+This is of course because the focus has been on the actual game mechanics, and not so much the user interface part.
 It has also came to show by some users who were not aware that objectives actually existed in the game.
 This is obviously a problem because it is a concept, which serves to make the game cater to hardcore players, and if we cannot communicate this, the game will not be as interesting as it could have been for our target group.
 
@@ -19,12 +19,12 @@ As such the game is not at all complete in terms of content, but it is very stro
 
 \subsubsection{Traits}\label{dicsussion:traits}
 The trait system is used to create traits that the player receive upon leveling up.
-Due to the flexibility of our trait system, see section \ref{sec:modules:traits}, it is trivial to add more \emph{traits} to the game, which manipulate any given attribute in the game, be it damage, movement speed or adding an entirely new effect. 
+Due to the flexibility of our trait system, see section \ref{sec:modules:traits}, it is trivial to add more traits which manipulate any given attribute in the game, be it damage, movement speed or adding an entirely new effect. 
 
-Character classes are also differentiated by their individual abilities.
-Mendy is a healer, because she has a \emph{healing} ability.
+Character classes are also differentiated by their individual traits.
+Mendy is a healer, because she has a \emph{healing} trait.
 These are also defined in the trait system.
-As such it is also trivial to add more classes or differentiate the ones already added, if that is desirable.
+As such it is also trivial to add more classes or differentiate the ones already added if desirable.
 
 \subsubsection{Missions}\label{dicsussion:missions}
 For creating missions, maps and waves the mission system is used.
@@ -33,6 +33,7 @@ Using these ubiquitous formats, we have been able to open up these systems, so t
 The .json files, while human readable, tends to become large and thus hard to comprehend.
 In addition to this, its precise functionality and syntax is vague without knowing the internal representation.
 As a result, the user may find it difficult to create valid content that can be loaded into the game.
+In contrast the way maps are created is by drawing an image of it and using colors to determine which type of tiles should be placed where. This way of designing it is easier to read as the map generated from it will look the same only with different colors.
 
 In addition, the missions have support for \textit{MissionObjectives}, see figure \ref{fig:json_chart}, which are currently not implemented into the game.
 

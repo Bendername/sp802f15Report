@@ -1,10 +1,10 @@
 \section{Target Audience Analysis} \label{sec:motivation}
 
-But how do we determine if a particular gamer is harcore or casual w.r.t. the type of games would most likely cater to him?
-In an article from Gamasutra, a proposed way to measure how \textit{casual} or \textit{hardcore} a gamer is, is through a questionaire concerning 15 factors\cite{casual_vs_hardcore}.
+How do we determine if a particular gamer is hardcore or casual in regards to the games played?
+In an article from Gamasutra, a proposed way to measure how \textit{casual} or \textit{hardcore} a gamer is, is through a questionnaire concerning 15 factors\cite{casual_vs_hardcore}.
 These 15 factors and their weight according to Gamasutra can be seen in Table \ref{tab:gamerdedication}\cite{casual_vs_hardcore}.
 For each factor, a gamer can answer a number from 1 to 5, where 1 means he thinks the factor does not fit him, and a 5 meaning he thinks the factor fits him very well.
-Using the factors, a \emph{Gamer Dedication Score} or \emph{GD} can be calculated using Equation \ref{eq:GD} where $w$ is the weight, $s$ is the score and $n$ is 15 (because there is 15 factors).
+Using the factors, a \emph{Gamer Dedication Score} or \emph{GD} can be calculated using Equation \ref{eq:GD} where $w$ is the weight, $s$ is the score and $n$ is 15 (because there are 15 factors).
 
 \begin{equation}\label{eq:GD}
 GD = \frac{\sum\limits_{j=1}^n w_j s_j}{\sum\limits_{j=1}^n 5 w_j}
@@ -21,19 +21,21 @@ The game should encourage the gamer to play longer through reward or progress, t
 
 \item \emph{Discussing games with friends/bulletin boards.}
 The game should encourage gamers to discuss the game outside the boundaries of the game itself, such as on forums.
-We have no intention of creating a bulletin board or chat-system within our game, and therefore we deem this an irrelevant factor.
+Creating an in-game bulletin board or forum is outside the scope of this project, as we focus on creating the game itself.
+This item is therefore deemed irrelevant.
 
 \item \emph{Having comparative knowledge of the industry.}
 Hardcore gamers tend to show greater knowledge of the gaming industry than more casual gamers.
-Knowledge of the industry happens outside of a game and is not easily affected by the game ifself. We deem it irrelevant in our case.
+Knowledge of the industry happens outside of a game and is not easily affected by the game itself.
+We deem it irrelevant in our case.
 
 \item \emph{Being tolerant of frustration.}
 Hardcore gamers tend to be more tolerant to games of higher difficulty.
 While \textit{higher difficulty} is subjective, one can affect this factor by adjusting the difficulty of the game.
 We find it relevant.
 
-\item \emph{Showing early adoption behaviour.}
-While hardcore gamers tend to be \textit{early adoptors}, it is not a factor that can be influenced by a game itself.
+\item \emph{Showing early adoption behavior.}
+While hardcore gamers tend to be \textit{early adopters}, it is not a factor that can be influenced by a game itself.
 We find it irrelevant in our case.
 
 \item \emph{Desiring to modify or extend games in a creative way.}
@@ -43,7 +45,7 @@ The game engine can be made with modification or extension in mind, allowing pla
 Technological savvy is used to access the game, once it is accessed it is up to the game to be user friendly, therefore it is irrelevant.
 
 \item \emph{Having the latest high-end computers/consoles.}
-Since we are developing for mobile platforms and that they generally have low-end hardware, we this is irrelevant.
+As we are developing for mobile platforms, and have access to mid to high-end mobile devices, we deem this relevant.
 
 \item \emph{Playing for the exhilaration of defeating (or completing) the game.}
 The game can offer the player a reward for completing the game, therefore it is relevant.
@@ -51,14 +53,15 @@ The game can offer the player a reward for completing the game, therefore it is 
 \item \emph{Hungering for gaming-related information.}
 Gathering information about the gaming world happens outside of the game, therefore it is irrelevant.
 
-\item \emph{Being engaged in competition with oneself, the game and other players.}
-The game can provide the player with the ability to challenge other players through various means. Therefore this is relevant.
+\item \emph{Being engaged in competition with oneself, the game, and other players.}
+The game can provide the player with the ability to challenge other players through various means.
+Therefore this is relevant.
 
 \item \emph{Being willing to pay for the game.}
 Since the game we are developing is a university project it will be free, so this is not relevant.
 
 \item \emph{Preferring games that have depth and complexity.}
-The game can directly cater to this preferrence by having deep and complex gameplay, therefore this is relevant.
+The game can directly cater to this preference by having deep and complex gameplay, therefore this is relevant.
 
 \item \emph{Time started playing games relative to the age of the industry.}
 The game cannot affect this, therefore it is not relevant.
@@ -78,10 +81,10 @@ Playing games over many long sessions                                 & 10     	
 Discussing games with friends/bulletin boards                         & 10     	& Irrelevant\\ \hline
 Having comparative knowledge of the industry                          & 10      & Irrelevant\\ \hline
 Being tolerant of frustration                                         & 9       & Relevant 	\\ \hline
-Showing early adoption behaviour                                      & 9       & Irrelevant\\ \hline
+Showing early adoption behavior                                       & 9       & Irrelevant\\ \hline
 Desiring to modify or extend games in a creative way                  & 8       & Relevant  \\ \hline
 Having technological savvy                                            & 7       & Irrelevant\\ \hline
-Having the latest high-end computers/consoles                         & 7       & Irrelevant\\ \hline
+Having the latest high-end computers/consoles                         & 7       & Relevant  \\ \hline
 Playing for the exhilaration of defeating (or completing) the game    & 7       & Relevant  \\ \hline
 Hungering for gaming-related information                              & 6       & Irrelevant\\ \hline
 Being engaged in competition with oneself, the game and other players & 6       & Relevant  \\ \hline
@@ -105,7 +108,7 @@ Transitional/moderate  & 46 - 55  \\ \hline
 Hardcore               & 56 - 70  \\ \hline
 Ultra hardcore         & 71 - 100 \\ \hline
 \end{tabular}
-\caption{Type of gamer derived from $GD$.}
+\caption{Type of gamer derived from $GD$.\cite{casual_vs_hardcore}}
 \label{tab:gamertype}
 \end{table}
 
