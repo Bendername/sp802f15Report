@@ -32,7 +32,7 @@ Furthermore, it does not overestimate when dealing with diagonal movement which 
 
 \subsection*{Checking for players in line of sight}
 Upon seeing a player the enemies should begin to run after the players in a straight line and neglect their pathfinding. 
-This would be done with Unity's raycasting system\cite{raycast} which would send out a "ray" in the direction of the player. 
+This would be done with Unity's raycasting system which would send out a "ray" in the direction of the player. 
 If this ray would hit a wall the enemy would keep using A* to navigate after the player.
 However, if the ray would hit a player the enemy will start hunting the player as illustrated in Figure \ref{raycast}.
 
