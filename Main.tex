@@ -4,7 +4,9 @@
 
 \makeatletter\@addtoreset{chapter}{part}\makeatother%
 \begin{document}
+
 %frontmatter
+\counterwithout{chapter}{part} % Chapter counter no longer resets when part counter increments
 \pagestyle{empty} %disable headers and footers
 \pagenumbering{roman} %use roman page numbering in the frontmatter
 \input{sections/frontpage.tex}
