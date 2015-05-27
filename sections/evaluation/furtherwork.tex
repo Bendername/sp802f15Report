@@ -1,8 +1,27 @@
-As such, a major part of what could be improved in the future, would be to create all this content that the game architecture allows.
-It is the creation of content that makes a game stand out and shine in terms of fun and immersion and while our architecture allows for this, the primary focus has been creating the architecture over the content. 
+Many of the systems works as intended as is, but none of the are ideal in terms of user interface and many of them do not allow the creation of custom content.
+In addition, we only support LAN play, or in the case of mobile platforms WLAN play.
 
-In addition, the tools themselves can also be extended further.
-This would mean adding support for custom unit types, texture packs, and objectives.
+\subsection{Missions}
+Following section \ref{dicsussion:missions} a way to solve the problem of incomprehensible json would be to create a tool to create missions.
+This would involve descriptions for every variable and a user friendly interface from which to create each mission and map.
+Having a tool would partially defeat the original purpose of the JSON format, described in section \ref{sec:modules:missions:customcontent}.
+The JSON format was chosen for the property of being human readable, which the tool would be designed to do better.
+
+In addition, extending the mission system to include the partially implemented \textit{MissionObjectives} would be desirable.
+These could serve as a dynamic stress factor throughout a mission.
+This would mean that the outcome of one wave might effect another.
+
+\subsection{Additional tools}
+The game current features systems that could be extended with support for custom content.
+An example of this is the trait system discussed in section \ref{dicsussion:traits}.
+
+Furthermore, allowing the users to customize their characters looks, weapons, texture packs, objectives, and the enemies would be desirable to create a completely custom experience.
+
+Tools with user friendly interfaces would allow anyone to create such content.
+
+\subsection{Network}
 
 It is currently only possible to play the game in a local area network.
 Further work would involve making the game playable over the Internet, rather than local net only.
+
+\todomichael{Finish network section}
