@@ -36,7 +36,7 @@ This happens in two places:
 \item Between the positions of enemies and players
 \item Between the positions of enemies and waypoints
 \end{itemize}
-The raycast from an enemy to a player happens when the enemy want to check if the enemy can ´´see'' the player, i.e. the path to the player is unobstructed.
+The raycast from an enemy to a player happens when the enemy want to check if the enemy can ``see'' the player, i.e. the path to the player is unobstructed.
 To prevent the raycast checks to the players, the map is partitioned into convex rectangles.
 When an enemy then enters the same partition as a player it knows that it can walk directly towards the player since the rectangle is convex.
 Such partitions are generated while also generating the backdrop.
