@@ -1,10 +1,10 @@
 \section{Target Audience Analysis} \label{sec:motivation}
 
-But how do we determine if a particular gamer is harcore or casual w.r.t. the type of games would most likely cater to him?
-In an article from Gamasutra, a proposed way to measure how \textit{casual} or \textit{hardcore} a gamer is, is through a questionaire concerning 15 factors\cite{casual_vs_hardcore}.
+How do we determine if a particular gamer is hardcore or casual in regards to the games played?
+In an article from Gamasutra, a proposed way to measure how \textit{casual} or \textit{hardcore} a gamer is, is through a questionnaire concerning 15 factors\cite{casual_vs_hardcore}.
 These 15 factors and their weight according to Gamasutra can be seen in Table \ref{tab:gamerdedication}\cite{casual_vs_hardcore}.
 For each factor, a gamer can answer a number from 1 to 5, where 1 means he thinks the factor does not fit him, and a 5 meaning he thinks the factor fits him very well.
-Using the factors, a \emph{Gamer Dedication Score} or \emph{GD} can be calculated using Equation \ref{eq:GD} where $w$ is the weight, $s$ is the score and $n$ is 15 (because there is 15 factors).
+Using the factors, a \emph{Gamer Dedication Score} or \emph{GD} can be calculated using Equation \ref{eq:GD} where $w$ is the weight, $s$ is the score and $n$ is 15 (because there are 15 factors).
 
 \begin{equation}\label{eq:GD}
 GD = \frac{\sum\limits_{j=1}^n w_j s_j}{\sum\limits_{j=1}^n 5 w_j}
@@ -21,7 +21,8 @@ The game should encourage the gamer to play longer through reward or progress, t
 
 \item \emph{Discussing games with friends/bulletin boards.}
 The game should encourage gamers to discuss the game outside the boundaries of the game itself, such as on forums.
-We have no intention of creating a bulletin board or chat-system within our game, and therefore we deem this an irrelevant factor.
+Creating an in-game bulletin board or forum is outside the scope of this project, as we focus on creating the game itself.
+This item is therefore deemed relevant.
 
 \item \emph{Having comparative knowledge of the industry.}
 Hardcore gamers tend to show greater knowledge of the gaming industry than more casual gamers.
@@ -105,7 +106,7 @@ Transitional/moderate  & 46 - 55  \\ \hline
 Hardcore               & 56 - 70  \\ \hline
 Ultra hardcore         & 71 - 100 \\ \hline
 \end{tabular}
-\caption{Type of gamer derived from $GD$.}
+\caption{Type of gamer derived from $GD$.\cite{casual_vs_hardcore}}
 \label{tab:gamertype}
 \end{table}
 
