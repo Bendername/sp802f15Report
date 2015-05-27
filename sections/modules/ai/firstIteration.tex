@@ -1,0 +1,50 @@
+Our initial idea was to simply create a tile graph\cite{AIG:Millington} as illustrated in \ref{gridGraph}.
+A node would then have up to eight connections which would point to a neighbour of that certain node with a cost of traversing to this node.
+Possible neighbours would be four to each side of the node with a cost of 10 and four diagonal neighbours with a cost of 14, which is the length of the hypotenuse when the length of the catheti are 10.
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{figures/astar/gridGraph}
+	\caption{Graph based on the tiles of the map}
+	\label{gridGraph}
+\end{figure}
+
+To navigate in the graph a pathfinding algorithm is needed. 
+The pathfinding algorithm that will be used is A* search pathfinding which has a runtime of $O(n \times m)$, where n is the number of nodes that will be explored, m is the average number of neighbours in the graph, and it is assumed that the graph and heuristic operations take constant time \cite{AIG:Millington}.
+
+\subsection*{Choosing a heuristic}
+The heuristic should be easily calculated and somewhat precise since it should be called on runtime.
+It is desired to have an heuristic which underestimates since overestimating can result in an incorrect shortest-path.
+When working with tile maps three different heuristics are commonly used\cite{heuristics}:
+\begin{itemize}
+\item Manhattan Distance
+\item Chebyshev Distance
+\item Euclidean Distance
+\end{itemize}
+The Manhattan distance works very well on tile based maps. 
+It is a simple heuristic, it works by adding the distance between the current node's x-coordinate and the goal node's x-coordinate, and the distance between the current node's y-coordinate and the goal node's y-coordinate.
+However, it does not support diagonal movement. 
+This means the heuristic will have a tendency to overestimate which will make it non-admissible heuristic.\\\\
+The Chebyshev distance works almost in the same way, however, this heuristic take diagonal movement into account. 
+It assumes that diagonal cost is equal to the side costs, this results in an underestimation or an exact cost of the path.\\\\
+The last heuristic uses the euclidean distance between the current node and the goal node as the heuristic.
+This however is more expensive to calculate.\\\\
+Looking at these heuristics we find that the best prospect for our heuristic will be Chebyshev since it is faster than euclidean. 
+Furthermore, it does not overestimate when dealing with diagonal movement which Manhatten does.
+
+\subsection*{Checking for players in line of sight}
+Upon seeing a player the enemies should begin to run after the players in a straight line and neglect their pathfinding. 
+This would be done with Unity's raycasting system\cite{raycast} which would send out a "ray" in the direction of the player. 
+If this ray would hit a wall the enemy would keep using A* to navigate after the player.
+However, if the ray would hit a player the enemy will start hunting the player as illustrated in Figure \ref{raycast}.
+
+This check is done continues to ensure that if a player runs behind a wall the enemy would follow A* again to get to the player.
+\begin{figure}[H]
+\begin{center}
+	\includegraphics[width=0.5\textwidth]{figures/astar/raycast}
+	\caption{Illustration of raycasting from a enemy to the character. Character Art by rileygombart \cite{artist}}
+	\label{raycast}
+\end{center}
+\end{figure}
+
+\subsection*{Result}
+This approach resulted in a very large graph, an example would be a map of size 64x64, the graph created for that map has 3984 nodes and 30450 edges. Due to the size of the graph it will take a lot of time traverse through on runtime.
+Furthermore we found the constant raycasting for each enemy was very expensive in terms of CPU usage, and had to be optimised.
