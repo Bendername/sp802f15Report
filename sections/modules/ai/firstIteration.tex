@@ -8,11 +8,11 @@ Possible neighbours would be four to each side of the node with a cost of 10 and
 \end{figure}
 
 To navigate in the graph a pathfinding algorithm is needed. 
-The pathfinding algorithm that will be used is A* search pathfinding which has a runtime of $O(n \times m)$, where n is the number of nodes that will be explored, m is the average number of neighbours in the graph, and it is assumed that the graph and heuristic operations take constant time \cite{AIG:Millington}.
+The pathfinding algorithm that would be used is the A* search pathfinding which has a runtime of $O(n \times m)$, where $n$ is the number of nodes that will be explored, $m$ is the average number of neighbours in the graph, and it is assumed that the graph and heuristic operations take constant time\cite{AIG:Millington}.
 
 \subsection*{Choosing a heuristic}
-The heuristic should be easily calculated and somewhat precise since it should be called on runtime.
-It is desired to have an heuristic which underestimates since overestimating can result in an incorrect shortest-path.
+The heuristic should be easily calculated and somewhat precise since it is to be called on runtime.
+It is desired to have a heuristic which underestimates since overestimating can result in an incorrect shortest-path.
 When working with tile maps three different heuristics are commonly used\cite{heuristics}:
 \begin{itemize}
 \item Manhattan Distance
@@ -28,23 +28,23 @@ It assumes that diagonal cost is equal to the side costs, this results in an und
 The last heuristic uses the euclidean distance between the current node and the goal node as the heuristic.
 This however is more expensive to calculate.\\\\
 Looking at these heuristics we find that the best prospect for our heuristic will be Chebyshev since it is faster than euclidean. 
-Furthermore, it does not overestimate when dealing with diagonal movement which Manhatten does.
+Furthermore, it does not overestimate when dealing with diagonal movement as Manhatten does.
 
 \subsection*{Checking for players in line of sight}
 Upon seeing a player the enemies should begin to run after the players in a straight line and neglect their pathfinding. 
-This would be done with Unity's raycasting system which would send out a "ray" in the direction of the player. 
+This would be done with Unity's raycasting system which would send out a ´´ray'' in the direction of the player. 
 If this ray would hit a wall the enemy would keep using A* to navigate after the player.
 However, if the ray would hit a player the enemy will start hunting the player as illustrated in Figure \ref{raycast}.
 
-This check is done continues to ensure that if a player runs behind a wall the enemy would follow A* again to get to the player.
+This check is done continuous to ensure that if a player runs behind a wall the enemy would follow A* again to get to the player.
 \begin{figure}[H]
 \begin{center}
 	\includegraphics[width=0.5\textwidth]{figures/astar/raycast}
-	\caption{Illustration of raycasting from a enemy to the character. Character Art by rileygombart \cite{artist}}
+	\caption{Illustration of raycasting from a enemy to the character. Character Art by rileygombart\cite{artist}}
 	\label{raycast}
 \end{center}
 \end{figure}
 
 \subsection*{Result}
 This approach resulted in a very large graph, an example would be a map of size 64x64, the graph created for that map has 3984 nodes and 30450 edges. Due to the size of the graph it will take a lot of time traverse through on runtime.
-Furthermore we found the constant raycasting for each enemy was very expensive in terms of CPU usage, and had to be optimised.
+Furthermore we found the constant raycasting for each enemy was very expensive in terms of CPU usage, and had to be optimized.
