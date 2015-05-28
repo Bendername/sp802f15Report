@@ -25,6 +25,12 @@ For each tier a certain set of traits is available and three random traits from 
 The \texttt{RunAllEffects} method is used to activate the effects of a trait and is run whenever a player selects a trait.
 The \texttt{Effect} class is described in further detail in section \ref{sec:modules:effects}.
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{figures/traits/TraitClassDiagram.png}
+\caption{Trait class diagram.}
+\label{traits:traitclassdiagram}
+\end{figure}
 
 \section{Effects}
 \label{sec:modules:effects}
@@ -46,14 +52,9 @@ This is because the \texttt{MovementSpeed} is an effect that just modifies a var
 The \texttt{CriticalHitEffect} gives the player a chance to deal more damage, but since it is not every bullet that should have increased damage this effect cannot just modify damage in its \texttt{Run} method.
 Instead it subscribes to the \texttt{Character.OnDealDamageEvent} event, and modifies damage when the event fires.
 
-\begin{figure}
-\centering
-\includegraphics[width=0.5\textwidth]{figures/traits/TraitClassDiagram.png}
-\caption{Trait class diagram.}
-\label{traits:traitclassdiagram}
-\end{figure}
+\pagebreak
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.5\textwidth]{figures/traits/EffectClassDiagram.png}
 \caption{Effect class diagram.}
@@ -67,7 +68,7 @@ Instead it subscribes to the \texttt{Character.OnDealDamageEvent} event, and mod
 % \label{traits:traitselection:selectbutton}
 % \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.3]{figures/traits/Traits.png}
 \caption{Screenshot of three traits that the player can choose from.}
