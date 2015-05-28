@@ -1,9 +1,10 @@
+The minimap was implemented to give the player a better overview of the map and its entities.
 For the ``minimap'', two different implementation are explored. 
 The initial implementation was developed during prototyping sessions to show the feasibility and usefulness of having a minimap in-game. 
 This initial implementation was however encumbered by sub-par performance.
 The optimized implementation transferred part of the calculations to the GPU, thereby gaining better performance.
 
-\section{Initial implementation}
+\subsection{Initial implementation}
 The minimap implementation was initially inspired by \textit{bitmap-blitting}
 techniques used in \textit{older} games\cite{bitmap-blitting}, which means that the general idea for
 the implementation is to \textit{blit} - or plot - individual pixels to a
@@ -54,7 +55,7 @@ Whether that was due to the camera position or an entity that changed position.
 This had a big cost of CPU time because the CPU had to recalculate each pixel on the map all the time.
 
 
-\section{Optimized implementation}
+\subsection{Optimized implementation}
 In order to optimize our minimap it was important to avoid the recalculation of texture each time something changed.
 To do so a new approach was applied.
 

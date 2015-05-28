@@ -1,12 +1,12 @@
-\section{Traits}
+Traits was added to the game to increase the depth and complexity in the game, which has to do with item 6 in the requirements.
+\subsection{Traits}
 \label{sec:modules:traits}
-
 As described in section \ref{gamedesign:ourgame:objectives} the game contains a trait system to allow the player to customize his character.
 Traits are categorized as \textit{base traits} and \textit{shared traits}, with the main difference being their availability to the player.
 Shared traits are available to all classes and can be selected when the player gains a level in the game.
 Base traits define the class they belong to, and are acquired immediately rather than having to gain levels to obtain them.
 
-Traits are implemented as an interface as shown in figure \ref{traits:traitclassdiagram}, consisting of a \texttt{Name}, \texttt{Description} and list of \texttt{Effect}s.
+Traits are implemented as an interface, shown in figure \ref{traits:traitclassdiagram}, consisting of a \texttt{Name}, \texttt{Description} and list of \texttt{Effect}s.
 When implementing a trait the name should be descriptive, as it will be the text shown on the button when the player is selecting a trait as shown in figure \ref{traits:traitselection:traits}. 
 The description is not used anywhere but had we not opted to just use buttons for displaying traits, the description would have served as the place to display details about a trait.
 Effects are described in section \ref{sec:modules:effects}.
@@ -32,7 +32,7 @@ The \texttt{Effect} class is described in further detail in section \ref{sec:mod
 \label{traits:traitclassdiagram}
 \end{figure}
 
-\section{Effects}
+\subsection{Effects}
 \label{sec:modules:effects}
 
 Effects are what make traits special, as they define the behavior of a trait.

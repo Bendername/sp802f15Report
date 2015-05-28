@@ -1,9 +1,7 @@
 \section{Architecture}
 For building up a network architecture two methods are predominantly used in games; the peer-to-Peer and the client-server based architecture.
 
-%http://gafferongames.com/networking-for-game-programmers/what-every-programmer-needs-to-know-about-game-networking/
-
-\subsection{Client-Server}
+\subsection{Client-Server}\cite{networkingTypes}
 The Client-Server model consist of clients and a server as shown in Figure \ref{fig:server_client}. 
 
 \begin{figure}[H]
@@ -18,7 +16,7 @@ Clients act as \textit{dumb terminals} that redirect input from the user of the 
 The server computes the next frame or the simulation and sends the information back to the clients which then updates their games state accordingly.
 
 
-\subsection{Peer-to-Peer}
+\subsection{Peer-to-Peer}\cite{networkingTypes}
 The peer-to-peer model consists only of peers with no dedicated server.
 In this model, peers communicate directly with each other as shown in Figure \ref{fig:peer_peer}
 
@@ -33,7 +31,6 @@ Peer-to-Peer (\textit{P2P}) network model in games ideally consists of turns.
 Each turn, peers gathers input from each peer who then individually executes all the commands on each machine.
 The purpose of this is that, given a deterministic game, the game that are running on each individual computer will be running the exact same code.
 Therefore given the game is deterministic the game state will be exactly the same on each computer.
-%http://www.gamasutra.com/view/feature/131503/1500_archers_on_a_288_network_.php
 
 \subsection{Choosing an architecture}
 The client-server architecture is popular in games because it does not limit the update rate of the game based on the connection of the slowest player, but instead only based on the connection of the server.
