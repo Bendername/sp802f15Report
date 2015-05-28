@@ -13,11 +13,14 @@ This is obviously a problem because it is a concept, which serves to make the ga
 \subsection{Performance}
 Looking at the general performance of the game, it is quite good. 
 The framerates are smooth and the frame drops are rare. 
-There is however, some weird \emph{bad} games in terms of performance. 
-These appear random and we have not been able to find the reason for the drop in framerate. 
-At one game there was a huge drop from an average fra \emph{150-160}  to \emph{60} and it appeared to have something to do with dieing. This was, however, not replicable. The frame rate on PC also fluctuates a little bit more, as stated in section \ref{test:performancetest}. This fluctuation sometimes is much more prominent for no apparent reason.
+There are however, some odd fluctuations in terms of performance. 
+These fluctuations appear random and we have not been able to find the reason for the drop in framerate. 
+At one game there was a huge drop from an average from \emph{150-160} to \emph{60} and it appeared to happen when the character died. This was, however, not replicable. 
+The frame rate on PC also fluctuated, as stated in section \ref{test:performancetest}. 
+This fluctuation is sometimes much more prominent for no apparent reason.
 
-On the mobile platform builds we use mobile shaders. These helps with the performance by beying optimized for speed and low performance devices more so than the high end shaders used on normal PCs. We have not considered optimizing the shaders for PC.\tododennis{Considered adding something about the tradeoff for performance e.g. AI / pathfinding is worse, but I don't think it fits...}
+We did several optimizations to improve the performance, one was to use specific shaders that are efficient on mobile platforms.
+We have not considered changing the shaders on PC builds since our focus has been on mobile devices.
 
 \subsection{Extensibility}
 Creating a game from a programming perspective is not only about manufacturing the game itself, but also about making the systems that facilitate the creation of the game.
@@ -26,7 +29,7 @@ In most cases it is trivial to extend the content of the game.
 As such the game is not at all complete in terms of content, but it is very strong in terms of the framework and architecture in place to cater for the goals we set out to meet, i.e. making a game for hardcore players.
 
 \subsubsection{Traits}\label{dicsussion:traits}
-The trait system is used to create traits that players receive upon leveling up.
+The trait system is used to create traits that players receive upon levelling up.
 Due to the flexibility of our trait system, see section \ref{sec:modules:traits}, it is trivial to add more traits which manipulate any given attribute in the game, be it damage, movement speed or adding an entirely new effect. 
 
 Character classes are also differentiated by their individual traits.
@@ -58,9 +61,6 @@ advantages. In the following, we describe some of the \textit{pros} and
 \textit{cons} we experienced with working with Unity3D.
 
 \subsubsection*{Positives}
-%pros:
-%profiler in free-edition, easy-to-use,
-%rpc > low-level socket programming
 A feature-rich profiler is bundled with Unity3D, capable of profiling GPU, CPU
 and memory usage among other things - a valuable tool when attempting to
 identify performance bottlenecks. But until recently, the profiler was only
@@ -80,22 +80,14 @@ beginning of the project due to limited network programming experience
 among the members of the group.
 
 \subsubsection*{Negatives}
-%cons:
-%only one socket available in non-unity. Inverted  rects y axis, inconsistencies in documentation.
-%noget shit om rpc
-\todobrian{write also about socket issue and inverted y-rekt?}
-
-\todobrian{insert refs}
 Even though Unity3D has been in development for approximately 9 years, it is
-still surprisingly unstable in certain situations. It is not uncommon that the
+still surprisingly unstable in certain situations\cite{unity-facts}. It is not uncommon that the
 Unity3D editor process has to be killed. This is especially a
 reoccurring problem on OSX and the exact cause for this is unknown to us. This
 had a negative effect on development, as it would often be required that Unity3D
 be restarted.
 \\
 \\
-\todobrian{Is this correct?? Or was it only with 3 input source - whatever that
-means?}
 Unity3D supports various input devices, but we did experience problems with
 changing or adding input devices to the game during runtime, e.g. attaching a
 gamepad to a PC while the game is running. There were also inconsistencies in
@@ -110,9 +102,6 @@ pre-configured with components. So to state the problem differently, it is not
 possible to nest such templates within each other. Evidently, this did not
 impede development, but it did present inconveniences that required
 workarounds.
-\todobrian{write something about swaapping dlls - I dunno this problem}
-
-
 
 %\subsection{DO NOT READ BELOW THIS}
 
