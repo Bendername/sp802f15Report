@@ -178,8 +178,6 @@ A comparison of the result of the two techniques can be seen in figure~\ref{fig:
 The computation involved in blitting textures together \textit{can} be significant on mobile devices, as the larger textures have to be uploaded to the GPU in order to reflect changes.
 The blitting is performed during runtime whenever a map is loaded, so in order to avoid blitting the same texture more than once, a caching of the larger textures to disk is performed, such that they can be loaded between subsequent runs of the application.
 By caching and loading already blitted textures to disk, we significantly reduced loading times on mobile devices.
-\todomichael{What were the improviements? Do we have any numbers? logs?}
-\todobrian{We did see improvements in shorter loading times. I can do measurements of this if you want to haz?}
 \\
 \\
 \textit{Transition} tiles between certain type of tiles, in particular between grass and ground, are desired.
