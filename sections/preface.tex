@@ -81,6 +81,14 @@ A genre of video games where the main objective is to shoot foes or targets. \ci
 Acronym for \textbf{F}rames \textbf{P}er \textbf{S}second.
 The amount of frames rendered per second.\\
 \\
+\textbf{Frame drop}\vspace{4pt}\\
+An occasional and consistent decline in FPS. Although the term is not plural, it could be the case that several sequential frames are not rendered.
+To the observer, this would be perceived as the application or animations ``freezing''.\\
+\\
+\textbf{Middleware}\vspace{4pt}\\
+A software layer offering convenient access to a software layer below it, often with an increased level of abstraction.
+An example is Unity3D offering rendering capabilities through OpenGL/Direct3D without having the programmer understand the API for such rendering backends.\\
+\\
 \textbf{MMORPG}\vspace{4pt}\\
 Acronym for \textbf{M}assively \textbf{M}ultiplayer \textbf{O}nline \textbf{R}ole-\textbf{P}laying \textbf{G}ame.
 Examples include World of Warcraft and Everquest.\\
@@ -93,10 +101,15 @@ Furthermore it has an editor that further simplifies the task of creating game w
 \textbf{Gameobject}\vspace{4pt}\\
 Base class for all entities in Unity.\cite{prefaceGameobject}\\
 \\
+\textbf{Prefab}\vspace{4pt}\\
+A gameobject configured and attached several components. The prefab can be used as a ``template'' to instantiate new gameobjects with the same configuration of components.
+An analogy to OOP terminology would be a class.\\
+\\
 \textbf{Collider}\vspace{4pt}\\
 A Collider in Unity is a component that can be attached to a Gameobject, such that a method is called when another Gameobject with a Rigidbody\cite{rigidbody} collides with it.\cite{collider2d}
 A variation of this is called Trigger Collider.
-a Trigger Collider does not collide with Rigidbodies, but instead responds when a Rigidbody is inside the volume of the trigger collider.\cite{collider2dtrigger}\\
+A Trigger Collider does not collide with Rigidbodies, but instead responds when a Rigidbody is inside the volume of the trigger collider.\cite{collider2dtrigger}\\
 \\
 \textbf{Raycast}\vspace{4pt}\\
 Casts a ray against colliders in the game. \cite{raycast}\\
+\\
