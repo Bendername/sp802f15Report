@@ -11,6 +11,13 @@ During tests it became apparent that some users who were not aware that objectiv
 This is obviously a problem because it is a concept, which serves to make the game cater to hardcore players, and if we cannot communicate this, the game will not be as interesting as it could have been for our target group.
 
 \subsection{Performance}
+Looking at the general performance of the game, it is quite good. 
+The framerates are smooth and the frame drops are rare. 
+There is however, some weird \emph{bad} games in terms of performance. 
+These appear random and we have not been able to find the reason for the drop in framerate. 
+At one game there was a huge drop from an average fra \emph{150-160}  to \emph{60} and it appeared to have something to do with dieing. This was, however, not replicable. The frame rate on PC also fluctuates a little bit more, as stated in section \ref{test:performancetest}. This fluctuation sometimes is much more prominent for no apparent reason.
+
+On the mobile platform builds we use mobile shaders. These helps with the performance by beying optimized for speed and low performance devices more so than the high end shaders used on normal PCs. We have not considered optimizing the shaders for PC.\tododennis{Considered adding something about the tradeoff for performance e.g. AI / pathfinding is worse, but I don't think it fits...}
 
 \subsection{Extensibility}
 Creating a game from a programming perspective is not only about manufacturing the game itself, but also about making the systems that facilitate the creation of the game.
@@ -44,7 +51,7 @@ In addition, the missions have support for \textit{MissionObjectives}, see figur
 Unity3D enabled us to develop a game from early design to prototyping to a
 finished game. We would like to mention that we find Unity3D to be an
 impressive technology that enables quick development and early results. By not
-having \textit{middleware} such as Unit3D can require significantly more work
+having \textit{middleware} such as Unity3D can require significantly more work
 before a functional game comes from it.
 Having said that, Unity3D did present to us inconveniences alongside the
 advantages. In the following, we describe some of the \textit{pros} and
@@ -61,7 +68,7 @@ available in the pro edition of Unity3D. With the release of Unity3D 5.0, the
 profiler is bundled with all editions of Unity3D. Unity3D 5.0 was released
 during this project, which made the profiler available to us. This allowed us
 to perform extensive performance analysis of different components within our
-architecture, such as AI, networking. This has in more than one occasion
+architecture, such as AI and networking. This has on more than one occasion
 enabled us to find significant performance bottlenecks.
 \\
 \\
@@ -81,7 +88,7 @@ among the members of the group.
 \todobrian{insert refs}
 Even though Unity3D has been in development for approximately 9 years, it is
 still surprisingly unstable in certain situations. It is not uncommon that the
-Unity3D editor process has to be \textit{force killed}. This is especially a
+Unity3D editor process has to be killed. This is especially a
 reoccurring problem on OSX and the exact cause for this is unknown to us. This
 had a negative effect on development, as it would often be required that Unity3D
 be restarted.
