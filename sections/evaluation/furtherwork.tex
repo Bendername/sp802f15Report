@@ -23,3 +23,9 @@ Tools with user friendly interfaces would allow anyone to create such content.
 
 It is currently only possible to play the game in a local area network.
 Further work would involve making the game playable over the Internet, rather than local net only.
+
+Clientside prediction is also something that could be implemented.
+Doing this would significantly improve the smoothness of enemy and character movements for all clients.
+It is, however, no trivial task, so a refactoring of the current network system may be needed.
+Currently, some of the RPC's send more data than is necessary, which is also a minor improvement that could be worked on if the network system is being refactored.
+Furthermore, with clientside prediction the update rate of networked entities can also be lowered without losing smoothness.
