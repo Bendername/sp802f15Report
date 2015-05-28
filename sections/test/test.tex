@@ -159,7 +159,7 @@ The test will be done with multiple setups:
 
 The reason the game is tested in solo mode, is to create a baseline for both platforms. That is, how fast and smooth does the game run if you are the only client, and the only server. In this scenario, the server will not handle other input but its self.
 
-The second scenario is running it with another player. This is done to see how the game, and server in particular, handles multiple game clients. This is interesting because the server handles all logic in the game, and basically instructs the clients to do ''its bidding''. So the more clients, the more the server has to do. 
+The second scenario is running it with another player. This is done to see how the game, and server in particular, handles multiple game clients. This is interesting because the server handles all logic in the game, and informs the clients about the current game state. So the more clients, the more the server has to do. 
 
 The last test is to see how it scales to a full game which is 3-4 players. It is interesting because not only does the amount of objects in the game increase vastly, e.g. bullets, but it also means the network traffic increases and the server load increases. Does it scale linearly or are there significant drops as more clients connect?
 
