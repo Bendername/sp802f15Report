@@ -6,8 +6,9 @@ The essential systems should support the design specifications of the game which
     \item Input System which can support keyboard and mouse input, gamepad input, and touchscreen input.
     \item Level and mission generation which creates the game world and goal of the game, and can be easily modified by users
 \end{itemize}
-Early prototyping was done on the essential systems to find 3rd party API's that would speed up the development of these systems.
-With these main systems in mind we can set up the lower layer of the diagram.\todokasper{It's not really the lower layer of the diagram though, since the only thing above missions and input is GUI. I think this needs rephrasing.}
+Early prototyping was done on the essential systems to find 3rd party APIs alongside Unity3D, that would speed up the development of these systems.
+With these main systems in mind we can set up the lower layer of the diagram.
+By prioritising the implementation of lower layers such as \textit{Network, Input, AI} and \textit{Level generation}, we form a base onto which we implement more game-specific layers above them.
 
 \begin{figure}
 \includegraphics[width = \textwidth]{figures/architecture/game_architecture_overview.png}
@@ -22,3 +23,7 @@ The way they are moving throughout the map should be controlled by some AI syste
 The GUI layer encapsulates all components related to views in the game.
 
 All components will be described in greater detail later in this part of the report.
+
+The input layer handles different input sources such as a touchscreen, gamepads, keyboard and mouse.
+
+The level generation layer is responsible instantiating the game world according to level and mission chosen by the player.
