@@ -51,9 +51,6 @@ advantages. In the following, we describe some of the \textit{pros} and
 \textit{cons} we experienced with working with Unity3D.
 
 \subsubsection*{Positives}
-%pros:
-%profiler in free-edition, easy-to-use,
-%rpc > low-level socket programming
 A feature-rich profiler is bundled with Unity3D, capable of profiling GPU, CPU
 and memory usage among other things - a valuable tool when attempting to
 identify performance bottlenecks. But until recently, the profiler was only
@@ -73,22 +70,14 @@ beginning of the project due to limited network programming experience
 among the members of the group.
 
 \subsubsection*{Negatives}
-%cons:
-%only one socket available in non-unity. Inverted  rects y axis, inconsistencies in documentation.
-%noget shit om rpc
-\todobrian{write also about socket issue and inverted y-rekt?}
-
-\todobrian{insert refs}
 Even though Unity3D has been in development for approximately 9 years, it is
-still surprisingly unstable in certain situations. It is not uncommon that the
+still surprisingly unstable in certain situations\cite{unity-facts}. It is not uncommon that the
 Unity3D editor process has to be killed. This is especially a
 reoccurring problem on OSX and the exact cause for this is unknown to us. This
 had a negative effect on development, as it would often be required that Unity3D
 be restarted.
 \\
 \\
-\todobrian{Is this correct?? Or was it only with 3 input source - whatever that
-means?}
 Unity3D supports various input devices, but we did experience problems with
 changing or adding input devices to the game during runtime, e.g. attaching a
 gamepad to a PC while the game is running. There were also inconsistencies in
@@ -103,9 +92,6 @@ pre-configured with components. So to state the problem differently, it is not
 possible to nest such templates within each other. Evidently, this did not
 impede development, but it did present inconveniences that required
 workarounds.
-\todobrian{write something about swaapping dlls - I dunno this problem}
-
-
 
 %\subsection{DO NOT READ BELOW THIS}
 
