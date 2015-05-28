@@ -66,7 +66,7 @@ Having decided on the format and encoded color values, we can design maps such a
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{figures/generating_levels/map.png}
+    \includegraphics[width=0.7\textwidth]{figures/generating_levels/map.png}
     \caption{A PNG image encoding a map.}
     \label{fig:png_map}
 \end{figure}
@@ -184,7 +184,6 @@ This technique is also used in the games seen in figures~\ref{fig:civ-1_square},
 To achieve this, an adaptation of the \textit{Marching squares} algorithm is used, and marks a position in the data structure as a particular type, based on the values of its neighbouring values~\cite{marching-squares}.
 A corresponding \textit{transition tile} is then blitted together, cached to disk in the same manner as grouped tiles, and assigned to the gameobject at that position.
 Figure~\ref{fig:transition_comparison} shows a comparison before and after integrating the algorithm.
-\todobrian{reconsider ref for marching squares}
 
 \begin{figure}[H]
     \centering
@@ -239,7 +238,7 @@ A naive implementation for placing wall-sprites within the gameworld is to place
 However, the walls should fit seamlessly together as a homogeneous unit.
 This is done using an adaptation of the \textit{Marching squares}, following the same procedure as with transitional tiles between grass and ground.
 Firstly it is detected if a wall is a ``stump'', a regular vertical or horizontal middle section or a t-section. 
-Diagonal walls are treated as ''stumps'', so our marching squares adaptation only considers adjacent tiles at 90-degree angles.
+Diagonal walls are treated as ``stumps'', so our marching squares adaptation only considers adjacent tiles at 90-degree angles.
 Figure~\ref{fig:wall_comparison} illustrates an example of placing walls where tiles are not ``connected'' and one where tiles are ``connected'' and figure~\ref{fig:walls_ingame} showing an in-game example.
 
 \begin{figure}[H]
