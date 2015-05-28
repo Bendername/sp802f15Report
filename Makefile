@@ -4,10 +4,11 @@ MAIN = Main
 pdflatex: $(MAIN).tex
 	@echo "-- compiling"
 	@pdflatex -halt-on-error $(MAIN) | grep "Fatal" || true
-	@pdflatex -halt-on-error $(MAIN) | grep "Fatal" || true
-	@pdflatex -halt-on-error $(MAIN) | grep "Fatal" || true
 	@echo "-- running bibtex"
 	@bibtex $(MAIN)
+	@bibtex $(MAIN)
+	@bibtex $(MAIN)
+	@pdflatex -halt-on-error $(MAIN) | grep "Fatal" || true
 	@pdflatex -halt-on-error $(MAIN) | grep "Fatal" || true
 
 lite: $(MAIN).tex
