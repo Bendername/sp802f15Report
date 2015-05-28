@@ -1,11 +1,7 @@
-\todobrian{I know this should not go here. We need to come up with a structure
-for individual implementation modules, like for the levels, minimap, loading
-in things from json etc.}
-In this chapter,  two different implementation of our in-game
-``minimap'' representation are explored. The initial implementation was developed during prototyping sessions to show
-the feasibility and usefulness of having a minimap in-game. This initial
-implementation was however encumbered by sub-par performance,
-for reasons which will be explained in more depth later in this chapter.
+For the ``minimap'', two different implementation are explored. 
+The initial implementation was developed during prototyping sessions to show the feasibility and usefulness of having a minimap in-game. 
+This initial implementation was however encumbered by sub-par performance.
+The optimized implementation transferred part of the calculations to the GPU, thereby gaining better performance.
 
 \section{Initial implementation}
 The minimap implementation was initially inspired by \textit{bitmap-blitting}
