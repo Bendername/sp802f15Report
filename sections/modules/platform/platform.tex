@@ -22,21 +22,23 @@ During production, we will target smartphones consisting of high-end hardware, a
 For this project we decided against developing our own game engine as it would require too much time to create a viable one, after which we likely would not have had enough time left to create the game. 
 Since the scope of this project is focused on creating a game for a mobile platform rather than developing a game engine, we decided to use an existing game engine.
 
-When looking at game engines, it became apparent that a wide variety exists, and looking through all of them would be beyond the scope of this project.
+When examining game engines, it became apparent that a wide variety exists, and looking through all of them would be beyond the scope of this project.
 Instead we decided to look at three popular ones: Cocos2D, Unity3D, and Unreal Engine.
 
 According to the survey ``Developer Economics Q3 2014: State of the Developer Nation''\cite{visionmobile-survey}, conducted by Vision Mobile\cite{visionmobile}, Unity3D was used by 47\% of game developers in Q3 of 2014, showing that Unity3D is a very popular game engine. 
 In the same survey, Cocos2D and Unreal Engine were used by 19\% and 13\% respectively.
+Unreal Engine 4 cost 19\$ a month\cite{unrealFree}, while Unity3D 4 and Cocos2D were both free.
 
-At the time when we were deciding which engine to choose Unreal Engine 4 cost 19\$ a month\cite{unrealFree}, while Unity3D 4 and Cocos2D were both free. 
-An attempt was made to try to acquire academic licenses to Unreal Engine so that the group did not need to pay for seven licenses. 
-This request was not met in due time, so we decided to discard the Unreal Engine.
+In order to better assess the capabilities of the Unreal Engine, an attempt was made to try to acquire academic licenses for it.
+This request was not met in due time, so we decided against considering using the Unreal Engine.
 
-This leaves us with the choice between Unity3D and Cocos2D, that both allow development of 2D games for mobile platforms and support for multiple platforms targets.
-While the group had no experience using Cocos2D, every member of the group had shipped at least one title using Unity3D, so rather than spending time learning how to use a new tool, we decided to use Unity3D to get off to a quicker start.
-Unity3D supports programming using the C\# language which most group members felt confident using, hence this would also contribute to a faster development of the game.
+This leaves us with the choice between Unity3D and Cocos2D, that both allow development of 2D games for mobile platforms and support for multiple platform targets.
+However, no member of the group had any experience using Cocos2D.
+Contrary, all had shipped at least one title using Unity3D.
 
-% rød tråd til subsection Unity 
+Choosing Cocos2D over Unity3D could prove educational, but we deemed it an unnecessary risk, given the scope we had planned for the game.
+In conclusion, we chose to use Unity3D. The following subsection is an overview of some of the capabilities of the Unity3D engine.
+
 \subsection{Unity3D}
 Unity3D is a general purpose game engine designed to make it easy to make games
 of many different genres. Unity3D consists of a built-in editor, making it
@@ -68,9 +70,8 @@ Scripts can be written in three different programming languages:
 All three languages can be used interchangeably within the same project.
 \\
 \\
-\todobrian{find refs}
 Unity3D provides frameworks and components for various game-development related
-tasks:
+tasks. While Unity3D is a complete game-engine, it also acts as \textit{middleware} for tasks such as:
 \begin{itemize}
     \item 2D and 3D physics simulation.
     \item 2D and 3D graphics rendering.
@@ -79,10 +80,8 @@ tasks:
     \item Input device management
 \end{itemize}
 
-Physics simulations are using Nvidia's PhysX physics engine\cite{unityengineoverview}, and rendering is
-offered by either Direct3D or OpenGL/ES.
-% What is unity
-% What can it do for us
-% architecture diagram
+Physics simulations are using Nvidia's PhysX physics engine\cite{unityengineoverview}. Rendering is
+provided by either Direct3D or OpenGL/ES, depending on project settings and target platform.
+Convenient RPC programming is provided through Unity3D's API using RakNet as back-end.
 
 \input{sections/modules/platform/gamearchitecture}
