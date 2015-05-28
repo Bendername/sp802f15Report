@@ -10,7 +10,9 @@ With these main systems in mind we can set up the lower-middle layer of the diag
 By prioritising the implementation of lower layers such as \textit{Network, Input, AI} and \textit{Level generation}, we form a base onto which we implement more game-specific layers above them.
 
 \begin{figure}
-\includegraphics[width = \textwidth]{figures/architecture/game_architecture_overview.png}
+	\includegraphics[width = \textwidth]{figures/architecture/game_architecture_overview.png}
+	\caption{The game architecture in a layered diagram.}
+	\label{fig:architecture:diagram}
 \end{figure}
 
 The network has to handle the enemies and characters in the game such that they can be synchronised with all the players, handled in the Entity structure above the network level.

@@ -13,19 +13,19 @@ show examples of games using each of the mentioned techniques of tiling.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/generating_levels/civ-1_square.png}
+    \includegraphics[width=0.7\textwidth]{figures/generating_levels/civ-1_square.png}
     \caption{Civilizations 1, using squares as tiles}\label{fig:civ-1_square}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/generating_levels/civ-2_iso.png}
+    \includegraphics[width=0.7\textwidth]{figures/generating_levels/civ-2_iso.png}
     \caption{Civilizations 2, using the isometric technique}\label{fig:civ-2_iso}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/generating_levels/wesnoth_hex.png}
+    \includegraphics[width=0.7\textwidth]{figures/generating_levels/wesnoth_hex.png}
     \caption{Battle of Wesnoth, using a hexagonal tiling technique}\label{fig:wesnoth_hex}
 \end{figure}
 Since the individual techniques mostly impact the visual appearance of the game, the underlying data structures remain the same.
@@ -210,15 +210,6 @@ rectangular areas on the map, which can be applied for each of the tile types
 to cover the entire game-area, reducing the number of quads we need to
 instantiate.
 
-The iteration also brought with it a significant refactoring following a
-functional style. This enabled us to divide the workload of finding rectangular
-areas, amongst other things, to several separate threads. While this does not
-guarantee improvements w.r.t. computation time, it has the potential to be an
-improvement on multi-core platforms.
-
-The difference in using quads instead of sprites can be seen
-in Figure~\ref{fig:quad_tiling_comparison}
-
 \begin{figure}[H]
     \centering
     \begin{tabular}{cc}
@@ -229,6 +220,16 @@ in Figure~\ref{fig:quad_tiling_comparison}
     \caption{(left) grouped tiling, (right) tiles using quads with tiled
     textures}\label{fig:quad_tiling_comparison}
 \end{figure}
+
+The iteration also brought with it a significant refactoring following a
+functional style. This enabled us to divide the workload of finding rectangular
+areas, amongst other things, to several separate threads. While this does not
+guarantee improvements w.r.t. computation time, it has the potential to be an
+improvement on multi-core platforms.
+
+The difference in using quads instead of sprites can be seen
+in Figure~\ref{fig:quad_tiling_comparison}
+
 
 \section{Placing walls and colliders}
 Placing walls involves both placing them as textured tiles within the gameworld, and placing \textit{colliders} such that moving object in the game cannot move through them.
@@ -253,7 +254,7 @@ Figure~\ref{fig:wall_comparison} illustrates an example of placing walls where t
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/generating_levels/walls_ingame.png}
+    \includegraphics[width=\textwidth]{figures/generating_levels/walls_ingame.png}
     \caption{In-game example of connected walls}\label{fig:walls_ingame} 
 \end{figure}
 
@@ -269,18 +270,19 @@ This means that the polygon cannot \textit{easily} be constructed only knowing t
 Our solution was to use an adaptation of \textit{flood fill} to first find connected vertical and then horizontal wall sections.
 From the algorithm, we can find contour vertices for convex polygons which are \textit{larger} than single wall sections.
 This significantly reduces the number of colliders necessary and eliminating the mentioned problem of unreliable behavior for rigidbodies colliding with walls.
-An \textit{optimal} solution would be to construct a concave polygon from the vertices, which would require finding all
-contour vertices \textit{and} the order in which they should connected when constructing the polygon.
+An \textit{optimal} solution would be to construct a concave polygon from the vertices, which would require finding all contours \textit{and} the order in which they should connected when constructing the polygon.
 The result of our \textit{flood fill} approach can be seen in figure~\ref{fig:wall_with_convex}.
 
 \begin{figure}[H]
+\centering
+    \begin{minipage}{.4\textwidth}
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/generating_levels/wall_with_vertices.png}
-    \caption{Placing colliders at tile positions}\label{fig:wall_with_vertices} 
-\end{figure}
-
-\begin{figure}[H]
+	    \includegraphics[scale=0.4]{figures/generating_levels/wall_with_vertices.png}
+	    \captionof{figure}{Placing colliders at\\ tile positions.}\label{fig:wall_with_vertices} 
+    \end{minipage}%
+    \begin{minipage}{.4\textwidth}
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/generating_levels/wall_with_convex.png}
-    \caption{Finding connected concave polygons using flood fill}\label{fig:wall_with_convex} 
+	    \includegraphics[scale=0.4]{figures/generating_levels/wall_with_convex.png}
+   	    \captionof{figure}{Finding the connected convex polygons using flood fill.}\label{fig:wall_with_convex} 
+    \end{minipage}
 \end{figure}

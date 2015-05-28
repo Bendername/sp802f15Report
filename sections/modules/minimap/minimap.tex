@@ -70,12 +70,12 @@ The \textit{RawImage} contains the properties:
 \item UV Rectangle
 \end{itemize}
 The texture will be our full map, and the UV Rectangle will be used to offset and control the size of the minimap, as shown in Figure \ref{minimap:creation}.
-\begin{figure}
-    \includegraphics[scale=0.5]{figures/minimap/RawImage.png}
+\begin{figure}[H]
+    \includegraphics[width = \textwidth]{figures/minimap/RawImage.png}
     \caption{Illustration of the minimap creation and control}
     \label{minimap:creation}
 \end{figure}
-\\\\
+
 The task which the CPU is still required to do is:
 \begin{itemize}
 \item Give the \textit{RawImage} a size and width relative to the map
@@ -96,8 +96,8 @@ The UV Rectangle is also used to control the offset from the button left corner,
 \item Y - Which controls the offset on the y-axis
 \end{itemize}
 In order to determine the offset that makes the player stay inside the RawImage, two simple equations are used\\
-$Offset_x = \frac{playerPosition.x}{Minimap.width} \cdot maxOffset$\\
-$Offset_y = \frac{playerPosition.y}{Minimap.width} \cdot maxOffset$\\
+$\textit{Offset}_x = \frac{playerPosition.x}{Minimap.width} \cdot \textit{maxOffset}$\\
+$\textit{Offset}_y = \frac{playerPosition.y}{Minimap.width} \cdot \textit{maxOffset}$\\
 The last task was to add the different entities to the texture. 
 In order to do so an a copy of the untouched map is created and a dictionary which uses an entity as key and a position as value.
 When a entity is plotted onto the minimap the entities' position is store in the dictionary.

@@ -9,18 +9,19 @@ A resulting graph can be seen in Figure \ref{waypointgraph}.
 In comparison the old graph created had 3984 nodes and 30450 edges while this approach resulted in a much smaller graph with 47 nodes and 624 edges, thus improving both the creation and traversal times of the graph.
 
 \begin{figure}[H]
-\begin{center}
-	\includegraphics[width=0.5\textwidth]{figures/astar/waypoints}
+\centering
+\begin{minipage}{.5\textwidth}
+\centering
+	\includegraphics[width=0.9\textwidth]{figures/astar/waypoints}
 	\caption{The placement of the waypoints}
 	\label{waypointsNode}
-	\end{center}
-\end{figure}
-
-\begin{figure}[H]
-\begin{center}
-	\includegraphics[width=0.5\textwidth]{figures/astar/waypointsGraph}
+	\end{minipage}%
+\begin{minipage}{.5\textwidth}
+\centering
+	\includegraphics[width=0.9\textwidth]{figures/astar/waypointsGraph}
 	\caption{Graph based on the waypoints}
-	\label{waypointgraph}\end{center}
+	\label{waypointgraph}
+	\end{minipage}
 \end{figure}
 
 This however raised a new problem, since there were fewer waypoints available the enemies had to find the nearest accessible waypoint.
