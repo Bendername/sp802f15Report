@@ -119,9 +119,9 @@ All the test subjects agreed that the game was fun.
 \textbf{Second Test Group:}\\
 \begin{itemize}
 \item Comment: ``Weird controls''
-\item Loses on Mission one - wave one
+\item Loses on mission one - wave one
 \item Talks tactic on how to beat the wave, this includes position and classes
-\item Comment: ``Shit I have bad FPS'' - On one of the mobile devices (VERY low frame rate)
+\item Comment: ``I have bad FPS'' - On one of the mobile devices (Very low frame rate)
 \item Keeps talking tactic throughout the game
 \item Talks about the different advantages of the weapons
 \item Beats the game after two tries
@@ -164,6 +164,8 @@ The second scenario is running it with another player. This is done to see how t
 The last test is to see how it scales to a full game which is 3-4 players. It is interesting because not only does the amount of objects in the game increase vastly, e.g. bullets, but it also means the network traffic increases and the server load increases. Does it scale linearly or are there significant drops as more clients connect?
 
 \subsection{Results}
+In the following sections server and client performances will be analyzed.
+
 \subsection*{Server performance}
 The main goal for having an acceptable FPS is that it is relatively high and more importantly smooth without dips. Figure \ref{test:performance:pcserverone} and figure \ref{test:performance:mobileserverone} shows the performance of a single player who is also the server, on PC and mobile respectively. Although the PC runs 150 frames per second more than the mobile server, they both share the same characteristics that the server runs extremely smoothly. The PC has an average fps of \emph{195} where the mobile has an average of \emph{57}. Both of these values are well above our goal of \emph{60} fps and \emph{45} fps for PC and mobile respectively. Additionally if you look at the data, there is a large drop in FPS at the very beginning of each data-set. This drops goes for a few frames with a few players and a few more frames if there is 4 players or more. These frames are when the server and clients load all data, so they are to be expected and have no real impact on the game flow. The actual numbers for the different tests for a server can be seen summed up in table \ref{test:table:data}.
 \begin{figure}[H]
