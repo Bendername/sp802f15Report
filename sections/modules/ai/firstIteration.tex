@@ -1,14 +1,15 @@
 Our initial idea was to simply create a tile graph\cite{AIG:Millington} as illustrated in \ref{gridGraph}.
 A node would then have up to eight connections which would point to a neighbour of that certain node with a cost of traversing to this node.
 Possible neighbours would be four to each side of the node with a cost of 10 and four diagonal neighbours with a cost of 14, which is the length of the hypotenuse when the length of the catheti are 10.
-\begin{figure}[H]
+
+To navigate in the graph a pathfinding algorithm is needed. 
+The pathfinding algorithm that would be used is the A* search pathfinding which has a runtime of $O(n \times m)$, where $n$ is the number of nodes that will be explored, $m$ is the average number of neighbours in the graph, and it is assumed that the graph and heuristic operations take constant time\cite{AIG:Millington}.
+
+\begin{figure}[h]
 	\includegraphics[width=\textwidth]{figures/astar/gridGraph}
 	\caption{Graph based on the tiles of the map}
 	\label{gridGraph}
 \end{figure}
-
-To navigate in the graph a pathfinding algorithm is needed. 
-The pathfinding algorithm that would be used is the A* search pathfinding which has a runtime of $O(n \times m)$, where $n$ is the number of nodes that will be explored, $m$ is the average number of neighbours in the graph, and it is assumed that the graph and heuristic operations take constant time\cite{AIG:Millington}.
 
 \subsection*{Choosing a heuristic}
 The heuristic should be easily calculated and somewhat precise since it is to be called on runtime.
