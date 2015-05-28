@@ -111,7 +111,7 @@ All the test subjects agreed that the game was fun.
 \textbf{First Test Group:}\\
 \begin{itemize}
 \item Talk about which classes they should pick to create a good setup
-\item Experienced severe frame drops on all devices except the host  when the game started. The game was restarted and the issues disappeared when a new device was the host for the game
+\item Experienced severe frame drops on all devices except the host when the game started. The game was restarted and the issues disappeared when a new device was the host for the game
 \item The team did not finish the mission pack, and after three tries they gave up
 \item The mission pack had to be made easier since the test subjects had no chance in mission two - wave two
 \end{itemize}
@@ -121,7 +121,7 @@ All the test subjects agreed that the game was fun.
 \item Comment: "Weird controls"
 \item Loses on Mission one - wave one
 \item Talks tactic on how to beat the wave, this includes position and classes
-\item Comment: "Shit I have bad FPS" - 
+\item Comment: "Shit I have bad FPS" - On one of the mobile devices (VERY low frame rate)
 \item Keeps talking tactic throughout the game
 \item Talks about the different advantages of the weapons
 \item Beats the game after two tries
@@ -132,13 +132,17 @@ All the test subjects agreed that the game was fun.
 \item Talks tactic of which classes to pick
 \item Fast to pick up the game and using effective positioning strategies
 \item Cooperating by running together as a group with good communication
-\item Crashes two of the devices - The bug was due to an enemy trying to drop an object which is could not instantiate causing the \textit{NetworkHandler} to crash
+\item Crashes two of the devices - The bug was due to an enemy trying to drop an object which is could not be instantiated which causing the \textit{NetworkHandler} to crash
 \item Beats the game in one try even though the game crashed for some of the players
 \end{itemize}
 
 \subsection{Result Analysis}
 Overall the test subjects were largely happy about the gameplay and content designed to cater to hardcore gamers.
-From this we gather that designing a game based on the factors mentioned in Table \ref{tab:relevantFactors} enables the game to cater to hardcore players as defined by Gamasutra\cite{casual_vs_hardcore}.
+From this we gather that designing a game based on the factors mentioned in Table \ref{tab:relevantFactors} enables the game largely to cater to hardcore players as defined by Gamasutra\cite{casual_vs_hardcore}.
+All the groups also discussed tactics regarding where to position and character composition, which shows that a level of interesting choices are present.
+
+However, the test subjects did experience some errors in all of the test, some of which were errors that were easily fixable. The one who mentioned he had bad FPS had a game which was close to unplayable, the two other player connected to the same game had no problems, which indicates there might have been an exception which caused the game to lag.
+
 
 \section{Performance test}
 The goal of the performance test is to figure out whether or not the framerate in the game is acceptable according to requirement 8 in section \ref{gamedesign:selectionofgametype:importantstuff}. 
@@ -153,30 +157,15 @@ The test will be done with multiple setups:
 \item Performance test of the server when it deals with a higher number of players
 \end{itemize}
 
-The reason the game is tested in solo mode, is to create a baseline for both platforms. 
-That is, how fast and smooth does the game runs if you are the only client, and the only server. 
-In this scenario, the server will not handle other input but itself.
+The reason the game is tested in solo mode, is to create a baseline for both platforms. That is, how fast and smooth does the game run if you are the only client, and the only server. In this scenario, the server will not handle other input but its self.
 
-The second scenario is running it with another player. This is done to see how the game, and server in particular, handles multiple game clients. 
-This is interesting because the server handles all logic in the game, and basically instructs the clients to do ''its bidding''\tododaniel{meh, er det bare mig eller skal vi have noget mindre warcraft 3'ish word her}. 
-So the more clients, the more the server has to do. 
+The second scenario is running it with another player. This is done to see how the game, and server in particular, handles multiple game clients. This is interesting because the server handles all logic in the game, and basically instructs the clients to do ''its bidding''. So the more clients, the more the server has to do. 
 
-The last test is to see how it scales to a full game which is 3-4 players. 
-It is interesting because not only does the amount of objects in the game increase vastly, e.g. bullets, but it also means the network traffic increases and the server load increases. 
-Does it scale linearly or are there significant drops as more clients connect?
+The last test is to see how it scales to a full game which is 3-4 players. It is interesting because not only does the amount of objects in the game increase vastly, e.g. bullets, but it also means the network traffic increases and the server load increases. Does it scale linearly or are there significant drops as more clients connect?
 
 \subsection{Results}
 \subsection*{Server performance}
-The main goal for having an acceptable FPS is that it is relatively high and more importantly smooth without large declines. 
-Figure \ref{test:performance:pcserverone} and figure \ref{test:performance:mobileserverone} shows the performance of a single player, who is also the server, on PC and mobile respectively. 
-Although the PC runs 150 FPS more than the mobile server, they both share the same characteristics that the server runs extremely smoothly. 
-The PC has an average FPS of 195 where the mobile has an average of 57. Both of these values are well above our goal of 60 FPS and 45 FPS for PC and mobile respectively. 
-Additionally, if you look at the data, there is a large drop in FPS at the very beginning of each data-set. 
-This drops goes for a few frames with a few players and a few more frames if there are 4 players or more. 
-These frames are when the server and clients load all data, so they are to be expected and as they happen when the game is loading they have no real impact on the player's game flow. 
-The actual numbers for the different tests for a server can be seen summed up in table \ref{test:table:data}. 
-The complete data sets can be seen in Appendix \ref{appendix:test:fpsdata}.
-
+The main goal for having an acceptable FPS is that it is relatively high and more importantly smooth without dips. Figure \ref{test:performance:pcserverone} and figure \ref{test:performance:mobileserverone} shows the performance of a single player who is also the server, on PC and mobile respectively. Although the PC runs 150 frames per second more than the mobile server, they both share the same characteristics that the server runs extremely smoothly. The PC has an average fps of \emph{195} where the mobile has an average of \emph{57}. Both of these values are well above our goal of \emph{60} fps and \emph{45} fps for PC and mobile respectively. Additionally if you look at the data, there is a large drop in FPS at the very beginning of each data-set. This drops goes for a few frames with a few players and a few more frames if there is 4 players or more. These frames are when the server and clients load all data, so they are to be expected and have no real impact on the game flow. The actual numbers for the different tests for a server can be seen summed up in table \ref{test:table:data}. The complete data sets can be seen in Appendix \ref{appendix:test:fpsdata}.
 \begin{figure}
     \includegraphics{figures/test/PCServerOnePlayer}
     \caption{PC server with one player (no clients) \\ Legend: Blue: FPS, Purple: Average FPS, Green: Max FPS, Yellow: Minimum FPS, Red: Target FPS}
@@ -202,11 +191,10 @@ Mobile / 3 Player     & 57          & 3           &             &
 \caption{The average, minimum and maximum FPS for the server in different test results (data is rounded) }
 \end{table}
 
-One thing to note is the fact that the PC server will fluctuate 10-30\%  in FPS, whereas the mobile normally fluctuates between 0-10\% and rarely 20\%. 
-This happens mostly if there are 3 or more players connected, but it still keeps a running minimum FPS well above the minimum target FPS and one could easily cap the server to 120 FPS.
+One thing to note is the fact that the PC server will fluctuate 10-30%  in FPS, where as the mobile normally fluctuates between 0-10% and rarely 20%. This happens mostly if there is 3 or more players connected, but it still keep a running minimum fps well above the minimum fps we set as a target though and one could easily cap the server to 120FPS to keep a rock steady frame rate.
 
 \subsection*{Client performance}
-The client performance is much equal to the server. A PC will run roughly 250 FPS and the mobile will run in the area of 55 FPS. A graph for a PC connected to a mobile server can be seen in \ref{test:performance:pcclientmobileserver} and a graph for a mobile client can be seen in figure \ref{test:performance:mobileclientpcserver}.
+The client performance is much equal to the server. A PC will run roughly \emph{250} and the mobile will run in the area of \emph{55} fps. A graph for a PC connected to a mobile server can be seen in \ref{test:performance:pcclientmobileserver} and a graph for a mobile client can be seen in figure \ref{test:performance:mobileclientpcserver}.
 
 \begin{figure}
     \includegraphics{figures/test/PCClient2Player}
