@@ -1,8 +1,8 @@
-In this chapter, we describe the platform we intend to target, the underlying
-technology we use to support the development of our game, and finally an
+In this chapter,the platform we intend to target will be described, together with the underlying
+technology used to support the development of our game, and finally an
 architectural overview of the different components needed to be implemented for
-our game. Architecture descriptions are accompanied with diagrams depicted in a
-\textit{layered architecture} style. Accompanying text describe diagrams in
+the game. Architecture descriptions are accompanied with diagrams depicted in a
+\textit{layered architecture diagram}. Accompanying text describe diagrams in
 more detail where relevant.
 
 \section{Platform}
@@ -23,21 +23,21 @@ For this project we decided against developing our own game engine as it would r
 Since the scope of this project is focused on creating a game for a mobile platform rather than developing a game engine, we decided to use an existing game engine.
 
 When examining game engines, it became apparent that a wide variety exists, and looking through all of them would be beyond the scope of this project.
-Instead we decided to look at three popular ones: Cocos2D, Unity3D, and Unreal Engine.
+Instead it was decided to look at three popular ones: Cocos2D, Unity3D, and Unreal Engine.
 
 According to the survey ``Developer Economics Q3 2014: State of the Developer Nation''\cite{visionmobile-survey}, conducted by Vision Mobile\cite{visionmobile}, Unity3D was used by 47\% of game developers in Q3 of 2014, showing that Unity3D is a very popular game engine. 
 In the same survey, Cocos2D and Unreal Engine were used by 19\% and 13\% respectively.
 Unreal Engine 4 cost 19\$ a month\cite{unrealFree}, while Unity3D 4 and Cocos2D were both free.
 
-In order to better assess the capabilities of the Unreal Engine, an attempt was made to try to acquire academic licenses for it.
-This request was not met in due time, so we decided against considering using the Unreal Engine.
+In order to better assess the capabilities of the Unreal Engine, an attempt was made to try to acquire an academic licenses.
+This request was not met in due time, so it was decided not to use Unreal Engine.
 
 This leaves us with the choice between Unity3D and Cocos2D, that both allow development of 2D games for mobile platforms and support for multiple platform targets.
 However, no member of the group had any experience using Cocos2D.
 Contrary, all had shipped at least one title using Unity3D.
 
-Choosing Cocos2D over Unity3D could prove educational, but we deemed it an unnecessary risk, given the scope we had planned for the game.
-In conclusion, we chose to use Unity3D. The following subsection is an overview of some of the capabilities of the Unity3D engine.
+Choosing Cocos2D over Unity3D could prove educational, but we deemed it an unnecessary risk, given the scope which was planned for the game.
+In conclusion Unity3D was chosen. The following subsection is an overview of some of the capabilities of the Unity3D engine.
 
 \subsection{Unity3D}
 Unity3D is a general purpose game engine designed to make it easy to make games
@@ -46,7 +46,7 @@ easy to design and change game environments. Using the editor, the user can
 place game objects, and attach components to them, such as colliders and
 scripts. The editor affords an intuitive approach to designing game-worlds, as
 the game can be viewed in 3D or 2D during design and in real-time while the
-game is running, see figure \ref{platform:editor}.
+game is running as shown in Figure \ref{platform:editor}.
 
 \begin{figure}[H]
 \begin{center}
